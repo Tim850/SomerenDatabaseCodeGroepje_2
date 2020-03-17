@@ -1,4 +1,4 @@
-﻿using SomerenLogic;
+using SomerenLogic;
 using SomerenModel;
 using System;
 using System.Collections.Generic;
@@ -201,11 +201,10 @@ namespace SomerenUI
                 listViewStockDrinks.FullRowSelect = true;
 
                 // Aanmaken van kollomen
-                listViewStockDrinks.Columns.Add("Drank Id");
-                listViewStockDrinks.Columns.Add("Drank Naam");
+                listViewStockDrinks.Columns.Add("Name of drink");
                 listViewStockDrinks.Columns.Add("Stock");
-                listViewStockDrinks.Columns.Add("Voucher prijs");
-                listViewStockDrinks.Columns.Add("");
+                listViewStockDrinks.Columns.Add("Voucher price");
+
 
 
             }
@@ -222,8 +221,7 @@ namespace SomerenUI
                 // show stock
                 pnl_CheckOut.Show();
 
-                // combobox studenten vullen
-                DisplayStudents();
+
             }
         }
 
@@ -275,19 +273,6 @@ namespace SomerenUI
         private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("CheckOut");
-        }
-
-        private void DisplayStudents()
-        {
-            List<Student> students = studService.GetStudents();
-
-            cmb_Students.Items.Clear();
-            foreach (Student student in students)
-            {
-                cmb_Students.Items.Add(student);
-            }
-
-            cmb_Students.SelectedIndex = 0;
         }
     }
 }
