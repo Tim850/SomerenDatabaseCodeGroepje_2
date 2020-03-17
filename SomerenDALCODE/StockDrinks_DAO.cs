@@ -27,9 +27,9 @@ namespace SomerenDAL
             {
                 StockDrinks drink = new StockDrinks()
                 {
-                    Number = (int)dr["studentNumber"],
-                    FirstName = (String)(dr["studentFirstName"].ToString()),
-                    LastName = (String)(dr["studentLastName"].ToString())
+                    Name = (String)dr["name"],
+                    Price = (int)dr["priceInVouchers"],
+                    Stock = (int)dr["stock"]
                 };
                 stock.Add(drink);
             }
