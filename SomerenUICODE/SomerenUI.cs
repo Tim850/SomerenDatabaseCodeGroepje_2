@@ -17,6 +17,7 @@ namespace SomerenUI
     public partial class SomerenUI : Form
     {
         SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
+        SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
 
         public SomerenUI()
         {
@@ -189,7 +190,6 @@ namespace SomerenUI
                 pnl_StockDrinks.Show();
 
                 // fill the listview with a list of the stock
-                SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
                 List<StockDrinks> stockList = stockDrinksService.GetStock();
 
                 // clear the listview first before filling it again
@@ -218,21 +218,22 @@ namespace SomerenUI
                 pnl_Rooms.Hide();
                 pnl_StockDrinks.Hide();
 
-                // show stock
+                // show checkout
                 pnl_CheckOut.Show();
 
-                // lijst met studenten
+                // lijsten
                 List<Student> studentList = studService.GetStudents();
+                List<StockDrinks> drinkList = stockDrinksService.GetStock();
 
-                // clear the listview before filling it again
-                listViewStudents.Clear();
+                // listview students
+                listViewStudentsCO.Clear();
 
                 listViewStudentsCO.View = View.Details;
                 listViewStudentsCO.GridLines = true;
                 listViewStudentsCO.CheckBoxes = true;
 
-                listViewStudentsCO.Columns.Add("Student Number", 100);
-                listViewStudentsCO.Columns.Add("First Name", 100);
+                listViewStudentsCO.Columns.Add("Student Number", 80);
+                listViewStudentsCO.Columns.Add("First Name", 80);
                 listViewStudentsCO.Columns.Add("Last Name", 100);
 
                 string[] students = new string[3];
@@ -246,6 +247,29 @@ namespace SomerenUI
 
                     itm = new ListViewItem(students);
                     listViewStudentsCO.Items.Add(itm);
+                }
+
+                // listview drinks
+                listViewDrinksCO.Clear();
+
+                listViewDrinksCO.View = View.Details;
+                listViewDrinksCO.GridLines = true;
+                listViewDrinksCO.CheckBoxes = true;
+
+                listViewDrinksCO.Columns.Add("Name", 80);
+                listViewDrinksCO.Columns.Add("Price", 70);
+                listViewDrinksCO.Columns.Add("Stock", 70);
+
+                string[] drinks = new string[3];               
+
+                foreach (SomerenModel.StockDrinks d in drinkList)
+                {
+                    drinks[0] = d.Name;
+                    drinks[1] = d.Price.ToString();
+                    drinks[2] = d.Stock.ToString();
+
+                    itm = new ListViewItem(drinks);
+                    listViewDrinksCO.Items.Add(itm);
                 }
 
 
@@ -305,15 +329,28 @@ namespace SomerenUI
 
         private void Btn_Calculate_Click(object sender, EventArgs e)
         {
+            int totalPrice;
+
             // geselecteerde student checken
             for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
             {
                 if (listViewStudentsCO.Items[i].Checked == true)
                 {
-                    MessageBox.Show("Gelukt");
+                    //MessageBox.Show("Gelukt");
                 }
             }
 
+            // geselecteerde drankjes
+            for (int i = 0; i < listViewDrinksCO.Items.Count; i++)
+            {
+                string drink;
+                drink= listViewDrinksCO.Items[i].ToString();
+
+                if (listViewDrinksCO.Items[i].Checked == true)
+                {
+                    MessageBox.Show(drink);
+                }
+            }
 
         }
     }
