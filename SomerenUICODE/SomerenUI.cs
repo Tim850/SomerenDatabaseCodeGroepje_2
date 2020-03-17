@@ -1,4 +1,4 @@
-using SomerenLogic;
+﻿using SomerenLogic;
 using SomerenModel;
 using System;
 using System.Collections.Generic;
@@ -221,10 +221,38 @@ namespace SomerenUI
                 // show stock
                 pnl_CheckOut.Show();
 
+                // lijst met studenten
+                List<Student> studentList = studService.GetStudents();
+
+                // clear the listview before filling it again
+                listViewStudents.Clear();
+
+                listViewStudentsCO.View = View.Details;
+                listViewStudentsCO.GridLines = true;
+                listViewStudentsCO.CheckBoxes = true;
+
+                listViewStudentsCO.Columns.Add("Student Number", 100);
+                listViewStudentsCO.Columns.Add("First Name", 100);
+                listViewStudentsCO.Columns.Add("Last Name", 100);
+
+                string[] students = new string[3];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Student s in studentList)
+                {
+                    students[0] = s.Number.ToString();
+                    students[1] = s.FirstName;
+                    students[2] = s.LastName;
+
+                    itm = new ListViewItem(students);
+                    listViewStudentsCO.Items.Add(itm);
+                }
+
 
             }
         }
 
+        // Menu item clicks
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
            //
@@ -273,6 +301,20 @@ namespace SomerenUI
         private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("CheckOut");
+        }
+
+        private void Btn_Calculate_Click(object sender, EventArgs e)
+        {
+            // geselecteerde student checken
+            for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
+            {
+                if (listViewStudentsCO.Items[i].Checked == true)
+                {
+                    MessageBox.Show("Gelukt");
+                }
+            }
+
+
         }
     }
 }

@@ -60,9 +60,14 @@
             this.listViewStockDrinks = new System.Windows.Forms.ListView();
             this.lbl_StockDrinks = new System.Windows.Forms.Label();
             this.pnl_CheckOut = new System.Windows.Forms.Panel();
-            this.lbl_checkOut = new System.Windows.Forms.Label();
+            this.listViewDrinksCO = new System.Windows.Forms.ListView();
+            this.listViewStudentsCO = new System.Windows.Forms.ListView();
+            this.lbl_SelectDrinks = new System.Windows.Forms.Label();
             this.lbl_SelectStudent = new System.Windows.Forms.Label();
-            this.cmb_Students = new System.Windows.Forms.ComboBox();
+            this.lbl_checkOut = new System.Windows.Forms.Label();
+            this.btn_Calculate = new System.Windows.Forms.Button();
+            this.lbl_Total = new System.Windows.Forms.Label();
+            this.lbl_CalcTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -338,7 +343,12 @@
             // 
             // pnl_CheckOut
             // 
-            this.pnl_CheckOut.Controls.Add(this.cmb_Students);
+            this.pnl_CheckOut.Controls.Add(this.lbl_CalcTotal);
+            this.pnl_CheckOut.Controls.Add(this.lbl_Total);
+            this.pnl_CheckOut.Controls.Add(this.btn_Calculate);
+            this.pnl_CheckOut.Controls.Add(this.listViewDrinksCO);
+            this.pnl_CheckOut.Controls.Add(this.listViewStudentsCO);
+            this.pnl_CheckOut.Controls.Add(this.lbl_SelectDrinks);
             this.pnl_CheckOut.Controls.Add(this.lbl_SelectStudent);
             this.pnl_CheckOut.Controls.Add(this.lbl_checkOut);
             this.pnl_CheckOut.Location = new System.Drawing.Point(0, 31);
@@ -346,15 +356,33 @@
             this.pnl_CheckOut.Size = new System.Drawing.Size(1154, 498);
             this.pnl_CheckOut.TabIndex = 7;
             // 
-            // lbl_checkOut
+            // listViewDrinksCO
             // 
-            this.lbl_checkOut.AutoSize = true;
-            this.lbl_checkOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_checkOut.Location = new System.Drawing.Point(30, 11);
-            this.lbl_checkOut.Name = "lbl_checkOut";
-            this.lbl_checkOut.Size = new System.Drawing.Size(209, 46);
-            this.lbl_checkOut.TabIndex = 0;
-            this.lbl_checkOut.Text = "Check Out";
+            this.listViewDrinksCO.HideSelection = false;
+            this.listViewDrinksCO.Location = new System.Drawing.Point(516, 114);
+            this.listViewDrinksCO.Name = "listViewDrinksCO";
+            this.listViewDrinksCO.Size = new System.Drawing.Size(336, 221);
+            this.listViewDrinksCO.TabIndex = 6;
+            this.listViewDrinksCO.UseCompatibleStateImageBehavior = false;
+            // 
+            // listViewStudentsCO
+            // 
+            this.listViewStudentsCO.HideSelection = false;
+            this.listViewStudentsCO.Location = new System.Drawing.Point(38, 114);
+            this.listViewStudentsCO.Name = "listViewStudentsCO";
+            this.listViewStudentsCO.Size = new System.Drawing.Size(334, 220);
+            this.listViewStudentsCO.TabIndex = 5;
+            this.listViewStudentsCO.UseCompatibleStateImageBehavior = false;
+            // 
+            // lbl_SelectDrinks
+            // 
+            this.lbl_SelectDrinks.AutoSize = true;
+            this.lbl_SelectDrinks.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_SelectDrinks.Location = new System.Drawing.Point(511, 66);
+            this.lbl_SelectDrinks.Name = "lbl_SelectDrinks";
+            this.lbl_SelectDrinks.Size = new System.Drawing.Size(87, 29);
+            this.lbl_SelectDrinks.TabIndex = 4;
+            this.lbl_SelectDrinks.Text = "Drinks:";
             // 
             // lbl_SelectStudent
             // 
@@ -366,13 +394,44 @@
             this.lbl_SelectStudent.TabIndex = 1;
             this.lbl_SelectStudent.Text = "Student:";
             // 
-            // cmb_Students
+            // lbl_checkOut
             // 
-            this.cmb_Students.FormattingEnabled = true;
-            this.cmb_Students.Location = new System.Drawing.Point(36, 109);
-            this.cmb_Students.Name = "cmb_Students";
-            this.cmb_Students.Size = new System.Drawing.Size(297, 24);
-            this.cmb_Students.TabIndex = 2;
+            this.lbl_checkOut.AutoSize = true;
+            this.lbl_checkOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_checkOut.Location = new System.Drawing.Point(30, 11);
+            this.lbl_checkOut.Name = "lbl_checkOut";
+            this.lbl_checkOut.Size = new System.Drawing.Size(209, 46);
+            this.lbl_checkOut.TabIndex = 0;
+            this.lbl_checkOut.Text = "Check Out";
+            // 
+            // btn_Calculate
+            // 
+            this.btn_Calculate.Location = new System.Drawing.Point(84, 362);
+            this.btn_Calculate.Name = "btn_Calculate";
+            this.btn_Calculate.Size = new System.Drawing.Size(229, 48);
+            this.btn_Calculate.TabIndex = 7;
+            this.btn_Calculate.Text = "Calculate Price";
+            this.btn_Calculate.UseVisualStyleBackColor = true;
+            this.btn_Calculate.Click += new System.EventHandler(this.Btn_Calculate_Click);
+            // 
+            // lbl_Total
+            // 
+            this.lbl_Total.AutoSize = true;
+            this.lbl_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Total.Location = new System.Drawing.Point(80, 434);
+            this.lbl_Total.Name = "lbl_Total";
+            this.lbl_Total.Size = new System.Drawing.Size(61, 24);
+            this.lbl_Total.TabIndex = 8;
+            this.lbl_Total.Text = "Total: ";
+            // 
+            // lbl_CalcTotal
+            // 
+            this.lbl_CalcTotal.AutoSize = true;
+            this.lbl_CalcTotal.Location = new System.Drawing.Point(232, 436);
+            this.lbl_CalcTotal.Name = "lbl_CalcTotal";
+            this.lbl_CalcTotal.Size = new System.Drawing.Size(20, 17);
+            this.lbl_CalcTotal.TabIndex = 9;
+            this.lbl_CalcTotal.Text = "...";
             // 
             // SomerenUI
             // 
@@ -448,8 +507,13 @@
         private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_CheckOut;
         private System.Windows.Forms.Label lbl_checkOut;
-        private System.Windows.Forms.ComboBox cmb_Students;
         private System.Windows.Forms.Label lbl_SelectStudent;
+        private System.Windows.Forms.Label lbl_SelectDrinks;
+        private System.Windows.Forms.ListView listViewDrinksCO;
+        private System.Windows.Forms.ListView listViewStudentsCO;
+        private System.Windows.Forms.Button btn_Calculate;
+        private System.Windows.Forms.Label lbl_Total;
+        private System.Windows.Forms.Label lbl_CalcTotal;
     }
 }
 
