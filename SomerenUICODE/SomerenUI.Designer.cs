@@ -60,14 +60,16 @@
             this.listViewStockDrinks = new System.Windows.Forms.ListView();
             this.lbl_StockDrinks = new System.Windows.Forms.Label();
             this.pnl_CheckOut = new System.Windows.Forms.Panel();
+            this.lbl_CalcTotal = new System.Windows.Forms.Label();
+            this.lbl_Total = new System.Windows.Forms.Label();
+            this.btn_Calculate = new System.Windows.Forms.Button();
             this.listViewDrinksCO = new System.Windows.Forms.ListView();
             this.listViewStudentsCO = new System.Windows.Forms.ListView();
             this.lbl_SelectDrinks = new System.Windows.Forms.Label();
             this.lbl_SelectStudent = new System.Windows.Forms.Label();
             this.lbl_checkOut = new System.Windows.Forms.Label();
-            this.btn_Calculate = new System.Windows.Forms.Button();
-            this.lbl_Total = new System.Windows.Forms.Label();
-            this.lbl_CalcTotal = new System.Windows.Forms.Label();
+            this.btn_Buy = new System.Windows.Forms.Button();
+            this.lbl_vouchers = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -343,6 +345,8 @@
             // 
             // pnl_CheckOut
             // 
+            this.pnl_CheckOut.Controls.Add(this.lbl_vouchers);
+            this.pnl_CheckOut.Controls.Add(this.btn_Buy);
             this.pnl_CheckOut.Controls.Add(this.lbl_CalcTotal);
             this.pnl_CheckOut.Controls.Add(this.lbl_Total);
             this.pnl_CheckOut.Controls.Add(this.btn_Calculate);
@@ -353,8 +357,37 @@
             this.pnl_CheckOut.Controls.Add(this.lbl_checkOut);
             this.pnl_CheckOut.Location = new System.Drawing.Point(0, 31);
             this.pnl_CheckOut.Name = "pnl_CheckOut";
-            this.pnl_CheckOut.Size = new System.Drawing.Size(1154, 498);
+            this.pnl_CheckOut.Size = new System.Drawing.Size(1154, 517);
             this.pnl_CheckOut.TabIndex = 7;
+            // 
+            // lbl_CalcTotal
+            // 
+            this.lbl_CalcTotal.AutoSize = true;
+            this.lbl_CalcTotal.Location = new System.Drawing.Point(194, 452);
+            this.lbl_CalcTotal.Name = "lbl_CalcTotal";
+            this.lbl_CalcTotal.Size = new System.Drawing.Size(20, 17);
+            this.lbl_CalcTotal.TabIndex = 9;
+            this.lbl_CalcTotal.Text = "...";
+            // 
+            // lbl_Total
+            // 
+            this.lbl_Total.AutoSize = true;
+            this.lbl_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Total.Location = new System.Drawing.Point(80, 447);
+            this.lbl_Total.Name = "lbl_Total";
+            this.lbl_Total.Size = new System.Drawing.Size(61, 24);
+            this.lbl_Total.TabIndex = 8;
+            this.lbl_Total.Text = "Total: ";
+            // 
+            // btn_Calculate
+            // 
+            this.btn_Calculate.Location = new System.Drawing.Point(84, 362);
+            this.btn_Calculate.Name = "btn_Calculate";
+            this.btn_Calculate.Size = new System.Drawing.Size(229, 48);
+            this.btn_Calculate.TabIndex = 7;
+            this.btn_Calculate.Text = "Calculate Price";
+            this.btn_Calculate.UseVisualStyleBackColor = true;
+            this.btn_Calculate.Click += new System.EventHandler(this.Btn_Calculate_Click);
             // 
             // listViewDrinksCO
             // 
@@ -404,34 +437,25 @@
             this.lbl_checkOut.TabIndex = 0;
             this.lbl_checkOut.Text = "Check Out";
             // 
-            // btn_Calculate
+            // btn_Buy
             // 
-            this.btn_Calculate.Location = new System.Drawing.Point(84, 362);
-            this.btn_Calculate.Name = "btn_Calculate";
-            this.btn_Calculate.Size = new System.Drawing.Size(229, 48);
-            this.btn_Calculate.TabIndex = 7;
-            this.btn_Calculate.Text = "Calculate Price";
-            this.btn_Calculate.UseVisualStyleBackColor = true;
-            this.btn_Calculate.Click += new System.EventHandler(this.Btn_Calculate_Click);
+            this.btn_Buy.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_Buy.Location = new System.Drawing.Point(516, 434);
+            this.btn_Buy.Name = "btn_Buy";
+            this.btn_Buy.Size = new System.Drawing.Size(208, 48);
+            this.btn_Buy.TabIndex = 10;
+            this.btn_Buy.Text = "Buy Drink(s)";
+            this.btn_Buy.UseVisualStyleBackColor = false;
+            this.btn_Buy.Click += new System.EventHandler(this.Btn_Buy_Click);
             // 
-            // lbl_Total
+            // lbl_vouchers
             // 
-            this.lbl_Total.AutoSize = true;
-            this.lbl_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Total.Location = new System.Drawing.Point(80, 434);
-            this.lbl_Total.Name = "lbl_Total";
-            this.lbl_Total.Size = new System.Drawing.Size(61, 24);
-            this.lbl_Total.TabIndex = 8;
-            this.lbl_Total.Text = "Total: ";
-            // 
-            // lbl_CalcTotal
-            // 
-            this.lbl_CalcTotal.AutoSize = true;
-            this.lbl_CalcTotal.Location = new System.Drawing.Point(232, 436);
-            this.lbl_CalcTotal.Name = "lbl_CalcTotal";
-            this.lbl_CalcTotal.Size = new System.Drawing.Size(20, 17);
-            this.lbl_CalcTotal.TabIndex = 9;
-            this.lbl_CalcTotal.Text = "...";
+            this.lbl_vouchers.AutoSize = true;
+            this.lbl_vouchers.Location = new System.Drawing.Point(240, 452);
+            this.lbl_vouchers.Name = "lbl_vouchers";
+            this.lbl_vouchers.Size = new System.Drawing.Size(68, 17);
+            this.lbl_vouchers.TabIndex = 11;
+            this.lbl_vouchers.Text = "Vouchers";
             // 
             // SomerenUI
             // 
@@ -514,6 +538,8 @@
         private System.Windows.Forms.Button btn_Calculate;
         private System.Windows.Forms.Label lbl_Total;
         private System.Windows.Forms.Label lbl_CalcTotal;
+        private System.Windows.Forms.Button btn_Buy;
+        private System.Windows.Forms.Label lbl_vouchers;
     }
 }
 
