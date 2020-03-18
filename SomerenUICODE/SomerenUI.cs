@@ -205,6 +205,19 @@ namespace SomerenUI
                 listViewStockDrinks.Columns.Add("Stock");
                 listViewStockDrinks.Columns.Add("Voucher price");
 
+                //Plaatjes laten zien of er nog voorraad is
+                foreach (SomerenModel.StockDrinks sd in stockList)
+                {
+                    if (sd.Stock <= 10)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+
 
 
             }
