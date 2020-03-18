@@ -60,16 +60,20 @@
             this.listViewStockDrinks = new System.Windows.Forms.ListView();
             this.lbl_StockDrinks = new System.Windows.Forms.Label();
             this.pnl_CheckOut = new System.Windows.Forms.Panel();
+
             this.lbl_CalcTotal = new System.Windows.Forms.Label();
             this.lbl_Total = new System.Windows.Forms.Label();
             this.btn_Calculate = new System.Windows.Forms.Button();
+          
             this.listViewDrinksCO = new System.Windows.Forms.ListView();
             this.listViewStudentsCO = new System.Windows.Forms.ListView();
             this.lbl_SelectDrinks = new System.Windows.Forms.Label();
             this.lbl_SelectStudent = new System.Windows.Forms.Label();
             this.lbl_checkOut = new System.Windows.Forms.Label();
+
             this.btn_Buy = new System.Windows.Forms.Button();
             this.lbl_vouchers = new System.Windows.Forms.Label();
+          
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -345,8 +349,10 @@
             // 
             // pnl_CheckOut
             // 
+
             this.pnl_CheckOut.Controls.Add(this.lbl_vouchers);
             this.pnl_CheckOut.Controls.Add(this.btn_Buy);
+
             this.pnl_CheckOut.Controls.Add(this.lbl_CalcTotal);
             this.pnl_CheckOut.Controls.Add(this.lbl_Total);
             this.pnl_CheckOut.Controls.Add(this.btn_Calculate);
@@ -357,6 +363,7 @@
             this.pnl_CheckOut.Controls.Add(this.lbl_checkOut);
             this.pnl_CheckOut.Location = new System.Drawing.Point(0, 31);
             this.pnl_CheckOut.Name = "pnl_CheckOut";
+
             this.pnl_CheckOut.Size = new System.Drawing.Size(1154, 517);
             this.pnl_CheckOut.TabIndex = 7;
             // 
