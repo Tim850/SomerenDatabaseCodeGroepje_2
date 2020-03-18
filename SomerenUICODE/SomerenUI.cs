@@ -217,6 +217,7 @@ namespace SomerenUI
                 pnl_Teachers.Hide();
                 pnl_Rooms.Hide();
                 pnl_StockDrinks.Hide();
+                btn_Buy.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -329,9 +330,26 @@ namespace SomerenUI
 
         private void Btn_Calculate_Click(object sender, EventArgs e)
         {
-            int totalPrice;
-
             // geselecteerde student checken
+            SelectedStudents();
+
+            // geselecteerde drankjes
+            SelectedDrinks();
+
+            // totaal prijs laten zien
+            lbl_CalcTotal.Text = totalPrice.ToString();
+
+            btn_Buy.Show();
+
+        }
+
+        private void Btn_Buy_Click(object sender, EventArgs e)
+        {
+            SelectedStudents();
+        }
+
+        private void SelectedStudents()
+        {
             for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
             {
                 if (listViewStudentsCO.Items[i].Checked == true)
@@ -339,19 +357,30 @@ namespace SomerenUI
                     //MessageBox.Show("Gelukt");
                 }
             }
+        }
 
-            // geselecteerde drankjes
+        private void SelectedDrinks()
+        {
+            int totalPrice = 0;
+
+            List<StockDrinks> drinks = stockDrinksService.GetStock();
+            string drinkName = "";
+
             for (int i = 0; i < listViewDrinksCO.Items.Count; i++)
             {
-                string drink;
-                drink= listViewDrinksCO.Items[i].ToString();
+                drinkName = listViewDrinksCO.Items[i].Text;
 
                 if (listViewDrinksCO.Items[i].Checked == true)
                 {
-                    MessageBox.Show(drink);
+                    foreach (StockDrinks drink in drinks)
+                    {
+                        if (drinkName == drink.Name)
+                        {
+                            totalPrice += drink.Price;
+                        }
+                    }
                 }
             }
-
         }
     }
 }
