@@ -366,6 +366,11 @@ namespace SomerenUI
                         if (drinkName == drink.Name)
                         {
                             //drink.Stock--;
+
+                        // alle informatie over het drankje verzamelen en kopieren
+                        // de gekopieerde data in drankje2 doen (maar stock--)
+                        // drankje verwijderen uit database
+                        // via insert drankje2 in database zetten
                         }
                     }
                 }
