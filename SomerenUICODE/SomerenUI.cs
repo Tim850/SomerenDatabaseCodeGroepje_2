@@ -351,7 +351,7 @@ namespace SomerenUI
 
         private void Btn_Buy_Click(object sender, EventArgs e)
         {
-            // -1 stock van de drankjes
+            // gekochte drankjes wegschrijven naar de databse
             List<StockDrinks> drinks = stockDrinksService.GetStock();
             string drinkName = "";
 
@@ -365,12 +365,12 @@ namespace SomerenUI
                     {
                         if (drinkName == drink.Name)
                         {
-                            //drink.Stock--;
+                            int newStock = drink.Stock--;
+                            //int drankId = drink.drinkID;
+                            int sold = drink.Stock - newStock;
 
-                        // alle informatie over het drankje verzamelen en kopieren
-                        // de gekopieerde data in drankje2 doen (maar stock--)
-                        // drankje verwijderen uit database
-                        // via insert drankje2 in database zetten
+                            string queryUpdate = "UPDATE drink SET stock=@newStock WHERE drinkID=@drankId";
+                            string queryAdd = "INSERT INTO order (drinkID, amount) VALUES (@drankId, @sold)";
                         }
                     }
                 }
@@ -380,7 +380,7 @@ namespace SomerenUI
             int totalPrice = 0;
             CalcTotalPrice(ref totalPrice, drinks);
 
-            // totaal aantal vouchers van de vouchers van de student afhalen
+            // geselecteerde student wegschrijven naar de database
             List<Student> students = studService.GetStudents();
             string studentName = "";
 
@@ -394,7 +394,11 @@ namespace SomerenUI
                     {
                         if (studentName == student.Number.ToString())
                         {
-                            //student.Vouchers -= Int16.Parse(totalPrice);
+                            int newVouchers = student.Vouchers - totalPrice;
+
+                            string queryUpdStud = "UPDATE student SET vouchers=@newVouchers WHERE studentNumber=@student.Number";
+                            //ExecuteEditQuery(queryUpdStud, SqlParameter[] sqlParameters);
+                            //Moet in een DAL staan maar welke??
                         }
                     }
                 }
