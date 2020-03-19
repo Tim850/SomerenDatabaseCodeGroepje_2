@@ -377,7 +377,7 @@ namespace SomerenUI
             SelectedDrinks();
 
             // totaal prijs laten zien
-            //lbl_CalcTotal.Text = totalPrice.ToString();
+            lbl_CalcTotal.Text = totalPrice.ToString();
 
             btn_Buy.Show();
 
