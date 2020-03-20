@@ -14,7 +14,7 @@ namespace SomerenDAL
     {
         public List<StockDrinks> Db_Get_All_Stock()
         {
-            string query = "";
+            string query = "SELECT drinkID, [name], priceInVouchers, stock FROM drink GROUP BY drinkID, [name], stock, priceInVouchers, totalSold HAVING stock >= 1 AND priceInVouchers >= 1 AND NOT[name] = 'Water' AND NOT[name] = 'Sinas'AND NOT[name] = 'Kersensap'";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -27,13 +27,20 @@ namespace SomerenDAL
             {
                 StockDrinks drink = new StockDrinks()
                 {
+                    DrinkID = (Int16)dr["drinkID"],
                     Name = (String)dr["name"],
-                    Price = (int)dr["priceInVouchers"],
+                    Price = (Int16)dr["priceInVouchers"],
                     Stock = (int)dr["stock"]
                 };
                 stock.Add(drink);
             }
             return stock;
+        }
+
+        public void Db_Update_Drinks(string query)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
         }
     }
 }
