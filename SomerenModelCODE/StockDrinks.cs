@@ -8,8 +8,9 @@ namespace SomerenModel
 {
     public class StockDrinks
     {
+        public Int16 DrinkID { get; set; }
         public String Name { get; set; }
-        public int Price { get; set; }
+        public Int16 Price { get; set; }
         public int Stock { get; set; }
     }
 }
