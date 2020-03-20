@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Collections;
 using SomerenUI.Properties;
 using System.IO;
-using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace SomerenUI
 {
@@ -438,10 +438,10 @@ namespace SomerenUI
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
                             int sold = drink.Stock - newStock;
-                            DateTime today = DateTime.Today;
+                            DateTime today = DateTime.Now;
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
-                            string queryAdd = "INSERT INTO [order] (drinkID, amount, studentnumber) VALUES (" + drankId + ", " + sold + ", " + student.Number + ")";
+                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", " + today.ToString("yyyy/MM/dd") + ", " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
                             stockDrinksService.UpdateDrinks(queryAdd);
