@@ -244,8 +244,6 @@ namespace SomerenUI
                     listViewStockDrinks.Items.Add(new ListViewItem(drinks) { ImageIndex = 1 });
                 }
 
-
-
             }
             else if (panelName == "CheckOut")
             {
@@ -422,28 +420,35 @@ namespace SomerenUI
 
             // geselecteerde student wegschrijven naar de database
             List<Student> students = studService.GetStudents();
-            string studentName = "";
+            string studentNumber = "";
 
             for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
             {
-                studentName = listViewStudentsCO.Items[i].Text;
+                studentNumber = listViewStudentsCO.Items[i].Text;
 
                 if (listViewStudentsCO.Items[i].Checked == true)
                 {
                     foreach (Student student in students)
                     {
-                        if (studentName == student.Number.ToString())
+
+                        if (student.Vouchers < totalPrice && studentNumber == student.Number.ToString())
+                        {
+                            MessageBox.Show("Selected student does not have enough vouchers to buy this");
+                            return;
+                        }
+
+                        else if (studentNumber == student.Number.ToString())
                         {
                             int newVouchers = student.Vouchers - totalPrice;
 
                             string queryUpdStud = "UPDATE student SET vouchers=@newVouchers WHERE studentNumber=@student.Number";
-                            //ExecuteEditQuery(queryUpdStud, SqlParameter[] sqlParameters);
-                            //Moet in een DAL staan maar welke??
+                            studService.UpdateStudent(queryUpdStud);
                         }
                     }
                 }
             }
 
+            showPanel("CheckOut");
         }
 
         private bool SelectedStudents()
@@ -477,12 +482,12 @@ namespace SomerenUI
                 {
                     count++;
                 }
+            }
 
-                if (count < 1)
-                {
-                    MessageBox.Show("Please select a drink or calculate the price again");
-                    return false;
-                }
+            if (count < 1)
+            {
+                MessageBox.Show("Please select a drink");
+                return false;
             }
 
             return true;
