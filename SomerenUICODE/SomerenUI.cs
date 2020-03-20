@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Collections;
 using SomerenUI.Properties;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace SomerenUI
 {
@@ -212,6 +213,7 @@ namespace SomerenUI
                 //Images uit resources halen
                 ImageList imgs = new ImageList();
                 imgs.ImageSize = new Size(20, 20);
+                
                 String[] paths = { };
                 paths = Directory.GetFiles("..\\..\\Resources");
 
@@ -401,12 +403,15 @@ namespace SomerenUI
                     {
                         if (drinkName == drink.Name)
                         {
-                            int newStock = drink.Stock--;
-                            //int drankId = drink.drinkID;
+                            int newStock = drink.Stock - 1;
+                            int drankId = drink.DrinkID;
                             int sold = drink.Stock - newStock;
 
-                            string queryUpdate = "UPDATE drink SET stock=@newStock WHERE drinkID=@drankId";
-                            string queryAdd = "INSERT INTO order (drinkID, amount) VALUES (@drankId, @sold)";
+                            string queryUpdate = "UPDATE drink SET stock=" + newStock + "WHERE drinkID=" + drankId;
+                            string queryAdd = "INSERT INTO order (drinkID, amount) VALUES (" + drankId + ", " + sold + ")";
+
+                            stockDrinksService.UpdateDrinks(queryUpdate);
+                            stockDrinksService.UpdateDrinks(queryAdd);
                         }
                     }
                 }
@@ -439,10 +444,8 @@ namespace SomerenUI
                         {
                             int newVouchers = student.Vouchers - totalPrice;
 
-                            string queryUpdStud = "UPDATE student SET vouchers=@newVouchers WHERE studentNumber=@student.Number";
-
+                            string queryUpdStud = "UPDATE student SET vouchers=" + newVouchers + "WHERE studentNumber=" + student.Number;
                             studService.UpdateStudent(queryUpdStud);
-
                         }
                     }
                 }
