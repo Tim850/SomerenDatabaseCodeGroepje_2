@@ -32,7 +32,6 @@ namespace SomerenUI
 
         private void showPanel(string panelName)
         {
-
             if (panelName == "Dashboard")
             {
 
@@ -276,8 +275,9 @@ namespace SomerenUI
                 listViewStudentsCO.Columns.Add("Student Number", 80);
                 listViewStudentsCO.Columns.Add("First Name", 80);
                 listViewStudentsCO.Columns.Add("Last Name", 100);
+                listViewStudentsCO.Columns.Add("Vouchers", 50);
 
-                string[] students = new string[3];
+                string[] students = new string[4];
                 ListViewItem itm;
 
                 foreach (SomerenModel.Student s in studentList)
@@ -285,6 +285,7 @@ namespace SomerenUI
                     students[0] = s.Number.ToString();
                     students[1] = s.FirstName;
                     students[2] = s.LastName;
+                    students[3] = s.Vouchers.ToString();
 
                     itm = new ListViewItem(students);
                     listViewStudentsCO.Items.Add(itm);
@@ -312,8 +313,6 @@ namespace SomerenUI
                     itm = new ListViewItem(drinks);
                     listViewDrinksCO.Items.Add(itm);
                 }
-
-
             }
         }
 
@@ -368,42 +367,129 @@ namespace SomerenUI
             showPanel("CheckOut");
         }
 
+        // buttons clicks en methodes
         private void Btn_Calculate_Click(object sender, EventArgs e)
         {
-            // geselecteerde student checken
-            SelectedStudents();
+            btn_Buy.Hide();
+
+            int totalPrice = 0;
+            List<StockDrinks> drinks = stockDrinksService.GetStock();
+
+            // geselecteerde student en dranken checken
+            if (SelectedStudents() && SelectedDrinks())
+            {
+                btn_Buy.Show();
+            }
 
             // geselecteerde drankjes
-            SelectedDrinks();
+            CalcTotalPrice(ref totalPrice, drinks);
 
             // totaal prijs laten zien
             lbl_CalcTotal.Text = totalPrice.ToString();
-
-            btn_Buy.Show();
 
         }
 
         private void Btn_Buy_Click(object sender, EventArgs e)
         {
-            SelectedStudents();
+            // gekochte drankjes wegschrijven naar de databse
+            List<StockDrinks> drinks = stockDrinksService.GetStock();
+            string drinkName = "";
+
+            for (int i = 0; i < listViewDrinksCO.Items.Count; i++)
+            {
+                drinkName = listViewDrinksCO.Items[i].Text;
+
+                if (listViewDrinksCO.Items[i].Checked == true)
+                {
+                    foreach (StockDrinks drink in drinks)
+                    {
+                        if (drinkName == drink.Name)
+                        {
+                            int newStock = drink.Stock--;
+                            //int drankId = drink.drinkID;
+                            int sold = drink.Stock - newStock;
+
+                            string queryUpdate = "UPDATE drink SET stock=@newStock WHERE drinkID=@drankId";
+                            string queryAdd = "INSERT INTO order (drinkID, amount) VALUES (@drankId, @sold)";
+                        }
+                    }
+                }
+            }
+
+            // totale prijs berekenen
+            int totalPrice = 0;
+            CalcTotalPrice(ref totalPrice, drinks);
+
+            // geselecteerde student wegschrijven naar de database
+            List<Student> students = studService.GetStudents();
+            string studentName = "";
+
+            for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
+            {
+                studentName = listViewStudentsCO.Items[i].Text;
+
+                if (listViewStudentsCO.Items[i].Checked == true)
+                {
+                    foreach (Student student in students)
+                    {
+                        if (studentName == student.Number.ToString())
+                        {
+                            int newVouchers = student.Vouchers - totalPrice;
+
+                            string queryUpdStud = "UPDATE student SET vouchers=@newVouchers WHERE studentNumber=@student.Number";
+                            //ExecuteEditQuery(queryUpdStud, SqlParameter[] sqlParameters);
+                            //Moet in een DAL staan maar welke??
+                        }
+                    }
+                }
+            }
+
         }
 
-        private void SelectedStudents()
+        private bool SelectedStudents()
         {
+            int count = 0;
+
             for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
             {
                 if (listViewStudentsCO.Items[i].Checked == true)
                 {
-                    //MessageBox.Show("Gelukt");
+                    count++;
+
+                    if (count > 1)
+                    {
+                        MessageBox.Show("Only select 1 student!");
+                        return false;
+                    }
                 }
             }
+
+            return true;
         }
 
-        private void SelectedDrinks()
+        private bool SelectedDrinks()
         {
-            int totalPrice = 0;
+            int count = 0;
 
-            List<StockDrinks> drinks = stockDrinksService.GetStock();
+            for (int i = 0; i < listViewDrinksCO.Items.Count; i++)
+            {
+                if (listViewDrinksCO.Items[i].Checked == true)
+                {
+                    count++;
+                }
+
+                if (count < 1)
+                {
+                    MessageBox.Show("Please select a drink or calculate the price again");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void CalcTotalPrice(ref int totalPrice, List<StockDrinks> drinks)
+        {
             string drinkName = "";
 
             for (int i = 0; i < listViewDrinksCO.Items.Count; i++)
