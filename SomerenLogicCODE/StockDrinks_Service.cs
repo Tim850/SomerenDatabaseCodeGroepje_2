@@ -43,5 +43,17 @@ namespace SomerenLogic
             }
 
         }
+
+        public void UpdateDrinks(string query)
+        {
+            try
+            {
+                stock_db.Db_Update_Drinks(query);
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
     }
 }
