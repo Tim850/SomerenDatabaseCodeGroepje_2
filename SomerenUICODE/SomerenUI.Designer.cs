@@ -1,3 +1,4 @@
+
 ﻿namespace SomerenUI
 {
     partial class SomerenUI
@@ -291,7 +292,7 @@
             this.pnl_Rooms.Location = new System.Drawing.Point(4, 25);
             this.pnl_Rooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnl_Rooms.Name = "pnl_Rooms";
-            this.pnl_Rooms.Size = new System.Drawing.Size(866, 436);
+            this.pnl_Rooms.Size = new System.Drawing.Size(150, 81);
             this.pnl_Rooms.TabIndex = 2;
             // 
             // listViewRooms
@@ -424,7 +425,7 @@
             this.listViewDrinksCO.Location = new System.Drawing.Point(387, 93);
             this.listViewDrinksCO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listViewDrinksCO.Name = "listViewDrinksCO";
-            this.listViewDrinksCO.Size = new System.Drawing.Size(253, 180);
+            this.listViewDrinksCO.Size = new System.Drawing.Size(287, 180);
             this.listViewDrinksCO.TabIndex = 6;
             this.listViewDrinksCO.UseCompatibleStateImageBehavior = false;
             // 
@@ -434,7 +435,7 @@
             this.listViewStudentsCO.Location = new System.Drawing.Point(28, 93);
             this.listViewStudentsCO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listViewStudentsCO.Name = "listViewStudentsCO";
-            this.listViewStudentsCO.Size = new System.Drawing.Size(252, 180);
+            this.listViewStudentsCO.Size = new System.Drawing.Size(296, 180);
             this.listViewStudentsCO.TabIndex = 5;
             this.listViewStudentsCO.UseCompatibleStateImageBehavior = false;
             // 
@@ -555,4 +556,5 @@
         private System.Windows.Forms.Label lbl_vouchers;
     }
 }
+
 
