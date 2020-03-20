@@ -12,9 +12,9 @@ namespace SomerenDAL
 {
     public class Order_DAO : Base
     {
-        public List<Order> Db_Get_All_Stock()
+        public List<Order> Db_Get_All_Orders(DateTime dateStart, DateTime dateEnd)
         {
-            string query = "";  //HIER MOET NOG EEN SQL QUERYYYYYY
+            string query = "select orderNummer, [order].drinkID, amount, [order].[date], studentnumber, drink.purchasePrice from[order] join drink on drink.drinkID = [order].drinkID WHERE[date] >= '1900/01/02' AND[date] <= '1901/05/06'; ";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -30,7 +30,9 @@ namespace SomerenDAL
                     DrinkID = (Int16)dr["drinkID"],
                     OrderNumber = (int)dr["orderNumber"],
                     StudentNumber = (int)dr["studentnumber"],
-                    Date = (DateTime)dr["date"]
+                    Date = (DateTime)dr["date"],
+                    Price = (int)dr["purchasePrice"],
+                    Amount = (int)dr["amount"]
                 };
                 orders.Add(order);
             }
