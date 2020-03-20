@@ -41,8 +41,9 @@
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockDrinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.financeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_Dashboard = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
             this.pnl_Students = new System.Windows.Forms.Panel();
@@ -78,8 +79,8 @@
             this.lbl_EndDate = new System.Windows.Forms.Label();
             this.lbl_StartDate = new System.Windows.Forms.Label();
             this.lbl_SalesReport = new System.Windows.Forms.Label();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendarEnd = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendarStart = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -112,9 +113,10 @@
             this.activitiesToolStripMenuItem,
             this.roomsToolStripMenuItem,
             this.stockDrinksToolStripMenuItem,
-            this.checkOutToolStripMenuItem});
+            this.financeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1189, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -183,21 +185,29 @@
             this.stockDrinksToolStripMenuItem.Text = "Stock (Drinks)";
             this.stockDrinksToolStripMenuItem.Click += new System.EventHandler(this.StockDrinksToolStripMenuItem_Click);
             // 
-            // checkOutToolStripMenuItem
+            // financeToolStripMenuItem
             // 
-            this.checkOutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salesToolStripMenuItem});
-            this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
-            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
-            this.checkOutToolStripMenuItem.Text = "CheckOut";
-            this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.CheckOutToolStripMenuItem_Click);
+            this.financeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salesToolStripMenuItem,
+            this.checkOutToolStripMenuItem});
+            this.financeToolStripMenuItem.Name = "financeToolStripMenuItem";
+            this.financeToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.financeToolStripMenuItem.Text = "Finance";
+            this.financeToolStripMenuItem.Click += new System.EventHandler(this.FinanceToolStripMenuItem_Click);
             // 
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.salesToolStripMenuItem.Text = "Sales";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
+            // 
+            // checkOutToolStripMenuItem
+            // 
+            this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
+            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.checkOutToolStripMenuItem.Text = "CheckOut";
+            this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.CheckOutToolStripMenuItem_Click_1);
             // 
             // pnl_Dashboard
             // 
@@ -228,7 +238,7 @@
             this.pnl_Students.Location = new System.Drawing.Point(16, 32);
             this.pnl_Students.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Students.Name = "pnl_Students";
-            this.pnl_Students.Size = new System.Drawing.Size(1251, 573);
+            this.pnl_Students.Size = new System.Drawing.Size(1251, 574);
             this.pnl_Students.TabIndex = 4;
             // 
             // listViewStudents
@@ -283,7 +293,8 @@
             // 
             this.pnl_Teachers.Controls.Add(this.lblTeacher);
             this.pnl_Teachers.Controls.Add(this.listViewTeachers);
-            this.pnl_Teachers.Location = new System.Drawing.Point(6, 32);
+            this.pnl_Teachers.Location = new System.Drawing.Point(5, 32);
+            this.pnl_Teachers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Teachers.Name = "pnl_Teachers";
             this.pnl_Teachers.Size = new System.Drawing.Size(1261, 570);
             this.pnl_Teachers.TabIndex = 5;
@@ -292,7 +303,7 @@
             // 
             this.lblTeacher.AutoSize = true;
             this.lblTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeacher.Location = new System.Drawing.Point(6, 3);
+            this.lblTeacher.Location = new System.Drawing.Point(5, 2);
             this.lblTeacher.Name = "lblTeacher";
             this.lblTeacher.Size = new System.Drawing.Size(202, 51);
             this.lblTeacher.TabIndex = 0;
@@ -301,7 +312,8 @@
             // listViewTeachers
             // 
             this.listViewTeachers.HideSelection = false;
-            this.listViewTeachers.Location = new System.Drawing.Point(10, 76);
+            this.listViewTeachers.Location = new System.Drawing.Point(11, 76);
+            this.listViewTeachers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewTeachers.Name = "listViewTeachers";
             this.listViewTeachers.Size = new System.Drawing.Size(731, 333);
             this.listViewTeachers.TabIndex = 1;
@@ -311,7 +323,8 @@
             // 
             this.pnl_Rooms.Controls.Add(this.listViewRooms);
             this.pnl_Rooms.Controls.Add(this.lbl_rooms);
-            this.pnl_Rooms.Location = new System.Drawing.Point(6, 31);
+            this.pnl_Rooms.Location = new System.Drawing.Point(5, 31);
+            this.pnl_Rooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Rooms.Name = "pnl_Rooms";
             this.pnl_Rooms.Size = new System.Drawing.Size(1183, 514);
             this.pnl_Rooms.TabIndex = 2;
@@ -320,6 +333,7 @@
             // 
             this.listViewRooms.HideSelection = false;
             this.listViewRooms.Location = new System.Drawing.Point(13, 70);
+            this.listViewRooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewRooms.Name = "listViewRooms";
             this.listViewRooms.Size = new System.Drawing.Size(701, 323);
             this.listViewRooms.TabIndex = 3;
@@ -329,7 +343,7 @@
             // 
             this.lbl_rooms.AutoSize = true;
             this.lbl_rooms.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_rooms.Location = new System.Drawing.Point(4, 3);
+            this.lbl_rooms.Location = new System.Drawing.Point(4, 2);
             this.lbl_rooms.Name = "lbl_rooms";
             this.lbl_rooms.Size = new System.Drawing.Size(159, 51);
             this.lbl_rooms.TabIndex = 2;
@@ -340,14 +354,16 @@
             this.pnl_StockDrinks.Controls.Add(this.listViewStockDrinks);
             this.pnl_StockDrinks.Controls.Add(this.lbl_StockDrinks);
             this.pnl_StockDrinks.Location = new System.Drawing.Point(3, 31);
+            this.pnl_StockDrinks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_StockDrinks.Name = "pnl_StockDrinks";
-            this.pnl_StockDrinks.Size = new System.Drawing.Size(1154, 568);
+            this.pnl_StockDrinks.Size = new System.Drawing.Size(1155, 569);
             this.pnl_StockDrinks.TabIndex = 6;
             // 
             // listViewStockDrinks
             // 
             this.listViewStockDrinks.HideSelection = false;
-            this.listViewStockDrinks.Location = new System.Drawing.Point(18, 82);
+            this.listViewStockDrinks.Location = new System.Drawing.Point(19, 82);
+            this.listViewStockDrinks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewStockDrinks.Name = "listViewStockDrinks";
             this.listViewStockDrinks.Size = new System.Drawing.Size(901, 346);
             this.listViewStockDrinks.TabIndex = 1;
@@ -376,8 +392,9 @@
             this.pnl_CheckOut.Controls.Add(this.lbl_SelectStudent);
             this.pnl_CheckOut.Controls.Add(this.lbl_checkOut);
             this.pnl_CheckOut.Location = new System.Drawing.Point(0, 31);
+            this.pnl_CheckOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_CheckOut.Name = "pnl_CheckOut";
-            this.pnl_CheckOut.Size = new System.Drawing.Size(1154, 517);
+            this.pnl_CheckOut.Size = new System.Drawing.Size(1155, 517);
             this.pnl_CheckOut.TabIndex = 7;
             // 
             // lbl_vouchers
@@ -393,6 +410,7 @@
             // 
             this.btn_Buy.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_Buy.Location = new System.Drawing.Point(516, 434);
+            this.btn_Buy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Buy.Name = "btn_Buy";
             this.btn_Buy.Size = new System.Drawing.Size(208, 48);
             this.btn_Buy.TabIndex = 10;
@@ -403,7 +421,7 @@
             // lbl_CalcTotal
             // 
             this.lbl_CalcTotal.AutoSize = true;
-            this.lbl_CalcTotal.Location = new System.Drawing.Point(194, 452);
+            this.lbl_CalcTotal.Location = new System.Drawing.Point(195, 452);
             this.lbl_CalcTotal.Name = "lbl_CalcTotal";
             this.lbl_CalcTotal.Size = new System.Drawing.Size(20, 17);
             this.lbl_CalcTotal.TabIndex = 9;
@@ -422,6 +440,7 @@
             // btn_Calculate
             // 
             this.btn_Calculate.Location = new System.Drawing.Point(84, 362);
+            this.btn_Calculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Calculate.Name = "btn_Calculate";
             this.btn_Calculate.Size = new System.Drawing.Size(229, 48);
             this.btn_Calculate.TabIndex = 7;
@@ -433,6 +452,7 @@
             // 
             this.listViewDrinksCO.HideSelection = false;
             this.listViewDrinksCO.Location = new System.Drawing.Point(516, 114);
+            this.listViewDrinksCO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewDrinksCO.Name = "listViewDrinksCO";
             this.listViewDrinksCO.Size = new System.Drawing.Size(381, 221);
             this.listViewDrinksCO.TabIndex = 6;
@@ -441,9 +461,10 @@
             // listViewStudentsCO
             // 
             this.listViewStudentsCO.HideSelection = false;
-            this.listViewStudentsCO.Location = new System.Drawing.Point(38, 114);
+            this.listViewStudentsCO.Location = new System.Drawing.Point(37, 114);
+            this.listViewStudentsCO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewStudentsCO.Name = "listViewStudentsCO";
-            this.listViewStudentsCO.Size = new System.Drawing.Size(393, 220);
+            this.listViewStudentsCO.Size = new System.Drawing.Size(393, 221);
             this.listViewStudentsCO.TabIndex = 5;
             this.listViewStudentsCO.UseCompatibleStateImageBehavior = false;
             // 
@@ -471,7 +492,7 @@
             // 
             this.lbl_checkOut.AutoSize = true;
             this.lbl_checkOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_checkOut.Location = new System.Drawing.Point(30, 11);
+            this.lbl_checkOut.Location = new System.Drawing.Point(29, 11);
             this.lbl_checkOut.Name = "lbl_checkOut";
             this.lbl_checkOut.Size = new System.Drawing.Size(209, 46);
             this.lbl_checkOut.TabIndex = 0;
@@ -484,9 +505,10 @@
             this.pnl_Sales.Controls.Add(this.lbl_EndDate);
             this.pnl_Sales.Controls.Add(this.lbl_StartDate);
             this.pnl_Sales.Controls.Add(this.lbl_SalesReport);
-            this.pnl_Sales.Controls.Add(this.monthCalendar2);
-            this.pnl_Sales.Controls.Add(this.monthCalendar1);
+            this.pnl_Sales.Controls.Add(this.monthCalendarEnd);
+            this.pnl_Sales.Controls.Add(this.monthCalendarStart);
             this.pnl_Sales.Location = new System.Drawing.Point(0, 34);
+            this.pnl_Sales.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Sales.Name = "pnl_Sales";
             this.pnl_Sales.Size = new System.Drawing.Size(1188, 513);
             this.pnl_Sales.TabIndex = 8;
@@ -495,17 +517,20 @@
             // 
             this.btn_ShowSales.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_ShowSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ShowSales.Location = new System.Drawing.Point(228, 371);
+            this.btn_ShowSales.Location = new System.Drawing.Point(228, 370);
+            this.btn_ShowSales.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_ShowSales.Name = "btn_ShowSales";
             this.btn_ShowSales.Size = new System.Drawing.Size(203, 54);
             this.btn_ShowSales.TabIndex = 6;
             this.btn_ShowSales.Text = "Show Sales";
             this.btn_ShowSales.UseVisualStyleBackColor = false;
+            this.btn_ShowSales.Click += new System.EventHandler(this.Btn_ShowSales_Click);
             // 
             // listViewSales
             // 
             this.listViewSales.HideSelection = false;
             this.listViewSales.Location = new System.Drawing.Point(679, 111);
+            this.listViewSales.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewSales.Name = "listViewSales";
             this.listViewSales.Size = new System.Drawing.Size(456, 320);
             this.listViewSales.TabIndex = 5;
@@ -535,24 +560,25 @@
             // 
             this.lbl_SalesReport.AutoSize = true;
             this.lbl_SalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_SalesReport.Location = new System.Drawing.Point(30, 25);
+            this.lbl_SalesReport.Location = new System.Drawing.Point(29, 25);
             this.lbl_SalesReport.Name = "lbl_SalesReport";
             this.lbl_SalesReport.Size = new System.Drawing.Size(251, 46);
             this.lbl_SalesReport.TabIndex = 2;
             this.lbl_SalesReport.Text = "Sales Report";
             // 
-            // monthCalendar2
+            // monthCalendarEnd
             // 
-            this.monthCalendar2.Location = new System.Drawing.Point(350, 111);
-            this.monthCalendar2.MaxSelectionCount = 1;
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 1;
+            this.monthCalendarEnd.Location = new System.Drawing.Point(349, 111);
+            this.monthCalendarEnd.MaxSelectionCount = 1;
+            this.monthCalendarEnd.Name = "monthCalendarEnd";
+            this.monthCalendarEnd.TabIndex = 1;
             // 
-            // monthCalendar1
+            // monthCalendarStart
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(38, 111);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendarStart.Location = new System.Drawing.Point(37, 111);
+            this.monthCalendarStart.MaxSelectionCount = 1;
+            this.monthCalendarStart.Name = "monthCalendarStart";
+            this.monthCalendarStart.TabIndex = 0;
             // 
             // SomerenUI
             // 
@@ -628,7 +654,7 @@
         private System.Windows.Forms.Panel pnl_StockDrinks;
         private System.Windows.Forms.Label lbl_StockDrinks;
         private System.Windows.Forms.ListView listViewStockDrinks;
-        private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem financeToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_CheckOut;
         private System.Windows.Forms.Label lbl_checkOut;
         private System.Windows.Forms.Label lbl_SelectStudent;
@@ -647,8 +673,9 @@
         private System.Windows.Forms.Label lbl_EndDate;
         private System.Windows.Forms.Label lbl_StartDate;
         private System.Windows.Forms.Label lbl_SalesReport;
-        private System.Windows.Forms.MonthCalendar monthCalendar2;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar monthCalendarEnd;
+        private System.Windows.Forms.MonthCalendar monthCalendarStart;
+        private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem;
     }
 }
 

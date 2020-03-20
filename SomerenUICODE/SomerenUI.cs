@@ -1,3 +1,4 @@
+
 ﻿using SomerenLogic;
 using SomerenModel;
 using System;
@@ -14,12 +15,14 @@ using SomerenUI.Properties;
 using System.IO;
 using System.Data.SqlTypes;
 
+
 namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
         SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
         SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
+        SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
 
         public SomerenUI()
         {
@@ -341,8 +344,6 @@ namespace SomerenUI
                 listViewSales.Columns.Add("Revenue", 100);
                 listViewSales.Columns.Add("Customer count", 100);
 
-
-
             }
         }
 
@@ -383,13 +384,18 @@ namespace SomerenUI
         {
             showPanel("StockDrinks");
         }
-        private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FinanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+        private void CheckOutToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             showPanel("CheckOut");
         }
         private void SalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Sales");
+
         }
 
 
@@ -434,6 +440,7 @@ namespace SomerenUI
                     foreach (StockDrinks drink in drinks)
                     {
                         if (drinkName == drink.Name)
+
                         {
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
@@ -441,6 +448,7 @@ namespace SomerenUI
                             DateTime today = DateTime.Now;
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
+
                             string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", '" + today.ToString("yyyy/MM/dd") + "', " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
@@ -533,10 +541,12 @@ namespace SomerenUI
                     }
                 }
             }
+
         }
 
         private Student GetSelectedStudent()
         {
+
             List<Student> students = studService.GetStudents();
             string studentNumber = "";
             Student selectedStudent = new Student();
@@ -555,10 +565,73 @@ namespace SomerenUI
                         }
                     }
                 }
+
             }
 
             return selectedStudent;
         }
 
+        private void Btn_ShowSales_Click(object sender, EventArgs e)
+        {
+            List<Order> orders = GetAllOrdersBetweenDates();
+
+            //Berekenen van de totale omzet
+            float totalPrice = 0;
+            foreach (Order order in orders)
+            {
+                totalPrice += order.Price;
+            }
+
+
+            //Het aantal klanten die iets heeft besteld
+            List<int> alreadySeen = new List<int>();
+
+            int totalCustomers = 0;
+            foreach (Order order in orders)
+            { 
+                if (!alreadySeen.Contains(order.StudentNumber))
+                {
+                    totalCustomers++;
+                    alreadySeen.Add(order.StudentNumber);
+                }
+            }
+
+            int customerAmount = totalCustomers; 
+            float omzet = totalPrice;  
+            int afzet = orders.Count(); 
+
+            string[] sales = new string[3];
+            sales[0] = afzet.ToString();
+            sales[1] = omzet.ToString();
+            sales[2] = customerAmount.ToString();
+
+            listViewSales.Items.Add(new ListViewItem(sales));
+        }
+
+        private List<Order> GetAllOrdersBetweenDates()
+        {
+            List<Order> orders = new List<Order>();
+            DateTime dateStart = monthCalendarStart.SelectionRange.Start;
+            DateTime dateEnd = monthCalendarEnd.SelectionRange.End;
+
+            //Checkt of er een goede datum is ingevoerd
+            if (dateStart >= dateEnd)
+            {
+                MessageBox.Show("Please make sure the START date is before the END date!");
+            }
+            else if (dateEnd > DateTime.Today)
+            {
+                MessageBox.Show("Please make sure the END date is not in the future");
+            }
+            else
+            {
+                orders = orderService.GetOrders(dateStart, dateEnd);
+            }
+
+            return orders;
+        }
+
+
     }
 }
+
