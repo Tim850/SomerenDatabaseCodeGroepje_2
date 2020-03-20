@@ -42,6 +42,7 @@
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockDrinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_Dashboard = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
             this.pnl_Students = new System.Windows.Forms.Panel();
@@ -71,15 +72,14 @@
             this.lbl_SelectDrinks = new System.Windows.Forms.Label();
             this.lbl_SelectStudent = new System.Windows.Forms.Label();
             this.lbl_checkOut = new System.Windows.Forms.Label();
-            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_Sales = new System.Windows.Forms.Panel();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
-            this.lbl_SalesReport = new System.Windows.Forms.Label();
-            this.lbl_StartDate = new System.Windows.Forms.Label();
-            this.lbl_EndDate = new System.Windows.Forms.Label();
-            this.listViewSales = new System.Windows.Forms.ListView();
             this.btn_ShowSales = new System.Windows.Forms.Button();
+            this.listViewSales = new System.Windows.Forms.ListView();
+            this.lbl_EndDate = new System.Windows.Forms.Label();
+            this.lbl_StartDate = new System.Windows.Forms.Label();
+            this.lbl_SalesReport = new System.Windows.Forms.Label();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -133,19 +133,19 @@
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
             this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -191,6 +191,13 @@
             this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
             this.checkOutToolStripMenuItem.Text = "CheckOut";
             this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.CheckOutToolStripMenuItem_Click);
+            // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
+            this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
             // 
             // pnl_Dashboard
             // 
@@ -470,13 +477,6 @@
             this.lbl_checkOut.TabIndex = 0;
             this.lbl_checkOut.Text = "Check Out";
             // 
-            // salesToolStripMenuItem
-            // 
-            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.salesToolStripMenuItem.Text = "Sales";
-            this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
-            // 
             // pnl_Sales
             // 
             this.pnl_Sales.Controls.Add(this.btn_ShowSales);
@@ -491,37 +491,25 @@
             this.pnl_Sales.Size = new System.Drawing.Size(1188, 513);
             this.pnl_Sales.TabIndex = 8;
             // 
-            // monthCalendar1
+            // btn_ShowSales
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(38, 111);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
+            this.btn_ShowSales.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_ShowSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ShowSales.Location = new System.Drawing.Point(228, 371);
+            this.btn_ShowSales.Name = "btn_ShowSales";
+            this.btn_ShowSales.Size = new System.Drawing.Size(203, 54);
+            this.btn_ShowSales.TabIndex = 6;
+            this.btn_ShowSales.Text = "Show Sales";
+            this.btn_ShowSales.UseVisualStyleBackColor = false;
             // 
-            // monthCalendar2
+            // listViewSales
             // 
-            this.monthCalendar2.Location = new System.Drawing.Point(350, 111);
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 1;
-            // 
-            // lbl_SalesReport
-            // 
-            this.lbl_SalesReport.AutoSize = true;
-            this.lbl_SalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_SalesReport.Location = new System.Drawing.Point(30, 25);
-            this.lbl_SalesReport.Name = "lbl_SalesReport";
-            this.lbl_SalesReport.Size = new System.Drawing.Size(251, 46);
-            this.lbl_SalesReport.TabIndex = 2;
-            this.lbl_SalesReport.Text = "Sales Report";
-            // 
-            // lbl_StartDate
-            // 
-            this.lbl_StartDate.AutoSize = true;
-            this.lbl_StartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_StartDate.Location = new System.Drawing.Point(33, 79);
-            this.lbl_StartDate.Name = "lbl_StartDate";
-            this.lbl_StartDate.Size = new System.Drawing.Size(158, 25);
-            this.lbl_StartDate.TabIndex = 3;
-            this.lbl_StartDate.Text = "Select start date:";
+            this.listViewSales.HideSelection = false;
+            this.listViewSales.Location = new System.Drawing.Point(679, 111);
+            this.listViewSales.Name = "listViewSales";
+            this.listViewSales.Size = new System.Drawing.Size(456, 320);
+            this.listViewSales.TabIndex = 5;
+            this.listViewSales.UseCompatibleStateImageBehavior = false;
             // 
             // lbl_EndDate
             // 
@@ -533,25 +521,38 @@
             this.lbl_EndDate.TabIndex = 4;
             this.lbl_EndDate.Text = "Select end date:";
             // 
-            // listViewSales
+            // lbl_StartDate
             // 
-            this.listViewSales.HideSelection = false;
-            this.listViewSales.Location = new System.Drawing.Point(679, 111);
-            this.listViewSales.Name = "listViewSales";
-            this.listViewSales.Size = new System.Drawing.Size(456, 320);
-            this.listViewSales.TabIndex = 5;
-            this.listViewSales.UseCompatibleStateImageBehavior = false;
+            this.lbl_StartDate.AutoSize = true;
+            this.lbl_StartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_StartDate.Location = new System.Drawing.Point(33, 79);
+            this.lbl_StartDate.Name = "lbl_StartDate";
+            this.lbl_StartDate.Size = new System.Drawing.Size(158, 25);
+            this.lbl_StartDate.TabIndex = 3;
+            this.lbl_StartDate.Text = "Select start date:";
             // 
-            // btn_ShowSales
+            // lbl_SalesReport
             // 
-            this.btn_ShowSales.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_ShowSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ShowSales.Location = new System.Drawing.Point(228, 371);
-            this.btn_ShowSales.Name = "btn_ShowSales";
-            this.btn_ShowSales.Size = new System.Drawing.Size(203, 54);
-            this.btn_ShowSales.TabIndex = 6;
-            this.btn_ShowSales.Text = "Show Sales";
-            this.btn_ShowSales.UseVisualStyleBackColor = false;
+            this.lbl_SalesReport.AutoSize = true;
+            this.lbl_SalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_SalesReport.Location = new System.Drawing.Point(30, 25);
+            this.lbl_SalesReport.Name = "lbl_SalesReport";
+            this.lbl_SalesReport.Size = new System.Drawing.Size(251, 46);
+            this.lbl_SalesReport.TabIndex = 2;
+            this.lbl_SalesReport.Text = "Sales Report";
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(350, 111);
+            this.monthCalendar2.MaxSelectionCount = 1;
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 1;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(38, 111);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
             // 
             // SomerenUI
             // 
