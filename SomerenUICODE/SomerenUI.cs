@@ -1,3 +1,4 @@
+
 ﻿using SomerenLogic;
 using SomerenModel;
 using System;
@@ -341,6 +342,7 @@ namespace SomerenUI
                 // Aanmaken van kolommen
                 listViewSales.Columns.Add("Total sold drinks", 100);
                 listViewSales.Columns.Add("Revenue", 100);
+
                 listViewSales.Columns.Add("Customer count", 100);
 
 
@@ -392,6 +394,7 @@ namespace SomerenUI
         private void SalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Sales");
+
         }
 
 
@@ -436,6 +439,7 @@ namespace SomerenUI
                     foreach (StockDrinks drink in drinks)
                     {
                         if (drinkName == drink.Name)
+
                         {
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
@@ -443,6 +447,7 @@ namespace SomerenUI
                             DateTime today = DateTime.Now;
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
+
                             string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", " + today.ToString("yyyy/MM/dd") + ", " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
@@ -535,10 +540,12 @@ namespace SomerenUI
                     }
                 }
             }
+
         }
 
         private Student GetSelectedStudent()
         {
+
             List<Student> students = studService.GetStudents();
             string studentNumber = "";
             Student selectedStudent = new Student();
@@ -557,11 +564,13 @@ namespace SomerenUI
                         }
                     }
                 }
+
             }
 
             return selectedStudent;
         }
 
+\
         private void Btn_ShowSales_Click(object sender, EventArgs e)
         {
             List<Order> orders = GetAllOrdersBetweenDates();
@@ -603,3 +612,4 @@ namespace SomerenUI
         }
     }
 }
+
