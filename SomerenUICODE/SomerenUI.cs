@@ -10,7 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
-
+using SomerenUI.Properties;
+using System.IO;
 
 namespace SomerenUI
 {
@@ -203,6 +204,45 @@ namespace SomerenUI
                 listViewStockDrinks.Columns.Add("Name of drink");
                 listViewStockDrinks.Columns.Add("Stock");
                 listViewStockDrinks.Columns.Add("Voucher price");
+                listViewStockDrinks.Columns.Add("Stock warning");
+
+                string[] drinks = new string[3];
+                ListViewItem itm;
+
+                Bitmap bmp = new Bitmap(Resources.someren);
+                Image image = Resources.someren;
+
+                ImageList imgs = new ImageList();
+                imgs.ImageSize = new Size(20, 20);
+
+                String[] paths = { };
+                paths = Directory.GetFiles("..\\..\\Resources");
+
+                foreach (String path in paths)
+                {
+                    imgs.Images.Add(Image.FromFile(path));
+                }
+
+                listViewStockDrinks.SmallImageList = imgs;
+
+
+                foreach (SomerenModel.StockDrinks sd in stockList)
+                {
+
+                    drinks[0] = sd.Name;
+                    drinks[1] = sd.Price.ToString();
+                    drinks[2] = sd.Stock.ToString();
+
+                    if (sd.Stock <= 10)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                    listViewStockDrinks.Items.Add(new ListViewItem(drinks) { ImageIndex = 1 });
+                }
 
 
 
