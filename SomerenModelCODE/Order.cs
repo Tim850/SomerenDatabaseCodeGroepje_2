@@ -12,5 +12,7 @@ namespace SomerenModel
         public Int16 DrinkID { get; set; }
         public DateTime Date { get; set; }
         public int StudentNumber { get; set; }
+        public int Price { get; set; }
+        public float Amount { get; set; }
     }
 }
