@@ -41,5 +41,17 @@ namespace SomerenLogic
             }
 
         }
+
+        public void UpdateStudent(string query)
+        {
+            try
+            {
+                student_db.Db_Update_Student(query);
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
     }
 }

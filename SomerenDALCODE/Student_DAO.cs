@@ -38,5 +38,11 @@ namespace SomerenDAL
             return students;
         }
 
+        public void Db_Update_Student(string query)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
     }
 }
