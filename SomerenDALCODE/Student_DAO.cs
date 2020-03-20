@@ -15,7 +15,7 @@ namespace SomerenDAL
       
         public List<Student> Db_Get_All_Students()
         {
-            string query = "SELECT studentNumber, studentFirstName, studentLastName FROM [student] ORDER BY studentLastName";
+            string query = "SELECT studentNumber, studentFirstName, studentLastName, vouchers FROM [student] ORDER BY studentLastName";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -30,7 +30,8 @@ namespace SomerenDAL
                 {
                     Number = (int)dr["studentNumber"],
                     FirstName = (String)(dr["studentFirstName"].ToString()),
-                    LastName = (String)(dr["studentLastName"].ToString())
+                    LastName = (String)(dr["studentLastName"].ToString()),
+                    Vouchers = (Int16)dr["vouchers"]
                 };
                 students.Add(student);
             }
