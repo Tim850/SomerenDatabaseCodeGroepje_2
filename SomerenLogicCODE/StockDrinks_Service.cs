@@ -25,12 +25,14 @@ namespace SomerenLogic
                 // something went wrong connecting to the database, so we will add a fake student to the list to make sure the rest of the application continues working!
                 List<StockDrinks> stock = new List<StockDrinks>();
                 StockDrinks a = new StockDrinks();
+                a.DrinkID = 1;
                 a.Name = "testDrank1";
                 a.Price = 2;
                 a.Stock = 13;
                 stock.Add(a);
 
                 StockDrinks b = new StockDrinks();
+                b.DrinkID = 2;
                 b.Name = "testDrank2";
                 b.Price = 1;
                 b.Stock = 7;

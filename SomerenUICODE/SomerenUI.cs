@@ -201,16 +201,13 @@ namespace SomerenUI
                 listViewStockDrinks.FullRowSelect = true;
 
                 // Aanmaken van kollomen
+                listViewStockDrinks.Columns.Add("ID");
                 listViewStockDrinks.Columns.Add("Name of drink");
                 listViewStockDrinks.Columns.Add("Stock");
                 listViewStockDrinks.Columns.Add("Voucher price");
-                listViewStockDrinks.Columns.Add("Stock warning");
 
-                string[] drinks = new string[3];
+                string[] drinks = new string[4];
                 ListViewItem itm;
-
-                Bitmap bmp = new Bitmap(Resources.someren);
-                Image image = Resources.someren;
 
                 ImageList imgs = new ImageList();
                 imgs.ImageSize = new Size(20, 20);
@@ -228,20 +225,20 @@ namespace SomerenUI
 
                 foreach (SomerenModel.StockDrinks sd in stockList)
                 {
-
-                    drinks[0] = sd.Name;
-                    drinks[1] = sd.Price.ToString();
+                    drinks[0] = sd.DrinkID.ToString();
+                    drinks[1] = sd.Name;
                     drinks[2] = sd.Stock.ToString();
+                    drinks[3] = sd.Price.ToString();
 
                     if (sd.Stock <= 10)
                     {
-
+                        listViewStockDrinks.Items.Add(new ListViewItem(drinks) { ImageIndex = 2 });
                     }
                     else
                     {
-
+                        listViewStockDrinks.Items.Add(new ListViewItem(drinks) { ImageIndex = 1 });
                     }
-                    listViewStockDrinks.Items.Add(new ListViewItem(drinks) { ImageIndex = 1 });
+                    
                 }
 
             }
@@ -442,7 +439,9 @@ namespace SomerenUI
                             int newVouchers = student.Vouchers - totalPrice;
 
                             string queryUpdStud = "UPDATE student SET vouchers=@newVouchers WHERE studentNumber=@student.Number";
+
                             studService.UpdateStudent(queryUpdStud);
+
                         }
                     }
                 }
