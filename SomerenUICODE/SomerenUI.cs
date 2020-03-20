@@ -1,3 +1,4 @@
+
 ﻿using SomerenLogic;
 using SomerenModel;
 using System;
@@ -14,12 +15,14 @@ using SomerenUI.Properties;
 using System.IO;
 using System.Data.SqlTypes;
 
+
 namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
         SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
         SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
+        SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
 
         public SomerenUI()
         {
@@ -339,6 +342,7 @@ namespace SomerenUI
                 // Aanmaken van kolommen
                 listViewSales.Columns.Add("Total sold drinks", 100);
                 listViewSales.Columns.Add("Revenue", 100);
+
                 listViewSales.Columns.Add("Customer count", 100);
 
 
@@ -390,6 +394,7 @@ namespace SomerenUI
         private void SalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Sales");
+
         }
 
 
@@ -434,6 +439,7 @@ namespace SomerenUI
                     foreach (StockDrinks drink in drinks)
                     {
                         if (drinkName == drink.Name)
+
                         {
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
@@ -441,7 +447,8 @@ namespace SomerenUI
                             DateTime today = DateTime.Now;
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
-                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", '" + today.ToString("yyyy/MM/dd") + "', " + student.Number + ")";
+
+                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", " + today.ToString("yyyy/MM/dd") + ", " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
                             stockDrinksService.UpdateDrinks(queryAdd);
@@ -533,10 +540,12 @@ namespace SomerenUI
                     }
                 }
             }
+
         }
 
         private Student GetSelectedStudent()
         {
+
             List<Student> students = studService.GetStudents();
             string studentNumber = "";
             Student selectedStudent = new Student();
@@ -555,10 +564,52 @@ namespace SomerenUI
                         }
                     }
                 }
+
             }
 
             return selectedStudent;
         }
 
+\
+        private void Btn_ShowSales_Click(object sender, EventArgs e)
+        {
+            List<Order> orders = GetAllOrdersBetweenDates();
+
+            //Berekenen van de totale omzet
+            float totalPrice = 0;
+            foreach (Order order in orders)
+            {
+                totalPrice += order.Price;
+            }
+
+
+            //Het aantal klanten die iets heeft besteld
+            List<int> alreadySeen = new List<int>();
+
+            int totalCustomers = 0;
+            foreach (Order order in orders)
+            { 
+                if (alreadySeen.Contains(order.StudentNumber))
+                {
+                    totalCustomers++;
+                    alreadySeen.Add(order.StudentNumber);
+                }
+            }
+
+            int customerAmount = totalCustomers; //DEZE
+            float omzet = totalPrice;  //DEZE
+            int afzet = orders.Count(); //EN DEZE MEOTEN WORDEN LATEN ZIEN IN DE LISTVIEW
+        }
+
+        private List<Order> GetAllOrdersBetweenDates()
+        {
+            DateTime dateStart = monthCalendarStart.SelectionRange.Start;
+            DateTime dateEnd = monthCalendarEnd.SelectionRange.End;
+
+            List<Order> orders = orderService.GetOrders(dateStart, dateEnd);
+
+            return orders;
+        }
     }
 }
+
