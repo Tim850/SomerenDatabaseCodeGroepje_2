@@ -441,7 +441,7 @@ namespace SomerenUI
                             DateTime today = DateTime.Now;
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
-                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", " + today.ToString("yyyy/MM/dd") + ", " + student.Number + ")";
+                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", '" + today.ToString("yyyy/MM/dd") + "', " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
                             stockDrinksService.UpdateDrinks(queryAdd);
