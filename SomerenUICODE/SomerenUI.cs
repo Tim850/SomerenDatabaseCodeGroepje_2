@@ -35,13 +35,13 @@ namespace SomerenUI
         {
             if (panelName == "Dashboard")
             {
-
                 // hide all other panels
                 pnl_Students.Hide();
                 pnl_Teachers.Hide();
                 pnl_Rooms.Hide();
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
+                pnl_Sales.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -56,6 +56,7 @@ namespace SomerenUI
                 pnl_Rooms.Hide();
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
+                pnl_Sales.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -98,6 +99,8 @@ namespace SomerenUI
                 pnl_Rooms.Hide();
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
+                pnl_Sales.Hide();
+
 
                 // show students
                 pnl_Teachers.Show();
@@ -143,6 +146,8 @@ namespace SomerenUI
                 pnl_Teachers.Hide();
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
+                pnl_Sales.Hide();
+
 
                 // show rooms
                 pnl_Rooms.Show();
@@ -186,6 +191,8 @@ namespace SomerenUI
                 pnl_Teachers.Hide();
                 pnl_Rooms.Hide();
                 pnl_CheckOut.Hide();
+                pnl_Sales.Hide();
+
 
                 // show stock
                 pnl_StockDrinks.Show();
@@ -208,7 +215,6 @@ namespace SomerenUI
                 listViewStockDrinks.Columns.Add("Voucher price");
 
                 string[] drinks = new string[4];
-                ListViewItem itm;
 
                 ImageList imgs = new ImageList();
                 imgs.ImageSize = new Size(20, 20);
@@ -239,7 +245,7 @@ namespace SomerenUI
                     {
                         listViewStockDrinks.Items.Add(new ListViewItem(drinks) { ImageIndex = 1 });
                     }
-                    
+
                 }
 
             }
@@ -253,6 +259,7 @@ namespace SomerenUI
                 pnl_Rooms.Hide();
                 pnl_StockDrinks.Hide();
                 btn_Buy.Hide();
+                pnl_Sales.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -298,7 +305,7 @@ namespace SomerenUI
                 listViewDrinksCO.Columns.Add("Price", 70);
                 listViewDrinksCO.Columns.Add("Stock", 70);
 
-                string[] drinks = new string[3];               
+                string[] drinks = new string[3];
 
                 foreach (SomerenModel.StockDrinks d in drinkList)
                 {
@@ -310,58 +317,81 @@ namespace SomerenUI
                     listViewDrinksCO.Items.Add(itm);
                 }
             }
+            else if (panelName == "Sales")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+
+                //show panel
+                pnl_Sales.Show();
+
+                // Clear the listView first
+                listViewSales.Clear();
+
+                listViewSales.View = View.Details;
+
+                // Aanmaken van kolommen
+                listViewSales.Columns.Add("Total sold drinks", 100);
+                listViewSales.Columns.Add("Revenue", 100);
+                listViewSales.Columns.Add("Customer count", 100);
+
+
+
+            }
         }
 
         // Menu item clicks
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           //
+            //
         }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             showPanel("Dashboard");
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void img_Dashboard_Click(object sender, EventArgs e)
         {
             MessageBox.Show("What happens in Someren, stays in Someren!");
         }
-
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Students");
         }
-
         private void LecturersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Teachers");
         }
-
         private void RoomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Rooms");
         }
-
         private void StockDrinksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("StockDrinks");
         }
-
         private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("CheckOut");
         }
+        private void SalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Sales");
+        }
+
 
         // buttons clicks en methodes
         private void Btn_Calculate_Click(object sender, EventArgs e)
@@ -372,7 +402,7 @@ namespace SomerenUI
             List<StockDrinks> drinks = stockDrinksService.GetStock();
 
             // geselecteerde student en dranken checken
-            if (SelectedStudents() && SelectedDrinks())
+            if (CheckSelectedStudents() && CheckSelectedDrinks())
             {
                 btn_Buy.Show();
             }
@@ -387,8 +417,12 @@ namespace SomerenUI
 
         private void Btn_Buy_Click(object sender, EventArgs e)
         {
-            // gekochte drankjes wegschrijven naar de databse
             List<StockDrinks> drinks = stockDrinksService.GetStock();
+
+            // geselecteerde student en drankjes bepalen
+            Student student = GetSelectedStudent();
+
+            // gekochte drankjes wegschrijven naar de databse
             string drinkName = "";
 
             for (int i = 0; i < listViewDrinksCO.Items.Count; i++)
@@ -404,9 +438,10 @@ namespace SomerenUI
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
                             int sold = drink.Stock - newStock;
+                            DateTime today = DateTime.Today;
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
-                            string queryAdd = "INSERT INTO [order] (drinkID, amount) VALUES (" + drankId + ", " + sold + ")";
+                            string queryAdd = "INSERT INTO [order] (drinkID, amount, studentnumber) VALUES (" + drankId + ", " + sold + ", " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
                             stockDrinksService.UpdateDrinks(queryAdd);
@@ -419,40 +454,25 @@ namespace SomerenUI
             int totalPrice = 0;
             CalcTotalPrice(ref totalPrice, drinks);
 
-            // geselecteerde student wegschrijven naar de database
-            List<Student> students = studService.GetStudents();
-            string studentNumber = "";
+            // geselecteerde student wegschrijven naar de database            
 
-            for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
+            if (student.Vouchers < totalPrice)
             {
-                studentNumber = listViewStudentsCO.Items[i].Text;
+                MessageBox.Show("Selected student does not have enough vouchers to buy this");
+                return;
+            }
+            else
+            {
+                int newVouchers = student.Vouchers - totalPrice;
 
-                if (listViewStudentsCO.Items[i].Checked == true)
-                {
-                    foreach (Student student in students)
-                    {
-
-                        if (student.Vouchers < totalPrice && studentNumber == student.Number.ToString())
-                        {
-                            MessageBox.Show("Selected student does not have enough vouchers to buy this");
-                            return;
-                        }
-
-                        else if (studentNumber == student.Number.ToString())
-                        {
-                            int newVouchers = student.Vouchers - totalPrice;
-
-                            string queryUpdStud = "UPDATE student SET vouchers=" + newVouchers + "WHERE studentNumber=" + student.Number;
-                            studService.UpdateStudent(queryUpdStud);
-                        }
-                    }
-                }
+                string queryUpdStud = "UPDATE student SET vouchers=" + newVouchers + "WHERE studentNumber=" + student.Number;
+                studService.UpdateStudent(queryUpdStud);
             }
 
             showPanel("CheckOut");
         }
 
-        private bool SelectedStudents()
+        private bool CheckSelectedStudents()
         {
             int count = 0;
 
@@ -473,7 +493,7 @@ namespace SomerenUI
             return true;
         }
 
-        private bool SelectedDrinks()
+        private bool CheckSelectedDrinks()
         {
             int count = 0;
 
@@ -514,5 +534,31 @@ namespace SomerenUI
                 }
             }
         }
+
+        private Student GetSelectedStudent()
+        {
+            List<Student> students = studService.GetStudents();
+            string studentNumber = "";
+            Student selectedStudent = new Student();
+
+            for (int i = 0; i < listViewStudentsCO.Items.Count; i++)
+            {
+                studentNumber = listViewStudentsCO.Items[i].Text;
+
+                if (listViewStudentsCO.Items[i].Checked == true)
+                {
+                    foreach (Student student in students)
+                    {
+                        if (studentNumber == student.Number.ToString())
+                        {
+                            selectedStudent = student;
+                        }
+                    }
+                }
+            }
+
+            return selectedStudent;
+        }
+
     }
 }

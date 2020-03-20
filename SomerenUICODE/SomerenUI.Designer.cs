@@ -71,6 +71,15 @@
             this.lbl_SelectDrinks = new System.Windows.Forms.Label();
             this.lbl_SelectStudent = new System.Windows.Forms.Label();
             this.lbl_checkOut = new System.Windows.Forms.Label();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnl_Sales = new System.Windows.Forms.Panel();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.lbl_SalesReport = new System.Windows.Forms.Label();
+            this.lbl_StartDate = new System.Windows.Forms.Label();
+            this.lbl_EndDate = new System.Windows.Forms.Label();
+            this.listViewSales = new System.Windows.Forms.ListView();
+            this.btn_ShowSales = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -80,6 +89,7 @@
             this.pnl_Rooms.SuspendLayout();
             this.pnl_StockDrinks.SuspendLayout();
             this.pnl_CheckOut.SuspendLayout();
+            this.pnl_Sales.SuspendLayout();
             this.SuspendLayout();
             // 
             // img_Dashboard
@@ -175,6 +185,8 @@
             // 
             // checkOutToolStripMenuItem
             // 
+            this.checkOutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salesToolStripMenuItem});
             this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
             this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
             this.checkOutToolStripMenuItem.Text = "CheckOut";
@@ -458,11 +470,95 @@
             this.lbl_checkOut.TabIndex = 0;
             this.lbl_checkOut.Text = "Check Out";
             // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
+            // 
+            // pnl_Sales
+            // 
+            this.pnl_Sales.Controls.Add(this.btn_ShowSales);
+            this.pnl_Sales.Controls.Add(this.listViewSales);
+            this.pnl_Sales.Controls.Add(this.lbl_EndDate);
+            this.pnl_Sales.Controls.Add(this.lbl_StartDate);
+            this.pnl_Sales.Controls.Add(this.lbl_SalesReport);
+            this.pnl_Sales.Controls.Add(this.monthCalendar2);
+            this.pnl_Sales.Controls.Add(this.monthCalendar1);
+            this.pnl_Sales.Location = new System.Drawing.Point(0, 34);
+            this.pnl_Sales.Name = "pnl_Sales";
+            this.pnl_Sales.Size = new System.Drawing.Size(1188, 513);
+            this.pnl_Sales.TabIndex = 8;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(38, 111);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(350, 111);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 1;
+            // 
+            // lbl_SalesReport
+            // 
+            this.lbl_SalesReport.AutoSize = true;
+            this.lbl_SalesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_SalesReport.Location = new System.Drawing.Point(30, 25);
+            this.lbl_SalesReport.Name = "lbl_SalesReport";
+            this.lbl_SalesReport.Size = new System.Drawing.Size(251, 46);
+            this.lbl_SalesReport.TabIndex = 2;
+            this.lbl_SalesReport.Text = "Sales Report";
+            // 
+            // lbl_StartDate
+            // 
+            this.lbl_StartDate.AutoSize = true;
+            this.lbl_StartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_StartDate.Location = new System.Drawing.Point(33, 79);
+            this.lbl_StartDate.Name = "lbl_StartDate";
+            this.lbl_StartDate.Size = new System.Drawing.Size(158, 25);
+            this.lbl_StartDate.TabIndex = 3;
+            this.lbl_StartDate.Text = "Select start date:";
+            // 
+            // lbl_EndDate
+            // 
+            this.lbl_EndDate.AutoSize = true;
+            this.lbl_EndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_EndDate.Location = new System.Drawing.Point(345, 79);
+            this.lbl_EndDate.Name = "lbl_EndDate";
+            this.lbl_EndDate.Size = new System.Drawing.Size(154, 25);
+            this.lbl_EndDate.TabIndex = 4;
+            this.lbl_EndDate.Text = "Select end date:";
+            // 
+            // listViewSales
+            // 
+            this.listViewSales.HideSelection = false;
+            this.listViewSales.Location = new System.Drawing.Point(679, 111);
+            this.listViewSales.Name = "listViewSales";
+            this.listViewSales.Size = new System.Drawing.Size(456, 320);
+            this.listViewSales.TabIndex = 5;
+            this.listViewSales.UseCompatibleStateImageBehavior = false;
+            // 
+            // btn_ShowSales
+            // 
+            this.btn_ShowSales.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_ShowSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ShowSales.Location = new System.Drawing.Point(228, 371);
+            this.btn_ShowSales.Name = "btn_ShowSales";
+            this.btn_ShowSales.Size = new System.Drawing.Size(203, 54);
+            this.btn_ShowSales.TabIndex = 6;
+            this.btn_ShowSales.Text = "Show Sales";
+            this.btn_ShowSales.UseVisualStyleBackColor = false;
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1189, 560);
+            this.Controls.Add(this.pnl_Sales);
             this.Controls.Add(this.pnl_Rooms);
             this.Controls.Add(this.pnl_Teachers);
             this.Controls.Add(this.pnl_Students);
@@ -493,6 +589,8 @@
             this.pnl_StockDrinks.PerformLayout();
             this.pnl_CheckOut.ResumeLayout(false);
             this.pnl_CheckOut.PerformLayout();
+            this.pnl_Sales.ResumeLayout(false);
+            this.pnl_Sales.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -541,6 +639,15 @@
         private System.Windows.Forms.Label lbl_CalcTotal;
         private System.Windows.Forms.Button btn_Buy;
         private System.Windows.Forms.Label lbl_vouchers;
+        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Sales;
+        private System.Windows.Forms.Button btn_ShowSales;
+        private System.Windows.Forms.ListView listViewSales;
+        private System.Windows.Forms.Label lbl_EndDate;
+        private System.Windows.Forms.Label lbl_StartDate;
+        private System.Windows.Forms.Label lbl_SalesReport;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }
 
