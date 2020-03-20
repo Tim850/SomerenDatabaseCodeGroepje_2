@@ -210,10 +210,9 @@ namespace SomerenUI
                 string[] drinks = new string[4];
                 ListViewItem itm;
 
-                //Images uit resources halen
                 ImageList imgs = new ImageList();
                 imgs.ImageSize = new Size(20, 20);
-                
+
                 String[] paths = { };
                 paths = Directory.GetFiles("..\\..\\Resources");
 
@@ -232,7 +231,6 @@ namespace SomerenUI
                     drinks[2] = sd.Stock.ToString();
                     drinks[3] = sd.Price.ToString();
 
-                    //Laat waarschuwings plaatje zien als de stock onder de 10 komt en anders een vinkje
                     if (sd.Stock <= 10)
                     {
                         listViewStockDrinks.Items.Add(new ListViewItem(drinks) { ImageIndex = 2 });
@@ -407,8 +405,8 @@ namespace SomerenUI
                             int drankId = drink.DrinkID;
                             int sold = drink.Stock - newStock;
 
-                            string queryUpdate = "UPDATE drink SET stock=" + newStock + "WHERE drinkID=" + drankId;
-                            string queryAdd = "INSERT INTO order (drinkID, amount) VALUES (" + drankId + ", " + sold + ")";
+                            string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
+                            string queryAdd = "INSERT INTO [order] (drinkID, amount) VALUES (" + drankId + ", " + sold + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
                             stockDrinksService.UpdateDrinks(queryAdd);
