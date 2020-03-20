@@ -61,7 +61,8 @@
             this.listViewStockDrinks = new System.Windows.Forms.ListView();
             this.lbl_StockDrinks = new System.Windows.Forms.Label();
             this.pnl_CheckOut = new System.Windows.Forms.Panel();
-
+            this.lbl_vouchers = new System.Windows.Forms.Label();
+            this.btn_Buy = new System.Windows.Forms.Button();
             this.lbl_CalcTotal = new System.Windows.Forms.Label();
             this.lbl_Total = new System.Windows.Forms.Label();
             this.btn_Calculate = new System.Windows.Forms.Button();
@@ -70,10 +71,6 @@
             this.lbl_SelectDrinks = new System.Windows.Forms.Label();
             this.lbl_SelectStudent = new System.Windows.Forms.Label();
             this.lbl_checkOut = new System.Windows.Forms.Label();
-
-            this.btn_Buy = new System.Windows.Forms.Button();
-            this.lbl_vouchers = new System.Windows.Forms.Label();
-
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -87,12 +84,10 @@
             // 
             // img_Dashboard
             // 
-
             this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
             this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
             this.img_Dashboard.Name = "img_Dashboard";
             this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
-
             this.img_Dashboard.TabIndex = 0;
             this.img_Dashboard.TabStop = false;
             this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
@@ -110,7 +105,6 @@
             this.checkOutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-
             this.menuStrip1.Size = new System.Drawing.Size(1189, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -122,7 +116,6 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-
             this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
             this.dashboardToolStripMenuItem.Text = "Application";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
@@ -130,7 +123,6 @@
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-
             this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
             this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
@@ -138,30 +130,25 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-
             this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // studentsToolStripMenuItem
             // 
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-
             this.studentsToolStripMenuItem.Text = "Students";
             this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // lecturersToolStripMenuItem
             // 
             this.lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
-
             this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.lecturersToolStripMenuItem.Text = "Teachers";
             this.lecturersToolStripMenuItem.Click += new System.EventHandler(this.LecturersToolStripMenuItem_Click);
@@ -170,13 +157,11 @@
             // 
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
-
             this.activitiesToolStripMenuItem.Text = "Activities";
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.RoomsToolStripMenuItem_Click);
@@ -309,6 +294,7 @@
             this.pnl_Rooms.Controls.Add(this.lbl_rooms);
             this.pnl_Rooms.Location = new System.Drawing.Point(6, 31);
             this.pnl_Rooms.Name = "pnl_Rooms";
+            this.pnl_Rooms.Size = new System.Drawing.Size(1183, 514);
             this.pnl_Rooms.TabIndex = 2;
             // 
             // listViewRooms
@@ -375,6 +361,26 @@
             this.pnl_CheckOut.Size = new System.Drawing.Size(1154, 517);
             this.pnl_CheckOut.TabIndex = 7;
             // 
+            // lbl_vouchers
+            // 
+            this.lbl_vouchers.AutoSize = true;
+            this.lbl_vouchers.Location = new System.Drawing.Point(240, 452);
+            this.lbl_vouchers.Name = "lbl_vouchers";
+            this.lbl_vouchers.Size = new System.Drawing.Size(68, 17);
+            this.lbl_vouchers.TabIndex = 11;
+            this.lbl_vouchers.Text = "Vouchers";
+            // 
+            // btn_Buy
+            // 
+            this.btn_Buy.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_Buy.Location = new System.Drawing.Point(516, 434);
+            this.btn_Buy.Name = "btn_Buy";
+            this.btn_Buy.Size = new System.Drawing.Size(208, 48);
+            this.btn_Buy.TabIndex = 10;
+            this.btn_Buy.Text = "Buy Drink(s)";
+            this.btn_Buy.UseVisualStyleBackColor = false;
+            this.btn_Buy.Click += new System.EventHandler(this.Btn_Buy_Click);
+            // 
             // lbl_CalcTotal
             // 
             this.lbl_CalcTotal.AutoSize = true;
@@ -416,7 +422,6 @@
             // listViewStudentsCO
             // 
             this.listViewStudentsCO.HideSelection = false;
-
             this.listViewStudentsCO.Location = new System.Drawing.Point(38, 114);
             this.listViewStudentsCO.Name = "listViewStudentsCO";
             this.listViewStudentsCO.Size = new System.Drawing.Size(393, 220);
@@ -453,38 +458,18 @@
             this.lbl_checkOut.TabIndex = 0;
             this.lbl_checkOut.Text = "Check Out";
             // 
-            // btn_Buy
-            // 
-            this.btn_Buy.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btn_Buy.Location = new System.Drawing.Point(516, 434);
-            this.btn_Buy.Name = "btn_Buy";
-            this.btn_Buy.Size = new System.Drawing.Size(208, 48);
-            this.btn_Buy.TabIndex = 10;
-            this.btn_Buy.Text = "Buy Drink(s)";
-            this.btn_Buy.UseVisualStyleBackColor = false;
-            this.btn_Buy.Click += new System.EventHandler(this.Btn_Buy_Click);
-            // 
-            // lbl_vouchers
-            // 
-            this.lbl_vouchers.AutoSize = true;
-            this.lbl_vouchers.Location = new System.Drawing.Point(240, 452);
-            this.lbl_vouchers.Name = "lbl_vouchers";
-            this.lbl_vouchers.Size = new System.Drawing.Size(68, 17);
-            this.lbl_vouchers.TabIndex = 11;
-            this.lbl_vouchers.Text = "Vouchers";
-            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1189, 560);
-            this.Controls.Add(this.pnl_CheckOut);
-            this.Controls.Add(this.pnl_StockDrinks);
             this.Controls.Add(this.pnl_Rooms);
             this.Controls.Add(this.pnl_Teachers);
             this.Controls.Add(this.pnl_Students);
             this.Controls.Add(this.pnl_Dashboard);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnl_CheckOut);
+            this.Controls.Add(this.pnl_StockDrinks);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
