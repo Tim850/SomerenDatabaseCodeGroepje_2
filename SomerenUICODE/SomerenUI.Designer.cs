@@ -620,7 +620,6 @@
             this.pnl_Sales.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

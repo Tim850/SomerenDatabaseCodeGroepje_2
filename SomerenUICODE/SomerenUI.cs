@@ -343,7 +343,6 @@ namespace SomerenUI
                 listViewSales.Columns.Add("Total sold drinks", 100);
                 listViewSales.Columns.Add("Revenue", 100);
                 listViewSales.Columns.Add("Customer count", 100);
-
             }
         }
 
@@ -610,6 +609,7 @@ namespace SomerenUI
 
         private List<Order> GetAllOrdersBetweenDates()
         {
+
             List<Order> orders = new List<Order>();
             DateTime dateStart = monthCalendarStart.SelectionRange.Start;
             DateTime dateEnd = monthCalendarEnd.SelectionRange.End;
@@ -630,7 +630,6 @@ namespace SomerenUI
 
             return orders;
         }
-
 
     }
 }
