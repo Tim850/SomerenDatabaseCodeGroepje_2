@@ -342,11 +342,7 @@ namespace SomerenUI
                 // Aanmaken van kolommen
                 listViewSales.Columns.Add("Total sold drinks", 100);
                 listViewSales.Columns.Add("Revenue", 100);
-
                 listViewSales.Columns.Add("Customer count", 100);
-
-
-
             }
         }
 
@@ -387,7 +383,11 @@ namespace SomerenUI
         {
             showPanel("StockDrinks");
         }
-        private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FinanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+        private void CheckOutToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             showPanel("CheckOut");
         }
@@ -448,7 +448,7 @@ namespace SomerenUI
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
 
-                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", " + today.ToString("yyyy/MM/dd") + ", " + student.Number + ")";
+                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", '" + today.ToString("yyyy/MM/dd") + "', " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
                             stockDrinksService.UpdateDrinks(queryAdd);
@@ -570,7 +570,6 @@ namespace SomerenUI
             return selectedStudent;
         }
 
-\
         private void Btn_ShowSales_Click(object sender, EventArgs e)
         {
             List<Order> orders = GetAllOrdersBetweenDates();
@@ -589,27 +588,49 @@ namespace SomerenUI
             int totalCustomers = 0;
             foreach (Order order in orders)
             { 
-                if (alreadySeen.Contains(order.StudentNumber))
+                if (!alreadySeen.Contains(order.StudentNumber))
                 {
                     totalCustomers++;
                     alreadySeen.Add(order.StudentNumber);
                 }
             }
 
-            int customerAmount = totalCustomers; //DEZE
-            float omzet = totalPrice;  //DEZE
-            int afzet = orders.Count(); //EN DEZE MEOTEN WORDEN LATEN ZIEN IN DE LISTVIEW
+            int customerAmount = totalCustomers; 
+            float omzet = totalPrice;  
+            int afzet = orders.Count(); 
+
+            string[] sales = new string[3];
+            sales[0] = afzet.ToString();
+            sales[1] = omzet.ToString();
+            sales[2] = customerAmount.ToString();
+
+            listViewSales.Items.Add(new ListViewItem(sales));
         }
 
         private List<Order> GetAllOrdersBetweenDates()
         {
+
+            List<Order> orders = new List<Order>();
             DateTime dateStart = monthCalendarStart.SelectionRange.Start;
             DateTime dateEnd = monthCalendarEnd.SelectionRange.End;
 
-            List<Order> orders = orderService.GetOrders(dateStart, dateEnd);
+            //Checkt of er een goede datum is ingevoerd
+            if (dateStart >= dateEnd)
+            {
+                MessageBox.Show("Please make sure the START date is before the END date!");
+            }
+            else if (dateEnd > DateTime.Today)
+            {
+                MessageBox.Show("Please make sure the END date is not in the future");
+            }
+            else
+            {
+                orders = orderService.GetOrders(dateStart, dateEnd);
+            }
 
             return orders;
         }
+
     }
 }
 

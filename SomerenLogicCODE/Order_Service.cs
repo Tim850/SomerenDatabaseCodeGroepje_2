@@ -17,7 +17,7 @@ namespace SomerenLogic
         {
             try
             {
-                List<Order> order = order_db.Db_Get_All_orders(dateStart, dateEnd);
+                List<Order> order = order_db.Db_Get_All_Orders(dateStart, dateEnd);
                 return order;
             }
             catch (Exception)
@@ -29,7 +29,7 @@ namespace SomerenLogic
                 a.OrderNumber = 6;
                 a.StudentNumber = 1;
                 a.Date = DateTime.Now;
-                a.Price = 999.99f;
+                a.Price = 1.52f;
                 a.Amount = 1;
                 orders.Add(a);
 
