@@ -14,7 +14,7 @@ namespace SomerenDAL
     {
         public List<Order> Db_Get_All_Orders(DateTime dateStart, DateTime dateEnd)
         {
-            string query = "select orderNummer, [order].drinkID, amount, [order].[date], studentnumber, drink.purchasePrice from[order] join drink on drink.drinkID = [order].drinkID WHERE[date] >= '1900/01/02' AND[date] <= '1901/05/06'; ";
+            string query = "SELECT orderNummer, [order].drinkID, amount, [order].[date], studentNumber, drink.purchasePrice FROM [order] JOIN drink ON drink.drinkID = [order].drinkID WHERE [date] >= '" + dateStart.ToString("yyyy/MM/dd") + "' AND [date] <= '" + dateEnd.ToString("yyyy/MM/dd") + "'";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -28,11 +28,11 @@ namespace SomerenDAL
                 Order order = new Order()
                 {
                     DrinkID = (Int16)dr["drinkID"],
-                    OrderNumber = (int)dr["orderNumber"],
+                    OrderNumber = (int)dr["orderNummer"],
                     StudentNumber = (int)dr["studentnumber"],
                     Date = (DateTime)dr["date"],
-                    Price = (int)dr["purchasePrice"],
-                    Amount = (int)dr["amount"]
+                    Price = (float)dr["purchasePrice"],
+                    Amount = (int)dr["amount"]          
                 };
                 orders.Add(order);
             }
