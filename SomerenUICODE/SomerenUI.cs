@@ -24,6 +24,8 @@ namespace SomerenUI
         SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
         SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
         SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
+        SomerenLogic.Guide_Service guideService = new SomerenLogic.Guide_Service();
+        SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
 
         public SomerenUI()
         {
@@ -48,6 +50,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Activities.Hide();
+                pnl_Guides.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -64,6 +67,7 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
+                pnl_Guides.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -108,13 +112,13 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
+                pnl_Guides.Hide();
 
 
                 // show students
                 pnl_Teachers.Show();
 
                 // fill the students listview within the students panel with a list of students
-                SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
                 List<Teacher> teacherList = teachService.GetTeachers();
 
                 // clear the listview before filling it again
@@ -128,9 +132,8 @@ namespace SomerenUI
                 listViewTeachers.Columns.Add("Teacher Number", 100);
                 listViewTeachers.Columns.Add("First Name", 100);
                 listViewTeachers.Columns.Add("Last Name", 100);
-                listViewTeachers.Columns.Add("Guide", 50);
 
-                string[] teachers = new string[4];
+                string[] teachers = new string[3];
                 ListViewItem itm;
 
                 foreach (SomerenModel.Teacher t in teacherList)
@@ -139,7 +142,6 @@ namespace SomerenUI
                     teachers[0] = t.Number.ToString();
                     teachers[1] = t.FirstName;
                     teachers[2] = t.LastName;
-                    teachers[3] = t.Guide;
 
                     itm = new ListViewItem(teachers);
                     listViewTeachers.Items.Add(itm);
@@ -156,6 +158,7 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
+                pnl_Guides.Hide();
 
 
                 // show rooms
@@ -202,6 +205,7 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
+                pnl_Guides.Hide();
 
 
                 // show stock
@@ -271,6 +275,7 @@ namespace SomerenUI
                 btn_Buy.Hide();
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
+                pnl_Guides.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -339,6 +344,7 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Students.Hide();
                 pnl_Activities.Hide();
+                pnl_Guides.Hide();
 
                 //show panel
                 pnl_Sales.Show();
@@ -364,6 +370,7 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Students.Hide();
                 pnl_Sales.Hide();
+                pnl_Guides.Hide();
 
                 //show panel
                 pnl_Activities.Show();
@@ -395,6 +402,54 @@ namespace SomerenUI
 
                     itm = new ListViewItem(activity);
                     listViewActivities.Items.Add(itm);
+                }
+            }
+            else if (panelName == "Guides")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
+
+                //show panel
+                pnl_Guides.Show();
+
+                //Vraag de activiteiten op uit de database
+                List<Guide> guideList = guideService.GetGuides();
+                List<Teacher> teacherList = teachService.GetTeachers();
+
+                //vul de combobox met alle teachers waar je uit kunt kiezen om toe te voegen
+                cmb_Teachers.Items.Clear();
+                foreach (Teacher teacher in teacherList)
+                {
+                    cmb_Teachers.Items.Add(teacher.FirstName + " " + teacher.LastName);
+                }
+
+                // listview activities
+                listViewGuides.Clear();
+
+                listViewGuides.View = View.Details;
+                listViewGuides.GridLines = true;
+                listViewGuides.CheckBoxes = true;
+
+                listViewGuides.Columns.Add("ActivityID", 70);
+                listViewGuides.Columns.Add("StaffNumber", 70);
+
+                string[] guide = new string[2];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Guide d in guideList)
+                {
+                    guide[0] = d.ActivityID.ToString();
+                    guide[1] = d.StaffNumber.ToString();
+
+                    itm = new ListViewItem(guide);
+                    listViewGuides.Items.Add(itm);
                 }
             }
         }
@@ -456,6 +511,10 @@ namespace SomerenUI
         private void ActivitiesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             showPanel("Activities");
+        }
+        private void GuidesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Guides");
         }
 
 
