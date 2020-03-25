@@ -778,6 +778,14 @@ namespace SomerenUI
                 }
             }
         }
+
+        private void Btn_AddActivity_Click(object sender, EventArgs e)
+        {
+            AddingActivities form = new AddingActivities();
+            form.ShowDialog();
+
+            showPanel("Activities");
+        }
     }
 }
 
