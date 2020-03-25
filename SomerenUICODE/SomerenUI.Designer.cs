@@ -628,6 +628,7 @@
             this.btn_AddActivity.TabIndex = 7;
             this.btn_AddActivity.Text = "Add activity";
             this.btn_AddActivity.UseVisualStyleBackColor = false;
+            this.btn_AddActivity.Click += new System.EventHandler(this.Btn_AddActivity_Click);
             // 
             // listViewActivities
             // 
@@ -705,6 +706,7 @@
             this.pnl_Activities.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
