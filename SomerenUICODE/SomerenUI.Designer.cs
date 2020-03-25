@@ -693,7 +693,6 @@
             this.pnl_Activities.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
