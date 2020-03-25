@@ -23,6 +23,7 @@ namespace SomerenUI
         SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
         SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
         SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
+        SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
 
         public SomerenUI()
         {
@@ -45,6 +46,8 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Activities.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -60,6 +63,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -103,6 +107,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
 
                 // show students
@@ -150,6 +155,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
 
                 // show rooms
@@ -195,6 +201,7 @@ namespace SomerenUI
                 pnl_Rooms.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
 
                 // show stock
@@ -213,9 +220,9 @@ namespace SomerenUI
 
                 // Aanmaken van kollomen
                 listViewStockDrinks.Columns.Add("ID");
-                listViewStockDrinks.Columns.Add("Name of drink");
+                listViewStockDrinks.Columns.Add("Name of drink", 100);
                 listViewStockDrinks.Columns.Add("Stock");
-                listViewStockDrinks.Columns.Add("Voucher price");
+                listViewStockDrinks.Columns.Add("Voucher price", 80);
 
                 string[] drinks = new string[4];
 
@@ -263,6 +270,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 btn_Buy.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -304,7 +312,7 @@ namespace SomerenUI
                 listViewDrinksCO.GridLines = true;
                 listViewDrinksCO.CheckBoxes = true;
 
-                listViewDrinksCO.Columns.Add("Name", 80);
+                listViewDrinksCO.Columns.Add("Name", 100);
                 listViewDrinksCO.Columns.Add("Price", 70);
                 listViewDrinksCO.Columns.Add("Stock", 70);
 
@@ -330,6 +338,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Students.Hide();
+                pnl_Activities.Hide();
 
                 //show panel
                 pnl_Sales.Show();
@@ -343,6 +352,50 @@ namespace SomerenUI
                 listViewSales.Columns.Add("Total sold drinks", 100);
                 listViewSales.Columns.Add("Revenue", 100);
                 listViewSales.Columns.Add("Customer count", 100);
+            }
+            else if (panelName == "Activities")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
+
+                //show panel
+                pnl_Activities.Show();
+
+                //Vraag de activiteiten op uit de database
+                List<Activity> activityList = activityService.GetActivities();
+
+                // listview activities
+                listViewActivities.Clear();
+
+                listViewActivities.View = View.Details;
+                listViewActivities.GridLines = true;
+                listViewActivities.CheckBoxes = true;
+
+                listViewActivities.Columns.Add("ID", 70);
+                listViewActivities.Columns.Add("Description", 160);
+                listViewActivities.Columns.Add("Guides", 70);
+                listViewActivities.Columns.Add("Participants", 70);
+
+                string[] activity = new string[4];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Activity d in activityList)
+                {
+                    activity[0] = d.ActivityID.ToString();
+                    activity[1] = d.Description;
+                    activity[2] = d.NumberOfGuides.ToString();
+                    activity[3] = d.NumberOfParticipants.ToString();
+
+                    itm = new ListViewItem(activity);
+                    listViewActivities.Items.Add(itm);
+                }
             }
         }
 
@@ -396,6 +449,14 @@ namespace SomerenUI
             showPanel("Sales");
 
         }
+        private void ActivitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+        private void ActivitiesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
+        }
 
 
         // buttons clicks en methodes
@@ -439,7 +500,6 @@ namespace SomerenUI
                     foreach (StockDrinks drink in drinks)
                     {
                         if (drinkName == drink.Name)
-
                         {
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
@@ -631,6 +691,34 @@ namespace SomerenUI
             return orders;
         }
 
+        private void Btn_DeleteActivity_Click(object sender, EventArgs e)
+        {
+            List<Activity> activities = activityService.GetActivities();
+            string activityID;
+
+            if (MessageBox.Show("Are you sure you want to delete this activity/these activities?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {              
+                for (int i = 0; i < listViewActivities.Items.Count; i++)
+                {
+                    if (listViewActivities.Items[i].Checked)
+                    {
+                        activityID = listViewActivities.Items[i].Text;
+
+                        foreach (Activity act in activities)
+                        {
+                            if (activityID == act.ActivityID.ToString())
+                            {
+                                string query = "DELETE FROM activities WHERE activityID=" + act.ActivityID;
+
+                                activityService.UpdateActivity(query);
+                            }
+                        }
+
+                        listViewActivities.Items.Remove(listViewActivities.Items[i]);
+                    }
+                }
+            }
+        }
     }
 }
 
