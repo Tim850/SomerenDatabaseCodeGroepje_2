@@ -15,7 +15,7 @@ namespace SomerenDAL
 
         public List<Teacher> Db_Get_All_Teachers()
         {
-            string query = "SELECT staffNumber, teacherFirstName, teacherLastName, begeleider FROM [teachers] ORDER BY teacherLastName";
+            string query = "SELECT staffNumber, teacherFirstName, teacherLastName FROM [teachers] ORDER BY teacherLastName";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -30,8 +30,7 @@ namespace SomerenDAL
                 {
                     Number = (int)dr["staffNumber"],
                     FirstName = (String)(dr["teacherFirstName"].ToString()),
-                    LastName = (String)(dr["teacherLastName"].ToString()),
-                    Guide = (string)dr["begeleider"]
+                    LastName = (String)(dr["teacherLastName"].ToString())
                 };
                 teachers.Add(teacher);
             }
