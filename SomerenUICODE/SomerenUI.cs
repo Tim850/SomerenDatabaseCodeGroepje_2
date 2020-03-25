@@ -23,6 +23,7 @@ namespace SomerenUI
         SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
         SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
         SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
+        SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
 
         public SomerenUI()
         {
@@ -45,6 +46,8 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Activities.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -60,6 +63,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -103,6 +107,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
 
                 // show students
@@ -150,6 +155,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
 
                 // show rooms
@@ -195,6 +201,7 @@ namespace SomerenUI
                 pnl_Rooms.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
 
                 // show stock
@@ -213,9 +220,9 @@ namespace SomerenUI
 
                 // Aanmaken van kollomen
                 listViewStockDrinks.Columns.Add("ID");
-                listViewStockDrinks.Columns.Add("Name of drink");
+                listViewStockDrinks.Columns.Add("Name of drink", 100);
                 listViewStockDrinks.Columns.Add("Stock");
-                listViewStockDrinks.Columns.Add("Voucher price");
+                listViewStockDrinks.Columns.Add("Voucher price", 80);
 
                 string[] drinks = new string[4];
 
@@ -263,6 +270,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 btn_Buy.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -304,7 +312,7 @@ namespace SomerenUI
                 listViewDrinksCO.GridLines = true;
                 listViewDrinksCO.CheckBoxes = true;
 
-                listViewDrinksCO.Columns.Add("Name", 80);
+                listViewDrinksCO.Columns.Add("Name", 100);
                 listViewDrinksCO.Columns.Add("Price", 70);
                 listViewDrinksCO.Columns.Add("Stock", 70);
 
@@ -330,6 +338,7 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Students.Hide();
+                pnl_Activities.Hide();
 
                 //show panel
                 pnl_Sales.Show();
@@ -342,11 +351,51 @@ namespace SomerenUI
                 // Aanmaken van kolommen
                 listViewSales.Columns.Add("Total sold drinks", 100);
                 listViewSales.Columns.Add("Revenue", 100);
-
                 listViewSales.Columns.Add("Customer count", 100);
+            }
+            else if (panelName == "Activities")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
 
+                //show panel
+                pnl_Activities.Show();
 
+                //Vraag de activiteiten op uit de database
+                List<Activity> activityList = activityService.GetActivities();
 
+                // listview activities
+                listViewActivities.Clear();
+
+                listViewActivities.View = View.Details;
+                listViewActivities.GridLines = true;
+                listViewActivities.CheckBoxes = true;
+
+                listViewActivities.Columns.Add("ID", 70);
+                listViewActivities.Columns.Add("Description", 160);
+                listViewActivities.Columns.Add("Guides", 70);
+                listViewActivities.Columns.Add("Participants", 70);
+
+                string[] activity = new string[4];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Activity d in activityList)
+                {
+                    activity[0] = d.ActivityID.ToString();
+                    activity[1] = d.Description;
+                    activity[2] = d.NumberOfGuides.ToString();
+                    activity[3] = d.NumberOfParticipants.ToString();
+
+                    itm = new ListViewItem(activity);
+                    listViewActivities.Items.Add(itm);
+                }
             }
         }
 
@@ -387,7 +436,11 @@ namespace SomerenUI
         {
             showPanel("StockDrinks");
         }
-        private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FinanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+        private void CheckOutToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             showPanel("CheckOut");
         }
@@ -395,6 +448,10 @@ namespace SomerenUI
         {
             showPanel("Sales");
 
+        }
+        private void ActivitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
         }
 
 
@@ -448,7 +505,7 @@ namespace SomerenUI
 
                             string queryUpdate = "UPDATE drink SET stock=" + newStock + " WHERE drinkID=" + drankId;
 
-                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", " + today.ToString("yyyy/MM/dd") + ", " + student.Number + ")";
+                            string queryAdd = "INSERT INTO [order] (drinkID, amount, date, studentnumber) VALUES (" + drankId + ", " + sold + ", '" + today.ToString("yyyy/MM/dd") + "', " + student.Number + ")";
 
                             stockDrinksService.UpdateDrinks(queryUpdate);
                             stockDrinksService.UpdateDrinks(queryAdd);
@@ -570,7 +627,6 @@ namespace SomerenUI
             return selectedStudent;
         }
 
-\
         private void Btn_ShowSales_Click(object sender, EventArgs e)
         {
             List<Order> orders = GetAllOrdersBetweenDates();
@@ -589,24 +645,45 @@ namespace SomerenUI
             int totalCustomers = 0;
             foreach (Order order in orders)
             { 
-                if (alreadySeen.Contains(order.StudentNumber))
+                if (!alreadySeen.Contains(order.StudentNumber))
                 {
                     totalCustomers++;
                     alreadySeen.Add(order.StudentNumber);
                 }
             }
 
-            int customerAmount = totalCustomers; //DEZE
-            float omzet = totalPrice;  //DEZE
-            int afzet = orders.Count(); //EN DEZE MEOTEN WORDEN LATEN ZIEN IN DE LISTVIEW
+            int customerAmount = totalCustomers; 
+            float omzet = totalPrice;  
+            int afzet = orders.Count(); 
+
+            string[] sales = new string[3];
+            sales[0] = afzet.ToString();
+            sales[1] = omzet.ToString();
+            sales[2] = customerAmount.ToString();
+
+            listViewSales.Items.Add(new ListViewItem(sales));
         }
 
         private List<Order> GetAllOrdersBetweenDates()
         {
+
+            List<Order> orders = new List<Order>();
             DateTime dateStart = monthCalendarStart.SelectionRange.Start;
             DateTime dateEnd = monthCalendarEnd.SelectionRange.End;
 
-            List<Order> orders = orderService.GetOrders(dateStart, dateEnd);
+            //Checkt of er een goede datum is ingevoerd
+            if (dateStart >= dateEnd)
+            {
+                MessageBox.Show("Please make sure the START date is before the END date!");
+            }
+            else if (dateEnd > DateTime.Today)
+            {
+                MessageBox.Show("Please make sure the END date is not in the future");
+            }
+            else
+            {
+                orders = orderService.GetOrders(dateStart, dateEnd);
+            }
 
             return orders;
         }
