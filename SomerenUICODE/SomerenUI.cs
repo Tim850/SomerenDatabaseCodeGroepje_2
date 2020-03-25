@@ -451,6 +451,10 @@ namespace SomerenUI
         }
         private void ActivitiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //
+        }
+        private void ActivitiesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
             showPanel("Activities");
         }
 
@@ -496,7 +500,6 @@ namespace SomerenUI
                     foreach (StockDrinks drink in drinks)
                     {
                         if (drinkName == drink.Name)
-
                         {
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
@@ -688,6 +691,34 @@ namespace SomerenUI
             return orders;
         }
 
+        private void Btn_DeleteActivity_Click(object sender, EventArgs e)
+        {
+            List<Activity> activities = activityService.GetActivities();
+            string activityID;
+
+            if (MessageBox.Show("Are you sure you want to delete this activity/these activities?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {              
+                for (int i = 0; i < listViewActivities.Items.Count; i++)
+                {
+                    if (listViewActivities.Items[i].Checked)
+                    {
+                        activityID = listViewActivities.Items[i].Text;
+
+                        foreach (Activity act in activities)
+                        {
+                            if (activityID == act.ActivityID.ToString())
+                            {
+                                string query = "DELETE FROM activities WHERE activityID=" + act.ActivityID;
+
+                                activityService.UpdateActivity(query);
+                            }
+                        }
+
+                        listViewActivities.Items.Remove(listViewActivities.Items[i]);
+                    }
+                }
+            }
+        }
     }
 }
 
