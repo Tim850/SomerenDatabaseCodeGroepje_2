@@ -43,5 +43,17 @@ namespace SomerenLogic
             }
 
         }
+
+        public void UpdateActivity(string query)
+        {
+            try
+            {
+                activity_db.Db_Update_Activity(query);
+            }
+            catch(Exception)
+            {
+                //
+            }
+        }
     }
 }
