@@ -789,7 +789,6 @@
             this.pnl_Guides.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
