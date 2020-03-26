@@ -36,7 +36,7 @@ namespace SomerenDAL
             }
             return activities;
         }
-        
+
         public void Db_Update_Activity(string query)
         {
             SqlParameter[] sqlParameters = new SqlParameter[0];
