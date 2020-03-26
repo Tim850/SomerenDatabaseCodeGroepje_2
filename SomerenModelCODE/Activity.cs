@@ -12,5 +12,6 @@ namespace SomerenModel
         public String Description { get; set; }
         public Int16 NumberOfGuides { get; set; }
         public Int16 NumberOfParticipants { get; set; }
+        public DateTime ActivityDate { get; set; }
     }
 }
