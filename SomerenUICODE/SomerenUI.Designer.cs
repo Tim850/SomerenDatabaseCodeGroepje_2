@@ -112,7 +112,7 @@
             // img_Dashboard
             // 
             this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
-            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
             this.img_Dashboard.Name = "img_Dashboard";
             this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
             this.img_Dashboard.TabIndex = 0;
@@ -248,7 +248,7 @@
             this.pnl_Dashboard.Controls.Add(this.lbl_Dashboard);
             this.pnl_Dashboard.Controls.Add(this.img_Dashboard);
             this.pnl_Dashboard.Location = new System.Drawing.Point(16, 33);
-            this.pnl_Dashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_Dashboard.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Dashboard.Name = "pnl_Dashboard";
             this.pnl_Dashboard.Size = new System.Drawing.Size(1251, 576);
             this.pnl_Dashboard.TabIndex = 2;
@@ -270,7 +270,7 @@
             this.pnl_Students.Controls.Add(this.pictureBox1);
             this.pnl_Students.Controls.Add(this.lbl_Students);
             this.pnl_Students.Location = new System.Drawing.Point(16, 32);
-            this.pnl_Students.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_Students.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Students.Name = "pnl_Students";
             this.pnl_Students.Size = new System.Drawing.Size(1251, 574);
             this.pnl_Students.TabIndex = 4;
@@ -283,7 +283,7 @@
             this.studentDOB});
             this.listViewStudents.HideSelection = false;
             this.listViewStudents.Location = new System.Drawing.Point(21, 52);
-            this.listViewStudents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewStudents.Margin = new System.Windows.Forms.Padding(4);
             this.listViewStudents.Name = "listViewStudents";
             this.listViewStudents.Size = new System.Drawing.Size(1020, 377);
             this.listViewStudents.TabIndex = 5;
@@ -306,7 +306,7 @@
             this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(1073, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(173, 151);
             this.pictureBox1.TabIndex = 0;
@@ -616,7 +616,6 @@
             // 
             // pnl_Activities
             // 
-            this.pnl_Activities.Controls.Add(this.pnl_Guides);
             this.pnl_Activities.Controls.Add(this.btn_DeleteActivity);
             this.pnl_Activities.Controls.Add(this.btn_AddActivity);
             this.pnl_Activities.Controls.Add(this.listViewActivities);
@@ -630,12 +629,12 @@
             // 
             // pnl_Guides
             // 
-            this.pnl_Guides.Controls.Add(this.cmb_Teachers);
             this.pnl_Guides.Controls.Add(this.btn_DeleteGuide);
+            this.pnl_Guides.Controls.Add(this.cmb_Teachers);
             this.pnl_Guides.Controls.Add(this.btn_AddGuide);
             this.pnl_Guides.Controls.Add(this.listViewGuides);
             this.pnl_Guides.Controls.Add(this.label2);
-            this.pnl_Guides.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Guides.Location = new System.Drawing.Point(1, 28);
             this.pnl_Guides.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Guides.Name = "pnl_Guides";
             this.pnl_Guides.Size = new System.Drawing.Size(1187, 529);
@@ -645,7 +644,7 @@
             // 
             this.cmb_Teachers.FormattingEnabled = true;
             this.cmb_Teachers.Location = new System.Drawing.Point(877, 70);
-            this.cmb_Teachers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_Teachers.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_Teachers.Name = "cmb_Teachers";
             this.cmb_Teachers.Size = new System.Drawing.Size(200, 24);
             this.cmb_Teachers.TabIndex = 9;
@@ -661,6 +660,7 @@
             this.btn_DeleteGuide.TabIndex = 8;
             this.btn_DeleteGuide.Text = "Delete guide";
             this.btn_DeleteGuide.UseVisualStyleBackColor = false;
+            this.btn_DeleteGuide.Click += new System.EventHandler(this.btn_DeleteGuide_Click);
             // 
             // btn_AddGuide
             // 
@@ -673,6 +673,7 @@
             this.btn_AddGuide.TabIndex = 7;
             this.btn_AddGuide.Text = "Add guide";
             this.btn_AddGuide.UseVisualStyleBackColor = false;
+            this.btn_AddGuide.Click += new System.EventHandler(this.btn_AddGuide_Click);
             // 
             // listViewGuides
             // 
@@ -718,6 +719,7 @@
             this.btn_AddActivity.TabIndex = 7;
             this.btn_AddActivity.Text = "Add activity";
             this.btn_AddActivity.UseVisualStyleBackColor = false;
+            this.btn_AddActivity.Click += new System.EventHandler(this.btn_AddActivity_Click_1);
             // 
             // listViewActivities
             // 
@@ -756,6 +758,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1189, 560);
+            this.Controls.Add(this.pnl_Guides);
             this.Controls.Add(this.pnl_Activities);
             this.Controls.Add(this.pnl_Sales);
             this.Controls.Add(this.pnl_Rooms);
@@ -767,7 +770,7 @@
             this.Controls.Add(this.pnl_StockDrinks);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SomerenUI";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "SomerenApp";

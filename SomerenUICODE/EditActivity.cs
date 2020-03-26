@@ -64,10 +64,18 @@ namespace SomerenUI
                 newDate = DateTime.Parse(txt_ActDate.Text);
             }
 
-            string query = "UPDATE activities SET [description]='@newDescription', numberOfGuides=@newNumGuides, numberOfParticipants=@newNumPart, [date]='@newDate' WHERE activityID=@actID";
+            string query = "UPDATE activities SET [description]='" + newDescription + "', numberOfGuides=" + newNumGuides + ", numberOfParticipants=" + newNumPart + ", [date]='" + newDate.ToString("yyyy/MM/dd") + "' WHERE activityID=" + selectedAct.ActivityID;
             activityService.UpdateActivity(query);
 
             this.Close();
+        }
+
+        private void EditActivity_Load(object sender, EventArgs e)
+        {
+            lbl_OldActDate.Text = selectedAct.ActivityDate.ToString("yyyy/MM/dd");
+            lbl_OldDescr.Text = selectedAct.Description;
+            lbl_OldNumGuides.Text = selectedAct.NumberOfGuides.ToString();
+            lbl_OldNumPart.Text = selectedAct.NumberOfParticipants.ToString();
         }
     }
 }
