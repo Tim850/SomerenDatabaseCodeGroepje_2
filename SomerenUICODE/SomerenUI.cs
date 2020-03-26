@@ -423,13 +423,25 @@ namespace SomerenUI
                 //Vraag de activiteiten op uit de database
                 List<Guide> guideList = guideService.GetGuides();
                 List<Teacher> teacherList = teachService.GetTeachers();
+                List<Activity> activityList = activityService.GetActivities();
 
                 //vul de combobox met alle teachers waar je uit kunt kiezen om toe te voegen
                 cmb_Teachers.Items.Clear();
                 foreach (Teacher teacher in teacherList)
                 {
-                    cmb_Teachers.Items.Add(teacher.FirstName + " " + teacher.LastName);
+                    cmb_Teachers.Items.Add(teacher);
                 }
+
+                cmb_Teachers.SelectedIndex = 0;
+
+                //vul de combobox met activities
+                cmb_Activities.Items.Clear();
+                foreach (Activity act in activityList)
+                {
+                    cmb_Activities.Items.Add(act);
+                }
+
+                cmb_Activities.SelectedIndex = 0;
 
                 // listview activities
                 listViewGuides.Clear();
@@ -846,12 +858,101 @@ namespace SomerenUI
 
         private void btn_AddGuide_Click(object sender, EventArgs e)
         {
+            // geselecteerde docent uit van de combobox guide maken
+            Teacher teacher = (Teacher)cmb_Teachers.SelectedItem;
 
+            // geselecteerde activity uit combobox
+            Activity activity = (Activity)cmb_Activities.SelectedItem;
+
+            string query = "INSERT INTO guides (staffNumber, activityID) VALUES (" + teacher.Number + ", " + activity.ActivityID + ")";
+            guideService.UpdateGuide(query);
+
+            showPanel("Guides");
         }
 
         private void btn_DeleteGuide_Click(object sender, EventArgs e)
         {
+            List<Guide> guides = guideService.GetGuides();
+            string guideID;
 
+            if (MessageBox.Show("Are you sure you want to delete this guide/these guides?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                for (int i = 0; i < listViewGuides.Items.Count; i++)
+                {
+                    if (listViewGuides.Items[i].Checked)
+                    {
+                        guideID = listViewGuides.Items[i].SubItems[1].Text;
+
+                        foreach (Guide guide in guides)
+                        {
+                            if (guideID == guide.StaffNumber.ToString())
+                            {
+                                // guide verwijderen uit guide tabel
+                                string queryDel = "DELETE FROM guides WHERE staffnumber=" + guide.StaffNumber;
+                                guideService.UpdateGuide(queryDel);
+                            }
+                        }
+
+                        listViewGuides.Items.Remove(listViewGuides.Items[i]);
+                    }
+                }
+            }
+        }
+
+        private void btn_EditGuide_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+
+            for (int i = 0; i < listViewGuides.Items.Count; i++)
+            {
+                if (listViewGuides.Items[i].Checked)
+                {
+                    count++;
+
+                    if (count > 1)
+                    {
+                        MessageBox.Show("Only select 1 guide!");
+                    }
+                }
+            }
+
+            if (count == 0)
+            {
+                MessageBox.Show("Select an guide to edit it");
+                return;
+            }
+
+            Guide selectedGuide = GetSelectedGuide();
+            EditGuide form = new EditGuide(selectedGuide);
+            form.ShowDialog();
+
+            showPanel("Guides");
+        }
+
+        private Guide GetSelectedGuide()
+        {
+            List<Guide> guides = guideService.GetGuides();
+            string staffID = "";
+            Guide selectedGuide = new Guide();
+
+            for (int i = 0; i < listViewGuides.Items.Count; i++)
+            {
+                staffID = listViewGuides.Items[i].SubItems[1].Text;
+
+                if (listViewGuides.Items[i].Checked == true)
+                {
+                    foreach (Guide guide in guides)
+                    {
+                        if (staffID == guide.StaffNumber.ToString())
+                        {
+                            selectedGuide = guide;
+                        }
+                    }
+                }
+
+            }
+
+            return selectedGuide;
         }
     }
 }

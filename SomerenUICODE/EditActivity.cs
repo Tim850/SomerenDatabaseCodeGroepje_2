@@ -27,6 +27,7 @@ namespace SomerenUI
             Int16 newNumGuides;
             Int16 newNumPart;
             DateTime newDate;
+            List<Activity> activities = activityService.GetActivities();
 
             if (txt_description.Text == "")
             {
@@ -34,6 +35,20 @@ namespace SomerenUI
             }
             else
             {
+                foreach (Activity act in activities)
+                {
+                    if (txt_description.Text == act.Description)
+                    {
+                        MessageBox.Show("There already is an activity like this, please choose something else");
+                        txt_description.Clear();
+                        txt_ActDate.Clear();
+                        txt_NumGuides.Clear();
+                        txt_NumPart.Clear();
+
+                        return;
+                    }
+                }
+
                 newDescription = txt_description.Text;
             }
 

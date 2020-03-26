@@ -39,5 +39,17 @@ namespace SomerenLogic
             }
 
         }
+
+        public void UpdateGuide(string query)
+        {
+            try
+            {
+                guide_db.Db_Update_Guide(query);
+            }
+            catch(Exception)
+            {
+                //
+            }
+        }
     }
 }
