@@ -1,4 +1,3 @@
-
 ﻿using SomerenLogic;
 using SomerenModel;
 using System;
@@ -415,6 +414,7 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Students.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
 
                 //show panel
                 pnl_Guides.Show();
@@ -785,6 +785,71 @@ namespace SomerenUI
             form.ShowDialog();
 
             showPanel("Activities");
+        }
+
+        private void Btn_EditActivity_Click(object sender, EventArgs e)
+        {
+            Activity selectedAct = GetSelectedAct();
+
+            if (CheckSelectedAct())
+            {
+                EditActivity form = new EditActivity(selectedAct);
+                form.ShowDialog();
+            }
+
+            showPanel("Activities");
+        }
+
+        private Activity GetSelectedAct()
+        {
+            List<Activity> activities = activityService.GetActivities();
+            string actID = "";
+            Activity selectedAct = new Activity();
+
+            for (int i = 0; i < listViewActivities.Items.Count; i++)
+            {
+                actID = listViewActivities.Items[i].Text;
+
+                if (listViewStudentsCO.Items[i].Checked == true)
+                {
+                    foreach (Activity act in activities)
+                    {
+                        if (actID == act.ActivityID.ToString())
+                        {
+                            selectedAct = act;
+                        }
+                    }
+                }
+
+            }
+
+            return selectedAct;
+        }
+
+        private bool CheckSelectedAct()
+        {
+            int count = 0;
+
+            for (int i = 0; i < listViewActivities.Items.Count; i++)
+            {
+                if (listViewActivities.Items[i].Checked)
+                {
+                    count++;
+
+                    if (count > 1)
+                    {
+                        MessageBox.Show("Only select 1 activity!");
+                        return false;
+                    }
+                }
+                else if (count == 0)
+                {
+                    MessageBox.Show("Select an activity to edit it");
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
