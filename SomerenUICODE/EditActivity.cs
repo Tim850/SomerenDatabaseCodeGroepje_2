@@ -1,3 +1,4 @@
+
 ﻿using SomerenLogic;
 using SomerenModel;
 using System;
@@ -28,12 +29,30 @@ namespace SomerenUI
             Int16 newNumPart;
             DateTime newDate;
 
+            List<Activity> activities = activityService.GetActivities();
+
+
             if (txt_description.Text == "")
             {
                 newDescription = selectedAct.Description;
             }
             else
             {
+
+                foreach (Activity act in activities)
+                {
+                    if (txt_description.Text == act.Description)
+                    {
+                        MessageBox.Show("There already is an activity like this, please choose something else");
+                        txt_description.Clear();
+                        txt_ActDate.Clear();
+                        txt_NumGuides.Clear();
+                        txt_NumPart.Clear();
+
+                        return;
+                    }
+                }
+
                 newDescription = txt_description.Text;
             }
 
