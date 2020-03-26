@@ -1,4 +1,3 @@
-
 ﻿using SomerenLogic;
 using SomerenModel;
 using System;
@@ -26,6 +25,9 @@ namespace SomerenUI
         SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
         SomerenLogic.Guide_Service guideService = new SomerenLogic.Guide_Service();
         SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
+
+        //sorter
+        private ListViewColumnSorter lvwColumnSorter = new ListViewColumnSorter();
 
         public SomerenUI()
         {
@@ -375,6 +377,10 @@ namespace SomerenUI
                 //show panel
                 pnl_Activities.Show();
 
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewActivities.ListViewItemSorter = lvwColumnSorter;
+
                 //Vraag de activiteiten op uit de database
                 List<Activity> activityList = activityService.GetActivities();
 
@@ -415,6 +421,8 @@ namespace SomerenUI
                 pnl_CheckOut.Hide();
                 pnl_Students.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                btn_Buy.Hide();
 
                 //show panel
                 pnl_Guides.Show();
@@ -750,6 +758,14 @@ namespace SomerenUI
             return orders;
         }
 
+        private void btn_AddActivity_Click_1(object sender, EventArgs e)
+        {
+            AddingActivities form = new AddingActivities();
+            form.ShowDialog();
+
+            showPanel("Activities");
+        }
+
         private void Btn_DeleteActivity_Click(object sender, EventArgs e)
         {
             List<Activity> activities = activityService.GetActivities();
@@ -777,6 +793,103 @@ namespace SomerenUI
                     }
                 }
             }
+        }
+
+        private void Btn_EditActivity_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+
+            for (int i = 0; i < listViewActivities.Items.Count; i++)
+            {
+                if (listViewActivities.Items[i].Checked)
+                {
+                    count++;
+
+                    if (count > 1)
+                    {
+                        MessageBox.Show("Only select 1 activity!");
+                    }
+                }
+            }
+
+            if (count == 0)
+            {
+                MessageBox.Show("Select an activity to edit it");
+                return;
+            }
+
+            Activity selectedAct = GetSelectedAct();
+            EditActivity form = new EditActivity(selectedAct);
+            form.ShowDialog();
+
+            showPanel("Activities");
+        }
+
+        private Activity GetSelectedAct()
+        {
+            List<Activity> activities = activityService.GetActivities();
+            string actID = "";
+            Activity selectedAct = new Activity();
+
+            for (int i = 0; i < listViewActivities.Items.Count; i++)
+            {
+                actID = listViewActivities.Items[i].Text;
+
+                if (listViewActivities.Items[i].Checked == true)
+                {
+                    foreach (Activity act in activities)
+                    {
+                        if (actID == act.ActivityID.ToString())
+                        {
+                            selectedAct = act;
+                        }
+                    }
+                }
+
+            }
+
+            return selectedAct;
+        }
+
+        private void btn_AddGuide_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_DeleteGuide_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewActivities_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListViewActivities_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewActivities);
+        }
+
+        private void OrderListView(ColumnClickEventArgs e, ListView lv)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                else
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            lv.Sort();
         }
     }
 }

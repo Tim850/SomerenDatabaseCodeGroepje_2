@@ -88,12 +88,13 @@
             this.btn_AddActivity = new System.Windows.Forms.Button();
             this.listViewActivities = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_EditActivity = new System.Windows.Forms.Button();
             this.pnl_Guides = new System.Windows.Forms.Panel();
             this.btn_DeleteGuide = new System.Windows.Forms.Button();
+            this.cmb_Teachers = new System.Windows.Forms.ComboBox();
             this.btn_AddGuide = new System.Windows.Forms.Button();
             this.listViewGuides = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmb_Teachers = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -192,14 +193,14 @@
             // activitiesToolStripMenuItem1
             // 
             this.activitiesToolStripMenuItem1.Name = "activitiesToolStripMenuItem1";
-            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
             this.activitiesToolStripMenuItem1.Text = "Activities";
             this.activitiesToolStripMenuItem1.Click += new System.EventHandler(this.ActivitiesToolStripMenuItem1_Click);
             // 
             // guidesToolStripMenuItem
             // 
             this.guidesToolStripMenuItem.Name = "guidesToolStripMenuItem";
-            this.guidesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.guidesToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.guidesToolStripMenuItem.Text = "Guides";
             this.guidesToolStripMenuItem.Click += new System.EventHandler(this.GuidesToolStripMenuItem_Click);
             // 
@@ -320,7 +321,7 @@
             this.pnl_Teachers.Controls.Add(this.lblTeacher);
             this.pnl_Teachers.Controls.Add(this.listViewTeachers);
             this.pnl_Teachers.Location = new System.Drawing.Point(4, 26);
-            this.pnl_Teachers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnl_Teachers.Margin = new System.Windows.Forms.Padding(2);
             this.pnl_Teachers.Name = "pnl_Teachers";
             this.pnl_Teachers.Size = new System.Drawing.Size(946, 463);
             this.pnl_Teachers.TabIndex = 5;
@@ -340,7 +341,7 @@
             // 
             this.listViewTeachers.HideSelection = false;
             this.listViewTeachers.Location = new System.Drawing.Point(8, 62);
-            this.listViewTeachers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewTeachers.Margin = new System.Windows.Forms.Padding(2);
             this.listViewTeachers.Name = "listViewTeachers";
             this.listViewTeachers.Size = new System.Drawing.Size(549, 271);
             this.listViewTeachers.TabIndex = 1;
@@ -351,7 +352,7 @@
             this.pnl_Rooms.Controls.Add(this.listViewRooms);
             this.pnl_Rooms.Controls.Add(this.lbl_rooms);
             this.pnl_Rooms.Location = new System.Drawing.Point(4, 25);
-            this.pnl_Rooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnl_Rooms.Margin = new System.Windows.Forms.Padding(2);
             this.pnl_Rooms.Name = "pnl_Rooms";
             this.pnl_Rooms.Size = new System.Drawing.Size(887, 418);
             this.pnl_Rooms.TabIndex = 2;
@@ -360,7 +361,7 @@
             // 
             this.listViewRooms.HideSelection = false;
             this.listViewRooms.Location = new System.Drawing.Point(10, 57);
-            this.listViewRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewRooms.Margin = new System.Windows.Forms.Padding(2);
             this.listViewRooms.Name = "listViewRooms";
             this.listViewRooms.Size = new System.Drawing.Size(527, 263);
             this.listViewRooms.TabIndex = 3;
@@ -382,7 +383,7 @@
             this.pnl_StockDrinks.Controls.Add(this.listViewStockDrinks);
             this.pnl_StockDrinks.Controls.Add(this.lbl_StockDrinks);
             this.pnl_StockDrinks.Location = new System.Drawing.Point(2, 25);
-            this.pnl_StockDrinks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnl_StockDrinks.Margin = new System.Windows.Forms.Padding(2);
             this.pnl_StockDrinks.Name = "pnl_StockDrinks";
             this.pnl_StockDrinks.Size = new System.Drawing.Size(866, 462);
             this.pnl_StockDrinks.TabIndex = 6;
@@ -391,7 +392,7 @@
             // 
             this.listViewStockDrinks.HideSelection = false;
             this.listViewStockDrinks.Location = new System.Drawing.Point(14, 67);
-            this.listViewStockDrinks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewStockDrinks.Margin = new System.Windows.Forms.Padding(2);
             this.listViewStockDrinks.Name = "listViewStockDrinks";
             this.listViewStockDrinks.Size = new System.Drawing.Size(677, 282);
             this.listViewStockDrinks.TabIndex = 1;
@@ -421,7 +422,7 @@
             this.pnl_CheckOut.Controls.Add(this.lbl_SelectStudent);
             this.pnl_CheckOut.Controls.Add(this.lbl_checkOut);
             this.pnl_CheckOut.Location = new System.Drawing.Point(0, 25);
-            this.pnl_CheckOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnl_CheckOut.Margin = new System.Windows.Forms.Padding(2);
             this.pnl_CheckOut.Name = "pnl_CheckOut";
             this.pnl_CheckOut.Size = new System.Drawing.Size(866, 420);
             this.pnl_CheckOut.TabIndex = 7;
@@ -440,7 +441,7 @@
             // 
             this.btn_Buy.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_Buy.Location = new System.Drawing.Point(387, 353);
-            this.btn_Buy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Buy.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Buy.Name = "btn_Buy";
             this.btn_Buy.Size = new System.Drawing.Size(156, 39);
             this.btn_Buy.TabIndex = 10;
@@ -472,7 +473,7 @@
             // btn_Calculate
             // 
             this.btn_Calculate.Location = new System.Drawing.Point(63, 294);
-            this.btn_Calculate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Calculate.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Calculate.Name = "btn_Calculate";
             this.btn_Calculate.Size = new System.Drawing.Size(172, 39);
             this.btn_Calculate.TabIndex = 7;
@@ -484,7 +485,7 @@
             // 
             this.listViewDrinksCO.HideSelection = false;
             this.listViewDrinksCO.Location = new System.Drawing.Point(387, 93);
-            this.listViewDrinksCO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewDrinksCO.Margin = new System.Windows.Forms.Padding(2);
             this.listViewDrinksCO.Name = "listViewDrinksCO";
             this.listViewDrinksCO.Size = new System.Drawing.Size(287, 180);
             this.listViewDrinksCO.TabIndex = 6;
@@ -494,7 +495,7 @@
             // 
             this.listViewStudentsCO.HideSelection = false;
             this.listViewStudentsCO.Location = new System.Drawing.Point(28, 93);
-            this.listViewStudentsCO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewStudentsCO.Margin = new System.Windows.Forms.Padding(2);
             this.listViewStudentsCO.Name = "listViewStudentsCO";
             this.listViewStudentsCO.Size = new System.Drawing.Size(296, 180);
             this.listViewStudentsCO.TabIndex = 5;
@@ -543,7 +544,7 @@
             this.pnl_Sales.Controls.Add(this.monthCalendarEnd);
             this.pnl_Sales.Controls.Add(this.monthCalendarStart);
             this.pnl_Sales.Location = new System.Drawing.Point(0, 28);
-            this.pnl_Sales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnl_Sales.Margin = new System.Windows.Forms.Padding(2);
             this.pnl_Sales.Name = "pnl_Sales";
             this.pnl_Sales.Size = new System.Drawing.Size(891, 417);
             this.pnl_Sales.TabIndex = 8;
@@ -553,7 +554,7 @@
             this.btn_ShowSales.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_ShowSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ShowSales.Location = new System.Drawing.Point(171, 301);
-            this.btn_ShowSales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_ShowSales.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ShowSales.Name = "btn_ShowSales";
             this.btn_ShowSales.Size = new System.Drawing.Size(152, 44);
             this.btn_ShowSales.TabIndex = 6;
@@ -565,7 +566,7 @@
             // 
             this.listViewSales.HideSelection = false;
             this.listViewSales.Location = new System.Drawing.Point(509, 90);
-            this.listViewSales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewSales.Margin = new System.Windows.Forms.Padding(2);
             this.listViewSales.Name = "listViewSales";
             this.listViewSales.Size = new System.Drawing.Size(343, 261);
             this.listViewSales.TabIndex = 5;
@@ -607,7 +608,7 @@
             // monthCalendarEnd
             // 
             this.monthCalendarEnd.Location = new System.Drawing.Point(262, 90);
-            this.monthCalendarEnd.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.monthCalendarEnd.Margin = new System.Windows.Forms.Padding(7);
             this.monthCalendarEnd.MaxSelectionCount = 1;
             this.monthCalendarEnd.Name = "monthCalendarEnd";
             this.monthCalendarEnd.TabIndex = 1;
@@ -615,20 +616,20 @@
             // monthCalendarStart
             // 
             this.monthCalendarStart.Location = new System.Drawing.Point(28, 90);
-            this.monthCalendarStart.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.monthCalendarStart.Margin = new System.Windows.Forms.Padding(7);
             this.monthCalendarStart.MaxSelectionCount = 1;
             this.monthCalendarStart.Name = "monthCalendarStart";
             this.monthCalendarStart.TabIndex = 0;
             // 
             // pnl_Activities
             // 
-            this.pnl_Activities.Controls.Add(this.pnl_Guides);
             this.pnl_Activities.Controls.Add(this.btn_DeleteActivity);
             this.pnl_Activities.Controls.Add(this.btn_AddActivity);
             this.pnl_Activities.Controls.Add(this.listViewActivities);
             this.pnl_Activities.Controls.Add(this.label1);
+            this.pnl_Activities.Controls.Add(this.btn_EditActivity);
             this.pnl_Activities.Location = new System.Drawing.Point(2, 23);
-            this.pnl_Activities.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnl_Activities.Margin = new System.Windows.Forms.Padding(2);
             this.pnl_Activities.Name = "pnl_Activities";
             this.pnl_Activities.Size = new System.Drawing.Size(890, 422);
             this.pnl_Activities.TabIndex = 9;
@@ -638,7 +639,7 @@
             this.btn_DeleteActivity.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_DeleteActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_DeleteActivity.Location = new System.Drawing.Point(658, 124);
-            this.btn_DeleteActivity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_DeleteActivity.Margin = new System.Windows.Forms.Padding(2);
             this.btn_DeleteActivity.Name = "btn_DeleteActivity";
             this.btn_DeleteActivity.Size = new System.Drawing.Size(152, 44);
             this.btn_DeleteActivity.TabIndex = 8;
@@ -651,22 +652,24 @@
             this.btn_AddActivity.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_AddActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_AddActivity.Location = new System.Drawing.Point(658, 56);
-            this.btn_AddActivity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AddActivity.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AddActivity.Name = "btn_AddActivity";
             this.btn_AddActivity.Size = new System.Drawing.Size(152, 44);
             this.btn_AddActivity.TabIndex = 7;
             this.btn_AddActivity.Text = "Add activity";
             this.btn_AddActivity.UseVisualStyleBackColor = false;
+            this.btn_AddActivity.Click += new System.EventHandler(this.btn_AddActivity_Click_1);
             // 
             // listViewActivities
             // 
             this.listViewActivities.HideSelection = false;
             this.listViewActivities.Location = new System.Drawing.Point(10, 57);
-            this.listViewActivities.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewActivities.Margin = new System.Windows.Forms.Padding(2);
             this.listViewActivities.Name = "listViewActivities";
             this.listViewActivities.Size = new System.Drawing.Size(549, 263);
             this.listViewActivities.TabIndex = 3;
             this.listViewActivities.UseCompatibleStateImageBehavior = false;
+            this.listViewActivities.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewActivities_ColumnClick);
             // 
             // label1
             // 
@@ -679,17 +682,30 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Activities";
             // 
+            // btn_EditActivity
+            // 
+            this.btn_EditActivity.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_EditActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EditActivity.Location = new System.Drawing.Point(658, 189);
+            this.btn_EditActivity.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_EditActivity.Name = "btn_EditActivity";
+            this.btn_EditActivity.Size = new System.Drawing.Size(152, 44);
+            this.btn_EditActivity.TabIndex = 11;
+            this.btn_EditActivity.Text = "Edit activity";
+            this.btn_EditActivity.UseVisualStyleBackColor = false;
+            this.btn_EditActivity.Click += new System.EventHandler(this.Btn_EditActivity_Click);
+            // 
             // pnl_Guides
             // 
-            this.pnl_Guides.Controls.Add(this.cmb_Teachers);
             this.pnl_Guides.Controls.Add(this.btn_DeleteGuide);
+            this.pnl_Guides.Controls.Add(this.cmb_Teachers);
             this.pnl_Guides.Controls.Add(this.btn_AddGuide);
             this.pnl_Guides.Controls.Add(this.listViewGuides);
             this.pnl_Guides.Controls.Add(this.label2);
-            this.pnl_Guides.Location = new System.Drawing.Point(0, 2);
+            this.pnl_Guides.Location = new System.Drawing.Point(1, 23);
             this.pnl_Guides.Margin = new System.Windows.Forms.Padding(2);
             this.pnl_Guides.Name = "pnl_Guides";
-            this.pnl_Guides.Size = new System.Drawing.Size(890, 420);
+            this.pnl_Guides.Size = new System.Drawing.Size(592, 40);
             this.pnl_Guides.TabIndex = 10;
             // 
             // btn_DeleteGuide
@@ -703,6 +719,15 @@
             this.btn_DeleteGuide.TabIndex = 8;
             this.btn_DeleteGuide.Text = "Delete guide";
             this.btn_DeleteGuide.UseVisualStyleBackColor = false;
+            this.btn_DeleteGuide.Click += new System.EventHandler(this.btn_DeleteGuide_Click);
+            // 
+            // cmb_Teachers
+            // 
+            this.cmb_Teachers.FormattingEnabled = true;
+            this.cmb_Teachers.Location = new System.Drawing.Point(658, 57);
+            this.cmb_Teachers.Name = "cmb_Teachers";
+            this.cmb_Teachers.Size = new System.Drawing.Size(151, 21);
+            this.cmb_Teachers.TabIndex = 9;
             // 
             // btn_AddGuide
             // 
@@ -715,6 +740,7 @@
             this.btn_AddGuide.TabIndex = 7;
             this.btn_AddGuide.Text = "Add guide";
             this.btn_AddGuide.UseVisualStyleBackColor = false;
+            this.btn_AddGuide.Click += new System.EventHandler(this.btn_AddGuide_Click);
             // 
             // listViewGuides
             // 
@@ -737,19 +763,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Guides";
             // 
-            // cmb_Teachers
-            // 
-            this.cmb_Teachers.FormattingEnabled = true;
-            this.cmb_Teachers.Location = new System.Drawing.Point(658, 57);
-            this.cmb_Teachers.Name = "cmb_Teachers";
-            this.cmb_Teachers.Size = new System.Drawing.Size(151, 21);
-            this.cmb_Teachers.TabIndex = 9;
-            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 455);
+            this.Controls.Add(this.pnl_Guides);
             this.Controls.Add(this.pnl_Activities);
             this.Controls.Add(this.pnl_Sales);
             this.Controls.Add(this.pnl_Rooms);
@@ -789,6 +808,7 @@
             this.pnl_Guides.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -857,6 +877,7 @@
         private System.Windows.Forms.Button btn_AddGuide;
         private System.Windows.Forms.ListView listViewGuides;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_EditActivity;
     }
 }
 
