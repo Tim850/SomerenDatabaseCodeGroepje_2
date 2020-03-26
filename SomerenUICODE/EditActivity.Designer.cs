@@ -43,6 +43,7 @@
             this.lbl_OldNumGuides = new System.Windows.Forms.Label();
             this.lbl_OldNumPart = new System.Windows.Forms.Label();
             this.lbl_OldActDate = new System.Windows.Forms.Label();
+            this.lbl_OldValues = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_EditAct
@@ -95,7 +96,7 @@
             // lbl_description
             // 
             this.lbl_description.AutoSize = true;
-            this.lbl_description.Location = new System.Drawing.Point(43, 135);
+            this.lbl_description.Location = new System.Drawing.Point(41, 145);
             this.lbl_description.Name = "lbl_description";
             this.lbl_description.Size = new System.Drawing.Size(125, 17);
             this.lbl_description.TabIndex = 18;
@@ -124,7 +125,7 @@
             // 
             // txt_description
             // 
-            this.txt_description.Location = new System.Drawing.Point(446, 132);
+            this.txt_description.Location = new System.Drawing.Point(446, 142);
             this.txt_description.Name = "txt_description";
             this.txt_description.Size = new System.Drawing.Size(150, 22);
             this.txt_description.TabIndex = 13;
@@ -132,7 +133,7 @@
             // lbl_InfoInput
             // 
             this.lbl_InfoInput.AutoSize = true;
-            this.lbl_InfoInput.Location = new System.Drawing.Point(41, 65);
+            this.lbl_InfoInput.Location = new System.Drawing.Point(41, 55);
             this.lbl_InfoInput.Name = "lbl_InfoInput";
             this.lbl_InfoInput.Size = new System.Drawing.Size(475, 34);
             this.lbl_InfoInput.TabIndex = 24;
@@ -142,7 +143,7 @@
             // lbl_OldDescr
             // 
             this.lbl_OldDescr.AutoSize = true;
-            this.lbl_OldDescr.Location = new System.Drawing.Point(281, 135);
+            this.lbl_OldDescr.Location = new System.Drawing.Point(281, 145);
             this.lbl_OldDescr.Name = "lbl_OldDescr";
             this.lbl_OldDescr.Size = new System.Drawing.Size(46, 17);
             this.lbl_OldDescr.TabIndex = 26;
@@ -175,11 +176,21 @@
             this.lbl_OldActDate.TabIndex = 29;
             this.lbl_OldActDate.Text = "label6";
             // 
+            // lbl_OldValues
+            // 
+            this.lbl_OldValues.AutoSize = true;
+            this.lbl_OldValues.Location = new System.Drawing.Point(266, 105);
+            this.lbl_OldValues.Name = "lbl_OldValues";
+            this.lbl_OldValues.Size = new System.Drawing.Size(77, 17);
+            this.lbl_OldValues.TabIndex = 30;
+            this.lbl_OldValues.Text = "Old Values";
+            // 
             // EditActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 402);
+            this.Controls.Add(this.lbl_OldValues);
             this.Controls.Add(this.lbl_OldActDate);
             this.Controls.Add(this.lbl_OldNumPart);
             this.Controls.Add(this.lbl_OldNumGuides);
@@ -197,6 +208,7 @@
             this.Controls.Add(this.txt_description);
             this.Name = "EditActivity";
             this.Text = "EditActivity";
+            this.Load += new System.EventHandler(this.EditActivity_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +231,6 @@
         private System.Windows.Forms.Label lbl_OldNumGuides;
         private System.Windows.Forms.Label lbl_OldNumPart;
         private System.Windows.Forms.Label lbl_OldActDate;
+        private System.Windows.Forms.Label lbl_OldValues;
     }
 }

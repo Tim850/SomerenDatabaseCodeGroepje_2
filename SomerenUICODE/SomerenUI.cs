@@ -415,6 +415,7 @@ namespace SomerenUI
                 pnl_Students.Hide();
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
+                btn_Buy.Hide();
 
                 //show panel
                 pnl_Guides.Show();
@@ -750,6 +751,14 @@ namespace SomerenUI
             return orders;
         }
 
+        private void btn_AddActivity_Click_1(object sender, EventArgs e)
+        {
+            AddingActivities form = new AddingActivities();
+            form.ShowDialog();
+
+            showPanel("Activities");
+        }
+
         private void Btn_DeleteActivity_Click(object sender, EventArgs e)
         {
             List<Activity> activities = activityService.GetActivities();
@@ -779,23 +788,32 @@ namespace SomerenUI
             }
         }
 
-        private void Btn_AddActivity_Click(object sender, EventArgs e)
-        {
-            AddingActivities form = new AddingActivities();
-            form.ShowDialog();
-
-            showPanel("Activities");
-        }
-
         private void Btn_EditActivity_Click(object sender, EventArgs e)
         {
-            Activity selectedAct = GetSelectedAct();
+            int count = 0;
 
-            if (CheckSelectedAct())
+            for (int i = 0; i < listViewActivities.Items.Count; i++)
             {
-                EditActivity form = new EditActivity(selectedAct);
-                form.ShowDialog();
+                if (listViewActivities.Items[i].Checked)
+                {
+                    count++;
+
+                    if (count > 1)
+                    {
+                        MessageBox.Show("Only select 1 activity!");
+                    }
+                }
             }
+
+            if (count == 0)
+            {
+                MessageBox.Show("Select an activity to edit it");
+                return;
+            }
+
+            Activity selectedAct = GetSelectedAct();
+            EditActivity form = new EditActivity(selectedAct);
+            form.ShowDialog();
 
             showPanel("Activities");
         }
@@ -810,7 +828,7 @@ namespace SomerenUI
             {
                 actID = listViewActivities.Items[i].Text;
 
-                if (listViewStudentsCO.Items[i].Checked == true)
+                if (listViewActivities.Items[i].Checked == true)
                 {
                     foreach (Activity act in activities)
                     {
@@ -826,30 +844,14 @@ namespace SomerenUI
             return selectedAct;
         }
 
-        private bool CheckSelectedAct()
+        private void btn_AddGuide_Click(object sender, EventArgs e)
         {
-            int count = 0;
 
-            for (int i = 0; i < listViewActivities.Items.Count; i++)
-            {
-                if (listViewActivities.Items[i].Checked)
-                {
-                    count++;
+        }
 
-                    if (count > 1)
-                    {
-                        MessageBox.Show("Only select 1 activity!");
-                        return false;
-                    }
-                }
-                else if (count == 0)
-                {
-                    MessageBox.Show("Select an activity to edit it");
-                    return false;
-                }
-            }
+        private void btn_DeleteGuide_Click(object sender, EventArgs e)
+        {
 
-            return true;
         }
     }
 }
