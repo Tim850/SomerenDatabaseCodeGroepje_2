@@ -30,7 +30,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
-            this.img_Dashboard = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +52,6 @@
             this.studentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.studentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.studentDOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Students = new System.Windows.Forms.Label();
             this.pnl_Teachers = new System.Windows.Forms.Panel();
             this.lblTeacher = new System.Windows.Forms.Label();
@@ -84,22 +82,27 @@
             this.monthCalendarEnd = new System.Windows.Forms.MonthCalendar();
             this.monthCalendarStart = new System.Windows.Forms.MonthCalendar();
             this.pnl_Activities = new System.Windows.Forms.Panel();
-            this.pnl_Guides = new System.Windows.Forms.Panel();
-            this.cmb_Teachers = new System.Windows.Forms.ComboBox();
-            this.btn_DeleteGuide = new System.Windows.Forms.Button();
-            this.btn_AddGuide = new System.Windows.Forms.Button();
-            this.listViewGuides = new System.Windows.Forms.ListView();
-            this.label2 = new System.Windows.Forms.Label();
             this.btn_DeleteActivity = new System.Windows.Forms.Button();
             this.btn_AddActivity = new System.Windows.Forms.Button();
             this.listViewActivities = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_EditActivity = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
+            this.pnl_Guides = new System.Windows.Forms.Panel();
+            this.btn_DeleteGuide = new System.Windows.Forms.Button();
+            this.cmb_Teachers = new System.Windows.Forms.ComboBox();
+            this.btn_AddGuide = new System.Windows.Forms.Button();
+            this.listViewGuides = new System.Windows.Forms.ListView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_SelectTeacher = new System.Windows.Forms.Label();
+            this.cmb_Activities = new System.Windows.Forms.ComboBox();
+            this.lbl_SelectAct = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btn_EditGuide = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.img_Dashboard = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
             this.pnl_Students.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnl_Teachers.SuspendLayout();
             this.pnl_Rooms.SuspendLayout();
             this.pnl_StockDrinks.SuspendLayout();
@@ -107,17 +110,9 @@
             this.pnl_Sales.SuspendLayout();
             this.pnl_Activities.SuspendLayout();
             this.pnl_Guides.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.SuspendLayout();
-            // 
-            // img_Dashboard
-            // 
-            this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
-            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
-            this.img_Dashboard.Name = "img_Dashboard";
-            this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
-            this.img_Dashboard.TabIndex = 0;
-            this.img_Dashboard.TabStop = false;
-            this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
             // 
             // menuStrip1
             // 
@@ -133,7 +128,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1189, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1259, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -144,7 +139,7 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 26);
             this.dashboardToolStripMenuItem.Text = "Application";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -170,14 +165,14 @@
             // studentsToolStripMenuItem
             // 
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
             this.studentsToolStripMenuItem.Text = "Students";
             this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // lecturersToolStripMenuItem
             // 
             this.lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
-            this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
             this.lecturersToolStripMenuItem.Text = "Teachers";
             this.lecturersToolStripMenuItem.Click += new System.EventHandler(this.LecturersToolStripMenuItem_Click);
             // 
@@ -187,7 +182,7 @@
             this.activitiesToolStripMenuItem1,
             this.guidesToolStripMenuItem});
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
-            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
             this.activitiesToolStripMenuItem.Text = "Activities";
             this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.ActivitiesToolStripMenuItem_Click);
             // 
@@ -208,14 +203,14 @@
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.RoomsToolStripMenuItem_Click);
             // 
             // stockDrinksToolStripMenuItem
             // 
             this.stockDrinksToolStripMenuItem.Name = "stockDrinksToolStripMenuItem";
-            this.stockDrinksToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.stockDrinksToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.stockDrinksToolStripMenuItem.Text = "Stock (Drinks)";
             this.stockDrinksToolStripMenuItem.Click += new System.EventHandler(this.StockDrinksToolStripMenuItem_Click);
             // 
@@ -225,7 +220,7 @@
             this.salesToolStripMenuItem,
             this.checkOutToolStripMenuItem});
             this.financeToolStripMenuItem.Name = "financeToolStripMenuItem";
-            this.financeToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.financeToolStripMenuItem.Size = new System.Drawing.Size(73, 26);
             this.financeToolStripMenuItem.Text = "Finance";
             this.financeToolStripMenuItem.Click += new System.EventHandler(this.FinanceToolStripMenuItem_Click);
             // 
@@ -300,17 +295,6 @@
             // studentDOB
             // 
             this.studentDOB.Text = "Date of Birth";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(1073, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 151);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // lbl_Students
             // 
@@ -627,74 +611,6 @@
             this.pnl_Activities.Size = new System.Drawing.Size(1187, 519);
             this.pnl_Activities.TabIndex = 9;
             // 
-            // pnl_Guides
-            // 
-            this.pnl_Guides.Controls.Add(this.btn_DeleteGuide);
-            this.pnl_Guides.Controls.Add(this.cmb_Teachers);
-            this.pnl_Guides.Controls.Add(this.btn_AddGuide);
-            this.pnl_Guides.Controls.Add(this.listViewGuides);
-            this.pnl_Guides.Controls.Add(this.label2);
-            this.pnl_Guides.Location = new System.Drawing.Point(1, 28);
-            this.pnl_Guides.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnl_Guides.Name = "pnl_Guides";
-            this.pnl_Guides.Size = new System.Drawing.Size(1187, 529);
-            this.pnl_Guides.TabIndex = 10;
-            // 
-            // cmb_Teachers
-            // 
-            this.cmb_Teachers.FormattingEnabled = true;
-            this.cmb_Teachers.Location = new System.Drawing.Point(877, 70);
-            this.cmb_Teachers.Margin = new System.Windows.Forms.Padding(4);
-            this.cmb_Teachers.Name = "cmb_Teachers";
-            this.cmb_Teachers.Size = new System.Drawing.Size(200, 24);
-            this.cmb_Teachers.TabIndex = 9;
-            // 
-            // btn_DeleteGuide
-            // 
-            this.btn_DeleteGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_DeleteGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_DeleteGuide.Location = new System.Drawing.Point(877, 186);
-            this.btn_DeleteGuide.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_DeleteGuide.Name = "btn_DeleteGuide";
-            this.btn_DeleteGuide.Size = new System.Drawing.Size(203, 54);
-            this.btn_DeleteGuide.TabIndex = 8;
-            this.btn_DeleteGuide.Text = "Delete guide";
-            this.btn_DeleteGuide.UseVisualStyleBackColor = false;
-            this.btn_DeleteGuide.Click += new System.EventHandler(this.btn_DeleteGuide_Click);
-            // 
-            // btn_AddGuide
-            // 
-            this.btn_AddGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_AddGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_AddGuide.Location = new System.Drawing.Point(877, 102);
-            this.btn_AddGuide.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_AddGuide.Name = "btn_AddGuide";
-            this.btn_AddGuide.Size = new System.Drawing.Size(203, 54);
-            this.btn_AddGuide.TabIndex = 7;
-            this.btn_AddGuide.Text = "Add guide";
-            this.btn_AddGuide.UseVisualStyleBackColor = false;
-            this.btn_AddGuide.Click += new System.EventHandler(this.btn_AddGuide_Click);
-            // 
-            // listViewGuides
-            // 
-            this.listViewGuides.HideSelection = false;
-            this.listViewGuides.Location = new System.Drawing.Point(13, 70);
-            this.listViewGuides.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listViewGuides.Name = "listViewGuides";
-            this.listViewGuides.Size = new System.Drawing.Size(731, 323);
-            this.listViewGuides.TabIndex = 3;
-            this.listViewGuides.UseCompatibleStateImageBehavior = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 51);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Guides";
-            // 
             // btn_DeleteActivity
             // 
             this.btn_DeleteActivity.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -753,11 +669,153 @@
             this.btn_EditActivity.UseVisualStyleBackColor = false;
             this.btn_EditActivity.Click += new System.EventHandler(this.Btn_EditActivity_Click);
             // 
+            // pnl_Guides
+            // 
+            this.pnl_Guides.Controls.Add(this.btn_EditGuide);
+            this.pnl_Guides.Controls.Add(this.label3);
+            this.pnl_Guides.Controls.Add(this.lbl_SelectAct);
+            this.pnl_Guides.Controls.Add(this.cmb_Activities);
+            this.pnl_Guides.Controls.Add(this.lbl_SelectTeacher);
+            this.pnl_Guides.Controls.Add(this.btn_DeleteGuide);
+            this.pnl_Guides.Controls.Add(this.cmb_Teachers);
+            this.pnl_Guides.Controls.Add(this.btn_AddGuide);
+            this.pnl_Guides.Controls.Add(this.listViewGuides);
+            this.pnl_Guides.Controls.Add(this.label2);
+            this.pnl_Guides.Location = new System.Drawing.Point(1, 28);
+            this.pnl_Guides.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnl_Guides.Name = "pnl_Guides";
+            this.pnl_Guides.Size = new System.Drawing.Size(1261, 529);
+            this.pnl_Guides.TabIndex = 10;
+            // 
+            // btn_DeleteGuide
+            // 
+            this.btn_DeleteGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_DeleteGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_DeleteGuide.Location = new System.Drawing.Point(879, 252);
+            this.btn_DeleteGuide.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_DeleteGuide.Name = "btn_DeleteGuide";
+            this.btn_DeleteGuide.Size = new System.Drawing.Size(203, 54);
+            this.btn_DeleteGuide.TabIndex = 8;
+            this.btn_DeleteGuide.Text = "Delete guide";
+            this.btn_DeleteGuide.UseVisualStyleBackColor = false;
+            this.btn_DeleteGuide.Click += new System.EventHandler(this.btn_DeleteGuide_Click);
+            // 
+            // cmb_Teachers
+            // 
+            this.cmb_Teachers.FormattingEnabled = true;
+            this.cmb_Teachers.Location = new System.Drawing.Point(782, 69);
+            this.cmb_Teachers.Margin = new System.Windows.Forms.Padding(4);
+            this.cmb_Teachers.Name = "cmb_Teachers";
+            this.cmb_Teachers.Size = new System.Drawing.Size(200, 24);
+            this.cmb_Teachers.TabIndex = 9;
+            // 
+            // btn_AddGuide
+            // 
+            this.btn_AddGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_AddGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_AddGuide.Location = new System.Drawing.Point(880, 117);
+            this.btn_AddGuide.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_AddGuide.Name = "btn_AddGuide";
+            this.btn_AddGuide.Size = new System.Drawing.Size(203, 54);
+            this.btn_AddGuide.TabIndex = 7;
+            this.btn_AddGuide.Text = "Add guide";
+            this.btn_AddGuide.UseVisualStyleBackColor = false;
+            this.btn_AddGuide.Click += new System.EventHandler(this.btn_AddGuide_Click);
+            // 
+            // listViewGuides
+            // 
+            this.listViewGuides.HideSelection = false;
+            this.listViewGuides.Location = new System.Drawing.Point(13, 70);
+            this.listViewGuides.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listViewGuides.Name = "listViewGuides";
+            this.listViewGuides.Size = new System.Drawing.Size(731, 323);
+            this.listViewGuides.TabIndex = 3;
+            this.listViewGuides.UseCompatibleStateImageBehavior = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 51);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Guides";
+            // 
+            // lbl_SelectTeacher
+            // 
+            this.lbl_SelectTeacher.AutoSize = true;
+            this.lbl_SelectTeacher.Location = new System.Drawing.Point(779, 48);
+            this.lbl_SelectTeacher.Name = "lbl_SelectTeacher";
+            this.lbl_SelectTeacher.Size = new System.Drawing.Size(104, 17);
+            this.lbl_SelectTeacher.TabIndex = 10;
+            this.lbl_SelectTeacher.Text = "Select Teacher";
+            // 
+            // cmb_Activities
+            // 
+            this.cmb_Activities.FormattingEnabled = true;
+            this.cmb_Activities.Location = new System.Drawing.Point(1004, 69);
+            this.cmb_Activities.Name = "cmb_Activities";
+            this.cmb_Activities.Size = new System.Drawing.Size(147, 24);
+            this.cmb_Activities.TabIndex = 11;
+            // 
+            // lbl_SelectAct
+            // 
+            this.lbl_SelectAct.AutoSize = true;
+            this.lbl_SelectAct.Location = new System.Drawing.Point(1001, 48);
+            this.lbl_SelectAct.Name = "lbl_SelectAct";
+            this.lbl_SelectAct.Size = new System.Drawing.Size(95, 17);
+            this.lbl_SelectAct.TabIndex = 12;
+            this.lbl_SelectAct.Text = "Select Activity";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(750, 209);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(423, 18);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Select a guide in the ListView to delete or edit the guide";
+            // 
+            // btn_EditGuide
+            // 
+            this.btn_EditGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_EditGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EditGuide.Location = new System.Drawing.Point(881, 320);
+            this.btn_EditGuide.Name = "btn_EditGuide";
+            this.btn_EditGuide.Size = new System.Drawing.Size(202, 52);
+            this.btn_EditGuide.TabIndex = 14;
+            this.btn_EditGuide.Text = "Edit guide";
+            this.btn_EditGuide.UseVisualStyleBackColor = false;
+            this.btn_EditGuide.Click += new System.EventHandler(this.btn_EditGuide_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(1073, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(173, 151);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // img_Dashboard
+            // 
+            this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
+            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
+            this.img_Dashboard.Name = "img_Dashboard";
+            this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
+            this.img_Dashboard.TabIndex = 0;
+            this.img_Dashboard.TabStop = false;
+            this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 560);
+            this.ClientSize = new System.Drawing.Size(1259, 560);
             this.Controls.Add(this.pnl_Guides);
             this.Controls.Add(this.pnl_Activities);
             this.Controls.Add(this.pnl_Sales);
@@ -775,14 +833,12 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "SomerenApp";
             this.Load += new System.EventHandler(this.SomerenUI_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pnl_Dashboard.ResumeLayout(false);
             this.pnl_Dashboard.PerformLayout();
             this.pnl_Students.ResumeLayout(false);
             this.pnl_Students.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnl_Teachers.ResumeLayout(false);
             this.pnl_Teachers.PerformLayout();
             this.pnl_Rooms.ResumeLayout(false);
@@ -797,6 +853,8 @@
             this.pnl_Activities.PerformLayout();
             this.pnl_Guides.ResumeLayout(false);
             this.pnl_Guides.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -869,6 +927,11 @@
         private System.Windows.Forms.ListView listViewGuides;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_EditActivity;
+        private System.Windows.Forms.Button btn_EditGuide;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_SelectAct;
+        private System.Windows.Forms.ComboBox cmb_Activities;
+        private System.Windows.Forms.Label lbl_SelectTeacher;
     }
 }
 
