@@ -34,5 +34,11 @@ namespace SomerenDAL
             }
             return guides;
         }
+
+        public void Db_Update_Guide(string query)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
     }
 }
