@@ -1,4 +1,4 @@
-﻿using SomerenLogic;
+using SomerenLogic;
 using SomerenModel;
 using System;
 using System.Collections.Generic;
@@ -26,6 +26,9 @@ namespace SomerenUI
         SomerenLogic.Guide_Service guideService = new SomerenLogic.Guide_Service();
         SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
 
+        //sorter
+        private ListViewColumnSorter lvwColumnSorter = new ListViewColumnSorter();
+        
         public SomerenUI()
         {
             InitializeComponent();
@@ -373,6 +376,10 @@ namespace SomerenUI
 
                 //show panel
                 pnl_Activities.Show();
+                
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewActivities.ListViewItemSorter = lvwColumnSorter;
 
                 //Vraag de activiteiten op uit de database
                 List<Activity> activityList = activityService.GetActivities();
@@ -953,6 +960,32 @@ namespace SomerenUI
             }
 
             return selectedGuide;
+        }
+        
+        private void ListViewActivities_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewActivities);
+        }
+
+        private void OrderListView(ColumnClickEventArgs e, ListView lv)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                else
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            lv.Sort();
         }
     }
 }
