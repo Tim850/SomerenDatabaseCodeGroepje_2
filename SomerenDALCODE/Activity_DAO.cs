@@ -14,7 +14,7 @@ namespace SomerenDAL
     {
         public List<Activity> Db_Get_All_Activities()
         {
-            string query = "SELECT activityID, [description], numberOfGuides, numberOfParticipants FROM activities";
+            string query = "SELECT activityID, [description], numberOfGuides, numberOfParticipants, [date] FROM activities";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -30,7 +30,8 @@ namespace SomerenDAL
                     ActivityID = (Int16)dr["activityID"],
                     Description = (String)dr["description"],
                     NumberOfGuides = (Int16)dr["numberOfGuides"],
-                    NumberOfParticipants = (Int16)dr["numberOfParticipants"]
+                    NumberOfParticipants = (Int16)dr["numberOfParticipants"],
+                    ActivityDate = (DateTime)dr["date"]
                 };
                 activities.Add(activity);
             }
