@@ -59,7 +59,7 @@ namespace SomerenLogic
             listviewX = (ListViewItem)x;
             listviewY = (ListViewItem)y;
 
-            // Compare the two items
+            // Compare the two items but check if the the values that are being compared are strings or numbers and edit the compareresult accordingly
             if (!Int32.TryParse(listviewX.SubItems[ColumnToSort].Text, out int t))
             {
                 compareResult = ObjectCompare.Compare(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
