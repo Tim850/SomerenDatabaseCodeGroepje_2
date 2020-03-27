@@ -30,7 +30,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
-            this.img_Dashboard = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +38,9 @@
             this.studentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activitiesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.guidesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockDrinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.financeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +48,7 @@
             this.checkOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_Dashboard = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
+            this.img_Dashboard = new System.Windows.Forms.PictureBox();
             this.pnl_Students = new System.Windows.Forms.Panel();
             this.listViewStudents = new System.Windows.Forms.ListView();
             this.studentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -81,9 +84,29 @@
             this.lbl_SalesReport = new System.Windows.Forms.Label();
             this.monthCalendarEnd = new System.Windows.Forms.MonthCalendar();
             this.monthCalendarStart = new System.Windows.Forms.MonthCalendar();
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
+            this.pnl_Activities = new System.Windows.Forms.Panel();
+            this.btn_DeleteActivity = new System.Windows.Forms.Button();
+            this.btn_AddActivity = new System.Windows.Forms.Button();
+            this.listViewActivities = new System.Windows.Forms.ListView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_EditActivity = new System.Windows.Forms.Button();
+            this.pnl_Guides = new System.Windows.Forms.Panel();
+            this.btn_EditGuide = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_SelectAct = new System.Windows.Forms.Label();
+            this.cmb_Activities = new System.Windows.Forms.ComboBox();
+            this.lbl_SelectTeacher = new System.Windows.Forms.Label();
+            this.btn_DeleteGuide = new System.Windows.Forms.Button();
+            this.cmb_Teachers = new System.Windows.Forms.ComboBox();
+            this.btn_AddGuide = new System.Windows.Forms.Button();
+            this.listViewGuides = new System.Windows.Forms.ListView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnl_Schedule = new System.Windows.Forms.Panel();
+            this.listViewSchedule = new System.Windows.Forms.ListView();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.pnl_Students.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnl_Teachers.SuspendLayout();
@@ -91,17 +114,10 @@
             this.pnl_StockDrinks.SuspendLayout();
             this.pnl_CheckOut.SuspendLayout();
             this.pnl_Sales.SuspendLayout();
+            this.pnl_Activities.SuspendLayout();
+            this.pnl_Guides.SuspendLayout();
+            this.pnl_Schedule.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // img_Dashboard
-            // 
-            this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
-            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
-            this.img_Dashboard.Name = "img_Dashboard";
-            this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
-            this.img_Dashboard.TabIndex = 0;
-            this.img_Dashboard.TabStop = false;
-            this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
             // 
             // menuStrip1
             // 
@@ -117,7 +133,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1189, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1259, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -167,9 +183,35 @@
             // 
             // activitiesToolStripMenuItem
             // 
+            this.activitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.activitiesToolStripMenuItem1,
+            this.guidesToolStripMenuItem,
+            this.scheduleToolStripMenuItem});
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.activitiesToolStripMenuItem.Text = "Activities";
+            this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.ActivitiesToolStripMenuItem_Click);
+            // 
+            // activitiesToolStripMenuItem1
+            // 
+            this.activitiesToolStripMenuItem1.Name = "activitiesToolStripMenuItem1";
+            this.activitiesToolStripMenuItem1.Size = new System.Drawing.Size(152, 26);
+            this.activitiesToolStripMenuItem1.Text = "Activities";
+            this.activitiesToolStripMenuItem1.Click += new System.EventHandler(this.ActivitiesToolStripMenuItem1_Click);
+            // 
+            // guidesToolStripMenuItem
+            // 
+            this.guidesToolStripMenuItem.Name = "guidesToolStripMenuItem";
+            this.guidesToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.guidesToolStripMenuItem.Text = "Guides";
+            this.guidesToolStripMenuItem.Click += new System.EventHandler(this.GuidesToolStripMenuItem_Click);
+            // 
+            // scheduleToolStripMenuItem
+            // 
+            this.scheduleToolStripMenuItem.Name = "scheduleToolStripMenuItem";
+            this.scheduleToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.scheduleToolStripMenuItem.Text = "Schedule";
+            this.scheduleToolStripMenuItem.Click += new System.EventHandler(this.ScheduleToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
@@ -198,14 +240,14 @@
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
             this.salesToolStripMenuItem.Text = "Sales";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
             // 
             // checkOutToolStripMenuItem
             // 
             this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
-            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
             this.checkOutToolStripMenuItem.Text = "CheckOut";
             this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.CheckOutToolStripMenuItem_Click_1);
             // 
@@ -229,6 +271,16 @@
             this.lbl_Dashboard.TabIndex = 1;
             this.lbl_Dashboard.Text = "Welcome to the Someren Application!";
             this.lbl_Dashboard.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // img_Dashboard
+            // 
+            this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
+            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
+            this.img_Dashboard.Name = "img_Dashboard";
+            this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
+            this.img_Dashboard.TabIndex = 0;
+            this.img_Dashboard.TabStop = false;
+            this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
             // 
             // pnl_Students
             // 
@@ -580,11 +632,236 @@
             this.monthCalendarStart.Name = "monthCalendarStart";
             this.monthCalendarStart.TabIndex = 0;
             // 
+            // pnl_Activities
+            // 
+            this.pnl_Activities.Controls.Add(this.btn_DeleteActivity);
+            this.pnl_Activities.Controls.Add(this.btn_AddActivity);
+            this.pnl_Activities.Controls.Add(this.listViewActivities);
+            this.pnl_Activities.Controls.Add(this.label1);
+            this.pnl_Activities.Controls.Add(this.btn_EditActivity);
+            this.pnl_Activities.Location = new System.Drawing.Point(3, 28);
+            this.pnl_Activities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnl_Activities.Name = "pnl_Activities";
+            this.pnl_Activities.Size = new System.Drawing.Size(1187, 519);
+            this.pnl_Activities.TabIndex = 9;
+            // 
+            // btn_DeleteActivity
+            // 
+            this.btn_DeleteActivity.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_DeleteActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_DeleteActivity.Location = new System.Drawing.Point(877, 153);
+            this.btn_DeleteActivity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_DeleteActivity.Name = "btn_DeleteActivity";
+            this.btn_DeleteActivity.Size = new System.Drawing.Size(203, 54);
+            this.btn_DeleteActivity.TabIndex = 8;
+            this.btn_DeleteActivity.Text = "Delete activity";
+            this.btn_DeleteActivity.UseVisualStyleBackColor = false;
+            this.btn_DeleteActivity.Click += new System.EventHandler(this.Btn_DeleteActivity_Click);
+            // 
+            // btn_AddActivity
+            // 
+            this.btn_AddActivity.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_AddActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_AddActivity.Location = new System.Drawing.Point(877, 69);
+            this.btn_AddActivity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_AddActivity.Name = "btn_AddActivity";
+            this.btn_AddActivity.Size = new System.Drawing.Size(203, 54);
+            this.btn_AddActivity.TabIndex = 7;
+            this.btn_AddActivity.Text = "Add activity";
+            this.btn_AddActivity.UseVisualStyleBackColor = false;
+            this.btn_AddActivity.Click += new System.EventHandler(this.btn_AddActivity_Click_1);
+            // 
+            // listViewActivities
+            // 
+            this.listViewActivities.HideSelection = false;
+            this.listViewActivities.Location = new System.Drawing.Point(10, 57);
+            this.listViewActivities.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewActivities.Name = "listViewActivities";
+            this.listViewActivities.Size = new System.Drawing.Size(549, 263);
+            this.listViewActivities.TabIndex = 3;
+            this.listViewActivities.UseCompatibleStateImageBehavior = false;
+            this.listViewActivities.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewActivities_ColumnClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(195, 51);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Activities";
+            // 
+            // btn_EditActivity
+            // 
+            this.btn_EditActivity.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_EditActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EditActivity.Location = new System.Drawing.Point(878, 233);
+            this.btn_EditActivity.Name = "btn_EditActivity";
+            this.btn_EditActivity.Size = new System.Drawing.Size(202, 54);
+            this.btn_EditActivity.TabIndex = 11;
+            this.btn_EditActivity.Text = "Edit activity";
+            this.btn_EditActivity.UseVisualStyleBackColor = false;
+            this.btn_EditActivity.Click += new System.EventHandler(this.Btn_EditActivity_Click);
+            // 
+            // pnl_Guides
+            // 
+            this.pnl_Guides.Controls.Add(this.btn_EditGuide);
+            this.pnl_Guides.Controls.Add(this.label3);
+            this.pnl_Guides.Controls.Add(this.lbl_SelectAct);
+            this.pnl_Guides.Controls.Add(this.cmb_Activities);
+            this.pnl_Guides.Controls.Add(this.lbl_SelectTeacher);
+            this.pnl_Guides.Controls.Add(this.btn_DeleteGuide);
+            this.pnl_Guides.Controls.Add(this.cmb_Teachers);
+            this.pnl_Guides.Controls.Add(this.btn_AddGuide);
+            this.pnl_Guides.Controls.Add(this.listViewGuides);
+            this.pnl_Guides.Controls.Add(this.label2);
+            this.pnl_Guides.Location = new System.Drawing.Point(1, 28);
+            this.pnl_Guides.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnl_Guides.Name = "pnl_Guides";
+            this.pnl_Guides.Size = new System.Drawing.Size(1261, 529);
+            this.pnl_Guides.TabIndex = 10;
+            // 
+            // btn_EditGuide
+            // 
+            this.btn_EditGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_EditGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EditGuide.Location = new System.Drawing.Point(881, 320);
+            this.btn_EditGuide.Name = "btn_EditGuide";
+            this.btn_EditGuide.Size = new System.Drawing.Size(202, 52);
+            this.btn_EditGuide.TabIndex = 14;
+            this.btn_EditGuide.Text = "Edit guide";
+            this.btn_EditGuide.UseVisualStyleBackColor = false;
+            this.btn_EditGuide.Click += new System.EventHandler(this.btn_EditGuide_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(750, 209);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(423, 18);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Select a guide in the ListView to delete or edit the guide";
+            // 
+            // lbl_SelectAct
+            // 
+            this.lbl_SelectAct.AutoSize = true;
+            this.lbl_SelectAct.Location = new System.Drawing.Point(1001, 48);
+            this.lbl_SelectAct.Name = "lbl_SelectAct";
+            this.lbl_SelectAct.Size = new System.Drawing.Size(95, 17);
+            this.lbl_SelectAct.TabIndex = 12;
+            this.lbl_SelectAct.Text = "Select Activity";
+            // 
+            // cmb_Activities
+            // 
+            this.cmb_Activities.FormattingEnabled = true;
+            this.cmb_Activities.Location = new System.Drawing.Point(1004, 69);
+            this.cmb_Activities.Name = "cmb_Activities";
+            this.cmb_Activities.Size = new System.Drawing.Size(147, 24);
+            this.cmb_Activities.TabIndex = 11;
+            // 
+            // lbl_SelectTeacher
+            // 
+            this.lbl_SelectTeacher.AutoSize = true;
+            this.lbl_SelectTeacher.Location = new System.Drawing.Point(779, 48);
+            this.lbl_SelectTeacher.Name = "lbl_SelectTeacher";
+            this.lbl_SelectTeacher.Size = new System.Drawing.Size(104, 17);
+            this.lbl_SelectTeacher.TabIndex = 10;
+            this.lbl_SelectTeacher.Text = "Select Teacher";
+            // 
+            // btn_DeleteGuide
+            // 
+            this.btn_DeleteGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_DeleteGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_DeleteGuide.Location = new System.Drawing.Point(879, 252);
+            this.btn_DeleteGuide.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_DeleteGuide.Name = "btn_DeleteGuide";
+            this.btn_DeleteGuide.Size = new System.Drawing.Size(203, 54);
+            this.btn_DeleteGuide.TabIndex = 8;
+            this.btn_DeleteGuide.Text = "Delete guide";
+            this.btn_DeleteGuide.UseVisualStyleBackColor = false;
+            this.btn_DeleteGuide.Click += new System.EventHandler(this.btn_DeleteGuide_Click);
+            // 
+            // cmb_Teachers
+            // 
+            this.cmb_Teachers.FormattingEnabled = true;
+            this.cmb_Teachers.Location = new System.Drawing.Point(782, 69);
+            this.cmb_Teachers.Margin = new System.Windows.Forms.Padding(4);
+            this.cmb_Teachers.Name = "cmb_Teachers";
+            this.cmb_Teachers.Size = new System.Drawing.Size(200, 24);
+            this.cmb_Teachers.TabIndex = 9;
+            // 
+            // btn_AddGuide
+            // 
+            this.btn_AddGuide.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_AddGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_AddGuide.Location = new System.Drawing.Point(880, 117);
+            this.btn_AddGuide.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_AddGuide.Name = "btn_AddGuide";
+            this.btn_AddGuide.Size = new System.Drawing.Size(203, 54);
+            this.btn_AddGuide.TabIndex = 7;
+            this.btn_AddGuide.Text = "Add guide";
+            this.btn_AddGuide.UseVisualStyleBackColor = false;
+            this.btn_AddGuide.Click += new System.EventHandler(this.btn_AddGuide_Click);
+            // 
+            // listViewGuides
+            // 
+            this.listViewGuides.HideSelection = false;
+            this.listViewGuides.Location = new System.Drawing.Point(13, 70);
+            this.listViewGuides.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listViewGuides.Name = "listViewGuides";
+            this.listViewGuides.Size = new System.Drawing.Size(731, 323);
+            this.listViewGuides.TabIndex = 3;
+            this.listViewGuides.UseCompatibleStateImageBehavior = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 51);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Guides";
+            // 
+            // pnl_Schedule
+            // 
+            this.pnl_Schedule.Controls.Add(this.listViewSchedule);
+            this.pnl_Schedule.Controls.Add(this.label4);
+            this.pnl_Schedule.Location = new System.Drawing.Point(0, 28);
+            this.pnl_Schedule.Name = "pnl_Schedule";
+            this.pnl_Schedule.Size = new System.Drawing.Size(1256, 435);
+            this.pnl_Schedule.TabIndex = 15;
+            // 
+            // listViewSchedule
+            // 
+            this.listViewSchedule.HideSelection = false;
+            this.listViewSchedule.Location = new System.Drawing.Point(61, 80);
+            this.listViewSchedule.Name = "listViewSchedule";
+            this.listViewSchedule.Size = new System.Drawing.Size(1005, 280);
+            this.listViewSchedule.TabIndex = 1;
+            this.listViewSchedule.UseCompatibleStateImageBehavior = false;
+            this.listViewSchedule.View = System.Windows.Forms.View.Details;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(52, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(203, 51);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Schedule";
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 560);
+            this.ClientSize = new System.Drawing.Size(1259, 560);
+            this.Controls.Add(this.pnl_Schedule);
+            this.Controls.Add(this.pnl_Guides);
+            this.Controls.Add(this.pnl_Activities);
             this.Controls.Add(this.pnl_Sales);
             this.Controls.Add(this.pnl_Rooms);
             this.Controls.Add(this.pnl_Teachers);
@@ -600,11 +877,11 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "SomerenApp";
             this.Load += new System.EventHandler(this.SomerenUI_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pnl_Dashboard.ResumeLayout(false);
             this.pnl_Dashboard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
             this.pnl_Students.ResumeLayout(false);
             this.pnl_Students.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -618,8 +895,15 @@
             this.pnl_CheckOut.PerformLayout();
             this.pnl_Sales.ResumeLayout(false);
             this.pnl_Sales.PerformLayout();
+            this.pnl_Activities.ResumeLayout(false);
+            this.pnl_Activities.PerformLayout();
+            this.pnl_Guides.ResumeLayout(false);
+            this.pnl_Guides.PerformLayout();
+            this.pnl_Schedule.ResumeLayout(false);
+            this.pnl_Schedule.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -675,6 +959,29 @@
         private System.Windows.Forms.MonthCalendar monthCalendarEnd;
         private System.Windows.Forms.MonthCalendar monthCalendarStart;
         private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Activities;
+        private System.Windows.Forms.ListView listViewActivities;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_DeleteActivity;
+        private System.Windows.Forms.Button btn_AddActivity;
+        private System.Windows.Forms.ToolStripMenuItem activitiesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem guidesToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Guides;
+        private System.Windows.Forms.ComboBox cmb_Teachers;
+        private System.Windows.Forms.Button btn_DeleteGuide;
+        private System.Windows.Forms.Button btn_AddGuide;
+        private System.Windows.Forms.ListView listViewGuides;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_EditActivity;
+        private System.Windows.Forms.Button btn_EditGuide;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_SelectAct;
+        private System.Windows.Forms.ComboBox cmb_Activities;
+        private System.Windows.Forms.Label lbl_SelectTeacher;
+        private System.Windows.Forms.ToolStripMenuItem scheduleToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Schedule;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView listViewSchedule;
     }
 }
 

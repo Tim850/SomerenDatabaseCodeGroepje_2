@@ -1,5 +1,4 @@
-
-﻿using SomerenLogic;
+using SomerenLogic;
 using SomerenModel;
 using System;
 using System.Collections.Generic;
@@ -23,7 +22,14 @@ namespace SomerenUI
         SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
         SomerenLogic.StockDrinks_Service stockDrinksService = new SomerenLogic.StockDrinks_Service();
         SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
+        SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
+        SomerenLogic.Guide_Service guideService = new SomerenLogic.Guide_Service();
+        SomerenLogic.Schedule_Service scheduleService = new SomerenLogic.Schedule_Service();
+        SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
 
+        //sorter
+        private ListViewColumnSorter lvwColumnSorter = new ListViewColumnSorter();
+        
         public SomerenUI()
         {
             InitializeComponent();
@@ -45,6 +51,10 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Activities.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -60,6 +70,9 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -103,13 +116,15 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show students
                 pnl_Teachers.Show();
 
                 // fill the students listview within the students panel with a list of students
-                SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
                 List<Teacher> teacherList = teachService.GetTeachers();
 
                 // clear the listview before filling it again
@@ -123,9 +138,8 @@ namespace SomerenUI
                 listViewTeachers.Columns.Add("Teacher Number", 100);
                 listViewTeachers.Columns.Add("First Name", 100);
                 listViewTeachers.Columns.Add("Last Name", 100);
-                listViewTeachers.Columns.Add("Guide", 50);
 
-                string[] teachers = new string[4];
+                string[] teachers = new string[3];
                 ListViewItem itm;
 
                 foreach (SomerenModel.Teacher t in teacherList)
@@ -134,7 +148,6 @@ namespace SomerenUI
                     teachers[0] = t.Number.ToString();
                     teachers[1] = t.FirstName;
                     teachers[2] = t.LastName;
-                    teachers[3] = t.Guide;
 
                     itm = new ListViewItem(teachers);
                     listViewTeachers.Items.Add(itm);
@@ -150,6 +163,9 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show rooms
@@ -195,6 +211,9 @@ namespace SomerenUI
                 pnl_Rooms.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show stock
@@ -213,9 +232,9 @@ namespace SomerenUI
 
                 // Aanmaken van kollomen
                 listViewStockDrinks.Columns.Add("ID");
-                listViewStockDrinks.Columns.Add("Name of drink");
+                listViewStockDrinks.Columns.Add("Name of drink", 100);
                 listViewStockDrinks.Columns.Add("Stock");
-                listViewStockDrinks.Columns.Add("Voucher price");
+                listViewStockDrinks.Columns.Add("Voucher price", 80);
 
                 string[] drinks = new string[4];
 
@@ -263,6 +282,9 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 btn_Buy.Hide();
                 pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -304,7 +326,7 @@ namespace SomerenUI
                 listViewDrinksCO.GridLines = true;
                 listViewDrinksCO.CheckBoxes = true;
 
-                listViewDrinksCO.Columns.Add("Name", 80);
+                listViewDrinksCO.Columns.Add("Name", 100);
                 listViewDrinksCO.Columns.Add("Price", 70);
                 listViewDrinksCO.Columns.Add("Stock", 70);
 
@@ -330,6 +352,9 @@ namespace SomerenUI
                 pnl_StockDrinks.Hide();
                 pnl_CheckOut.Hide();
                 pnl_Students.Hide();
+                pnl_Activities.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 //show panel
                 pnl_Sales.Show();
@@ -343,6 +368,171 @@ namespace SomerenUI
                 listViewSales.Columns.Add("Total sold drinks", 100);
                 listViewSales.Columns.Add("Revenue", 100);
                 listViewSales.Columns.Add("Customer count", 100);
+            }
+            else if (panelName == "Activities")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
+                pnl_Guides.Hide();
+                pnl_Schedule.Hide();
+
+                //show panel
+                pnl_Activities.Show();
+
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewActivities.ListViewItemSorter = lvwColumnSorter;
+
+                //Vraag de activiteiten op uit de database
+                List<Activity> activityList = activityService.GetActivities();
+
+                // listview activities
+                listViewActivities.Clear();
+
+                listViewActivities.View = View.Details;
+                listViewActivities.GridLines = true;
+                listViewActivities.CheckBoxes = true;
+
+                listViewActivities.Columns.Add("ID", 70);
+                listViewActivities.Columns.Add("Description", 160);
+                listViewActivities.Columns.Add("Guides", 70);
+                listViewActivities.Columns.Add("Participants", 70);
+
+                string[] activity = new string[4];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Activity d in activityList)
+                {
+                    activity[0] = d.ActivityID.ToString();
+                    activity[1] = d.Description;
+                    activity[2] = d.NumberOfGuides.ToString();
+                    activity[3] = d.NumberOfParticipants.ToString();
+
+                    itm = new ListViewItem(activity);
+                    listViewActivities.Items.Add(itm);
+                }
+            }
+            else if (panelName == "Schedule")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                btn_Buy.Hide();
+                pnl_Guides.Hide();
+
+                //show panel
+                pnl_Schedule.Show();
+
+                List<Schedule> scheduleList = scheduleService.GetSchedule();
+
+                // clear the listview before filling it again
+                listViewSchedule.Clear();
+
+                listViewSchedule.View = View.Details;
+                listViewSchedule.GridLines = true;
+                listViewSchedule.FullRowSelect = true;
+
+                // Aanmaken van kolommen
+                listViewSchedule.Columns.Add("Time", 75);
+                listViewSchedule.Columns.Add("Monday", 200);
+                listViewSchedule.Columns.Add("Tuesday", 250);
+                listViewSchedule.Columns.Add("Wednesday", 100);
+                listViewSchedule.Columns.Add("Thursday", 100);
+                listViewSchedule.Columns.Add("Friday", 100);
+
+                string[] schedule = new string[6];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Schedule s in scheduleList)
+                {
+                    schedule[0] = s.time;
+                    schedule[1] = s.monday;
+                    schedule[2] = s.tuesday;
+                    schedule[3] = s.Wednesday;
+                    schedule[4] = s.thursday;
+                    schedule[5] = s.Friday;
+
+                    itm = new ListViewItem(schedule);
+                    listViewSchedule.Items.Add(itm);
+                }
+
+            } 
+            else if (panelName == "Guides")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                btn_Buy.Hide();
+                pnl_Schedule.Hide();
+                
+                //show panel
+                pnl_Guides.Show();
+
+                //Vraag de activiteiten op uit de database
+                List<Guide> guideList = guideService.GetGuides();
+                List<Teacher> teacherList = teachService.GetTeachers();
+                List<Activity> activityList = activityService.GetActivities();
+
+                //vul de combobox met alle teachers waar je uit kunt kiezen om toe te voegen
+                cmb_Teachers.Items.Clear();
+                foreach (Teacher teacher in teacherList)
+                {
+                    cmb_Teachers.Items.Add(teacher);
+                }
+
+                cmb_Teachers.SelectedIndex = 0;
+
+                //vul de combobox met activities
+                cmb_Activities.Items.Clear();
+                foreach (Activity act in activityList)
+                {
+                    cmb_Activities.Items.Add(act);
+                }
+
+                cmb_Activities.SelectedIndex = 0;
+
+                // listview activities
+                listViewGuides.Clear();
+
+                listViewGuides.View = View.Details;
+                listViewGuides.GridLines = true;
+                listViewGuides.CheckBoxes = true;
+
+                listViewGuides.Columns.Add("ActivityID", 70);
+                listViewGuides.Columns.Add("StaffNumber", 70);
+
+                string[] guide = new string[2];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Guide d in guideList)
+                {
+                    guide[0] = d.ActivityID.ToString();
+                    guide[1] = d.StaffNumber.ToString();
+
+                    itm = new ListViewItem(guide);
+                    listViewGuides.Items.Add(itm);
+                }
             }
         }
 
@@ -396,6 +586,23 @@ namespace SomerenUI
             showPanel("Sales");
 
         }
+        private void ActivitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+        private void ActivitiesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
+        }
+        private void ScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Schedule");
+        }
+        private void GuidesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Guides");
+        }
+        
 
 
         // buttons clicks en methodes
@@ -439,7 +646,6 @@ namespace SomerenUI
                     foreach (StockDrinks drink in drinks)
                     {
                         if (drinkName == drink.Name)
-
                         {
                             int newStock = drink.Stock - 1;
                             int drankId = drink.DrinkID;
@@ -631,6 +837,222 @@ namespace SomerenUI
             return orders;
         }
 
+        private void btn_AddActivity_Click_1(object sender, EventArgs e)
+        {
+            AddingActivities form = new AddingActivities();
+            form.ShowDialog();
+
+            showPanel("Activities");
+        }
+
+        private void Btn_DeleteActivity_Click(object sender, EventArgs e)
+        {
+            List<Activity> activities = activityService.GetActivities();
+            string activityID;
+
+            if (MessageBox.Show("Are you sure you want to delete this activity/these activities?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {              
+                for (int i = 0; i < listViewActivities.Items.Count; i++)
+                {
+                    if (listViewActivities.Items[i].Checked)
+                    {
+                        activityID = listViewActivities.Items[i].Text;
+
+                        foreach (Activity act in activities)
+                        {
+                            if (activityID == act.ActivityID.ToString())
+                            {
+                                string query = "DELETE FROM activities WHERE activityID=" + act.ActivityID;
+
+                                activityService.UpdateActivity(query);
+                            }
+                        }
+
+                        listViewActivities.Items.Remove(listViewActivities.Items[i]);
+                    }
+                }
+            }
+        }
+
+        private void Btn_EditActivity_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+
+            for (int i = 0; i < listViewActivities.Items.Count; i++)
+            {
+                if (listViewActivities.Items[i].Checked)
+                {
+                    count++;
+
+                    if (count > 1)
+                    {
+                        MessageBox.Show("Only select 1 activity!");
+                    }
+                }
+            }
+
+            if (count == 0)
+            {
+                MessageBox.Show("Select an activity to edit it");
+                return;
+            }
+
+            Activity selectedAct = GetSelectedAct();
+            EditActivity form = new EditActivity(selectedAct);
+            form.ShowDialog();
+
+            showPanel("Activities");
+        }
+
+        private Activity GetSelectedAct()
+        {
+            List<Activity> activities = activityService.GetActivities();
+            string actID = "";
+            Activity selectedAct = new Activity();
+
+            for (int i = 0; i < listViewActivities.Items.Count; i++)
+            {
+                actID = listViewActivities.Items[i].Text;
+
+                if (listViewActivities.Items[i].Checked == true)
+                {
+                    foreach (Activity act in activities)
+                    {
+                        if (actID == act.ActivityID.ToString())
+                        {
+                            selectedAct = act;
+                        }
+                    }
+                }
+
+            }
+
+            return selectedAct;
+        }
+
+        private void btn_AddGuide_Click(object sender, EventArgs e)
+        {
+            // geselecteerde docent uit van de combobox guide maken
+            Teacher teacher = (Teacher)cmb_Teachers.SelectedItem;
+
+            // geselecteerde activity uit combobox
+            Activity activity = (Activity)cmb_Activities.SelectedItem;
+
+            string query = "INSERT INTO guides (staffNumber, activityID) VALUES (" + teacher.Number + ", " + activity.ActivityID + ")";
+            guideService.UpdateGuide(query);
+
+            showPanel("Guides");
+        }
+
+        private void btn_DeleteGuide_Click(object sender, EventArgs e)
+        {
+            List<Guide> guides = guideService.GetGuides();
+            string guideID;
+
+            if (MessageBox.Show("Are you sure you want to delete this guide/these guides?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                for (int i = 0; i < listViewGuides.Items.Count; i++)
+                {
+                    if (listViewGuides.Items[i].Checked)
+                    {
+                        guideID = listViewGuides.Items[i].SubItems[1].Text;
+
+                        foreach (Guide guide in guides)
+                        {
+                            if (guideID == guide.StaffNumber.ToString())
+                            {
+                                // guide verwijderen uit guide tabel
+                                string queryDel = "DELETE FROM guides WHERE staffnumber=" + guide.StaffNumber;
+                                guideService.UpdateGuide(queryDel);
+                            }
+                        }
+
+                        listViewGuides.Items.Remove(listViewGuides.Items[i]);
+                    }
+                }
+            }
+        }
+
+        private void btn_EditGuide_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+
+            for (int i = 0; i < listViewGuides.Items.Count; i++)
+            {
+                if (listViewGuides.Items[i].Checked)
+                {
+                    count++;
+
+                    if (count > 1)
+                    {
+                        MessageBox.Show("Only select 1 guide!");
+                    }
+                }
+            }
+
+            if (count == 0)
+            {
+                MessageBox.Show("Select an guide to edit it");
+                return;
+            }
+
+            Guide selectedGuide = GetSelectedGuide();
+            EditGuide form = new EditGuide(selectedGuide);
+            form.ShowDialog();
+
+            showPanel("Guides");
+        }
+
+        private Guide GetSelectedGuide()
+        {
+            List<Guide> guides = guideService.GetGuides();
+            string staffID = "";
+            Guide selectedGuide = new Guide();
+
+            for (int i = 0; i < listViewGuides.Items.Count; i++)
+            {
+                staffID = listViewGuides.Items[i].SubItems[1].Text;
+
+                if (listViewGuides.Items[i].Checked == true)
+                {
+                    foreach (Guide guide in guides)
+                    {
+                        if (staffID == guide.StaffNumber.ToString())
+                        {
+                            selectedGuide = guide;
+                        }
+                    }
+                }
+
+            }
+
+            return selectedGuide;
+        }
+        
+        private void ListViewActivities_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewActivities);
+        }
+
+        private void OrderListView(ColumnClickEventArgs e, ListView lv)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                else
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+            lv.Sort();
+        }
     }
 }
 
