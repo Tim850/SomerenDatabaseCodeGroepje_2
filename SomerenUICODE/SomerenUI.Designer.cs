@@ -640,12 +640,13 @@
             // listViewActivities
             // 
             this.listViewActivities.HideSelection = false;
-            this.listViewActivities.Location = new System.Drawing.Point(13, 70);
-            this.listViewActivities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listViewActivities.Location = new System.Drawing.Point(10, 57);
+            this.listViewActivities.Margin = new System.Windows.Forms.Padding(2);
             this.listViewActivities.Name = "listViewActivities";
-            this.listViewActivities.Size = new System.Drawing.Size(731, 323);
+            this.listViewActivities.Size = new System.Drawing.Size(549, 263);
             this.listViewActivities.TabIndex = 3;
             this.listViewActivities.UseCompatibleStateImageBehavior = false;
+            this.listViewActivities.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewActivities_ColumnClick);
             // 
             // label1
             // 

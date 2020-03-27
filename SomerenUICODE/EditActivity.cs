@@ -1,3 +1,4 @@
+
 ﻿using SomerenLogic;
 using SomerenModel;
 using System;
@@ -27,7 +28,9 @@ namespace SomerenUI
             Int16 newNumGuides;
             Int16 newNumPart;
             DateTime newDate;
+
             List<Activity> activities = activityService.GetActivities();
+
 
             if (txt_description.Text == "")
             {
@@ -35,6 +38,7 @@ namespace SomerenUI
             }
             else
             {
+
                 foreach (Activity act in activities)
                 {
                     if (txt_description.Text == act.Description)
