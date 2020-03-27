@@ -732,6 +732,7 @@
             this.listViewGuides.Size = new System.Drawing.Size(731, 323);
             this.listViewGuides.TabIndex = 3;
             this.listViewGuides.UseCompatibleStateImageBehavior = false;
+            this.listViewGuides.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewGuides_ColumnClick);
             // 
             // label2
             // 
