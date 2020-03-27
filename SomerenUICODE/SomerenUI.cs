@@ -427,6 +427,10 @@ namespace SomerenUI
                 //show panel
                 pnl_Guides.Show();
 
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewGuides.ListViewItemSorter = lvwColumnSorter;
+
                 //Vraag de activiteiten op uit de database
                 List<Guide> guideList = guideService.GetGuides();
                 List<Teacher> teacherList = teachService.GetTeachers();
@@ -450,7 +454,7 @@ namespace SomerenUI
 
                 cmb_Activities.SelectedIndex = 0;
 
-                // listview activities
+                // listview guides
                 listViewGuides.Clear();
 
                 listViewGuides.View = View.Details;
@@ -965,6 +969,11 @@ namespace SomerenUI
         private void ListViewActivities_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             OrderListView(e, listViewActivities);
+        }
+
+        private void ListViewGuides_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewGuides);
         }
 
         private void OrderListView(ColumnClickEventArgs e, ListView lv)
