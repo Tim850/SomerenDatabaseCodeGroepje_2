@@ -78,12 +78,12 @@ namespace SomerenUI
                 pnl_Students.Show();
 
                 // fill the students listview within the students panel with a list of students
-
                 List<Student> studentList = studService.GetStudents();
 
+                //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewStudents.ListViewItemSorter = lvwColumnSorter;
-
+                
                 // clear the listview before filling it again
                 listViewStudents.Clear();
 
@@ -133,7 +133,7 @@ namespace SomerenUI
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewTeachers.ListViewItemSorter = lvwColumnSorter;
-
+                
                 // clear the listview before filling it again
                 listViewTeachers.Clear();
 
@@ -185,7 +185,7 @@ namespace SomerenUI
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewRooms.ListViewItemSorter = lvwColumnSorter;
-
+                
                 // clear the listview before filling it again
                 listViewRooms.Clear();
 
@@ -236,7 +236,7 @@ namespace SomerenUI
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewStockDrinks.ListViewItemSorter = lvwColumnSorter;
-
+                
                 // clear the listview first before filling it again
                 listViewStockDrinks.Clear();
 
@@ -308,10 +308,10 @@ namespace SomerenUI
                 List<Student> studentList = studService.GetStudents();
                 List<StockDrinks> drinkList = stockDrinksService.GetStock();
 
-                //Sorter
+                //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewStudentsCO.ListViewItemSorter = lvwColumnSorter;
-
+                
                 // listview students
                 listViewStudentsCO.Clear();
 
@@ -338,11 +338,10 @@ namespace SomerenUI
                     listViewStudentsCO.Items.Add(itm);
                 }
 
-
-                //Sorter
+                //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewDrinksCO.ListViewItemSorter = lvwColumnSorter;
-
+                
                 // listview drinks
                 listViewDrinksCO.Clear();
 
@@ -409,10 +408,6 @@ namespace SomerenUI
 
                 //show panel
                 pnl_Activities.Show();
-                
-                //sorter
-                lvwColumnSorter = new ListViewColumnSorter();
-                listViewActivities.ListViewItemSorter = lvwColumnSorter;
 
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
@@ -466,7 +461,7 @@ namespace SomerenUI
                 pnl_Schedule.Show();
 
                 List<Schedule> scheduleList = scheduleService.GetSchedule();
-
+                
                 // clear the listview before filling it again
                 listViewSchedule.Clear();
 
@@ -513,10 +508,10 @@ namespace SomerenUI
                 pnl_Activities.Hide();
                 btn_Buy.Hide();
                 pnl_Schedule.Hide();
-
+                
                 //show panel
                 pnl_Guides.Show();
-
+                
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewGuides.ListViewItemSorter = lvwColumnSorter;
@@ -544,7 +539,7 @@ namespace SomerenUI
 
                 cmb_Activities.SelectedIndex = 0;
 
-                // listview guides
+                // listview activities
                 listViewGuides.Clear();
 
                 listViewGuides.View = View.Details;
@@ -634,7 +629,7 @@ namespace SomerenUI
         {
             showPanel("Guides");
         }
-
+        
 
 
         // buttons clicks en methodes
@@ -894,7 +889,7 @@ namespace SomerenUI
                         {
                             if (activityID == act.ActivityID.ToString())
                             {
-                                string query = "DELETE FROM guides WHERE activityID=" + act.ActivityID + "DELETE FROM activities WHERE activityID=" + act.ActivityID;
+                                string query = "DELETE FROM activities WHERE activityID=" + act.ActivityID;
 
                                 activityService.UpdateActivity(query);
                             }
@@ -1101,7 +1096,6 @@ namespace SomerenUI
             OrderListView(e, listViewTeachers);
         }
 
-
         private void OrderListView(ColumnClickEventArgs e, ListView lv)
         {
             // Determine if clicked column is already the column that is being sorted.
@@ -1119,9 +1113,7 @@ namespace SomerenUI
                 lvwColumnSorter.SortColumn = e.Column;
                 lvwColumnSorter.Order = SortOrder.Ascending;
             }
-            
             lv.Sort();
         }
     }
 }
-
