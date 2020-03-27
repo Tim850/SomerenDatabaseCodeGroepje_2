@@ -27,12 +27,12 @@ namespace SomerenDAL
             {
                 Order order = new Order()
                 {
-                    DrinkID = (Int16)dr["drinkID"],
                     OrderNumber = (int)dr["orderNummer"],
-                    StudentNumber = (int)dr["studentnumber"],
+                    DrinkID = (Int16)dr["drinkID"],
+                    Amount = (int)dr["amount"],
                     Date = (DateTime)dr["date"],
-                    Price = (float)dr["purchasePrice"],
-                    Amount = (int)dr["amount"]          
+                    StudentNumber = (int)dr["studentnumber"],
+                    Price = (float)dr["purchasePrice"]         
                 };
                 orders.Add(order);
             }

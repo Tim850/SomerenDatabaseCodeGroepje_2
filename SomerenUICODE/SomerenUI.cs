@@ -409,6 +409,10 @@ namespace SomerenUI
 
                 //show panel
                 pnl_Activities.Show();
+                
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewActivities.ListViewItemSorter = lvwColumnSorter;
 
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
@@ -890,7 +894,7 @@ namespace SomerenUI
                         {
                             if (activityID == act.ActivityID.ToString())
                             {
-                                string query = "DELETE FROM activities WHERE activityID=" + act.ActivityID;
+                                string query = "DELETE FROM guides WHERE activityID=" + act.ActivityID + "DELETE FROM activities WHERE activityID=" + act.ActivityID;
 
                                 activityService.UpdateActivity(query);
                             }
@@ -1062,7 +1066,6 @@ namespace SomerenUI
         {
             OrderListView(e, listViewActivities);
         }
-
         private void ListViewGuides_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             OrderListView(e, listViewGuides);
@@ -1097,6 +1100,7 @@ namespace SomerenUI
         {
             OrderListView(e, listViewTeachers);
         }
+
 
         private void OrderListView(ColumnClickEventArgs e, ListView lv)
         {
