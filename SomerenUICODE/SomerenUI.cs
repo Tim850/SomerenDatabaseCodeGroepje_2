@@ -24,6 +24,7 @@ namespace SomerenUI
         SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
         SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
         SomerenLogic.Guide_Service guideService = new SomerenLogic.Guide_Service();
+        SomerenLogic.Schedule_Service scheduleService = new SomerenLogic.Schedule_Service();
         SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
 
         //sorter
@@ -53,6 +54,7 @@ namespace SomerenUI
                 pnl_Activities.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -70,6 +72,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -77,6 +80,9 @@ namespace SomerenUI
                 // fill the students listview within the students panel with a list of students
 
                 List<Student> studentList = studService.GetStudents();
+
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewStudents.ListViewItemSorter = lvwColumnSorter;
 
                 // clear the listview before filling it again
                 listViewStudents.Clear();
@@ -115,6 +121,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show students
@@ -122,6 +129,10 @@ namespace SomerenUI
 
                 // fill the students listview within the students panel with a list of students
                 List<Teacher> teacherList = teachService.GetTeachers();
+
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewTeachers.ListViewItemSorter = lvwColumnSorter;
 
                 // clear the listview before filling it again
                 listViewTeachers.Clear();
@@ -161,6 +172,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show rooms
@@ -169,6 +181,10 @@ namespace SomerenUI
                 // fill the rooms listview within the rooms panel with a list of rooms
                 SomerenLogic.Room_Service roomService = new SomerenLogic.Room_Service();
                 List<Room> roomList = roomService.GetRooms();
+
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewRooms.ListViewItemSorter = lvwColumnSorter;
 
                 // clear the listview before filling it again
                 listViewRooms.Clear();
@@ -208,6 +224,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show stock
@@ -215,6 +232,10 @@ namespace SomerenUI
 
                 // fill the listview with a list of the stock
                 List<StockDrinks> stockList = stockDrinksService.GetStock();
+
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewStockDrinks.ListViewItemSorter = lvwColumnSorter;
 
                 // clear the listview first before filling it again
                 listViewStockDrinks.Clear();
@@ -278,6 +299,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -285,6 +307,10 @@ namespace SomerenUI
                 // lijsten
                 List<Student> studentList = studService.GetStudents();
                 List<StockDrinks> drinkList = stockDrinksService.GetStock();
+
+                //Sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewStudentsCO.ListViewItemSorter = lvwColumnSorter;
 
                 // listview students
                 listViewStudentsCO.Clear();
@@ -311,6 +337,11 @@ namespace SomerenUI
                     itm = new ListViewItem(students);
                     listViewStudentsCO.Items.Add(itm);
                 }
+
+
+                //Sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewDrinksCO.ListViewItemSorter = lvwColumnSorter;
 
                 // listview drinks
                 listViewDrinksCO.Clear();
@@ -347,6 +378,7 @@ namespace SomerenUI
                 pnl_Students.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 //show panel
                 pnl_Sales.Show();
@@ -373,10 +405,15 @@ namespace SomerenUI
                 pnl_Students.Hide();
                 pnl_Sales.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 //show panel
                 pnl_Activities.Show();
                 
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewActivities.ListViewItemSorter = lvwColumnSorter;
+
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewActivities.ListViewItemSorter = lvwColumnSorter;
@@ -410,6 +447,58 @@ namespace SomerenUI
                     listViewActivities.Items.Add(itm);
                 }
             }
+            else if (panelName == "Schedule")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                btn_Buy.Hide();
+                pnl_Guides.Hide();
+
+                //show panel
+                pnl_Schedule.Show();
+
+                List<Schedule> scheduleList = scheduleService.GetSchedule();
+
+                // clear the listview before filling it again
+                listViewSchedule.Clear();
+
+                listViewSchedule.View = View.Details;
+                listViewSchedule.GridLines = true;
+                listViewSchedule.FullRowSelect = true;
+
+                // Aanmaken van kolommen
+                listViewSchedule.Columns.Add("Time", 75);
+                listViewSchedule.Columns.Add("Monday", 200);
+                listViewSchedule.Columns.Add("Tuesday", 250);
+                listViewSchedule.Columns.Add("Wednesday", 100);
+                listViewSchedule.Columns.Add("Thursday", 100);
+                listViewSchedule.Columns.Add("Friday", 100);
+
+                string[] schedule = new string[6];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Schedule s in scheduleList)
+                {
+                    schedule[0] = s.time;
+                    schedule[1] = s.monday;
+                    schedule[2] = s.tuesday;
+                    schedule[3] = s.Wednesday;
+                    schedule[4] = s.thursday;
+                    schedule[5] = s.Friday;
+
+                    itm = new ListViewItem(schedule);
+                    listViewSchedule.Items.Add(itm);
+                }
+
+            } 
             else if (panelName == "Guides")
             {
                 // Hide other panels
@@ -423,9 +512,14 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 btn_Buy.Hide();
+                pnl_Schedule.Hide();
 
                 //show panel
                 pnl_Guides.Show();
+
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewGuides.ListViewItemSorter = lvwColumnSorter;
 
                 //Vraag de activiteiten op uit de database
                 List<Guide> guideList = guideService.GetGuides();
@@ -450,7 +544,7 @@ namespace SomerenUI
 
                 cmb_Activities.SelectedIndex = 0;
 
-                // listview activities
+                // listview guides
                 listViewGuides.Clear();
 
                 listViewGuides.View = View.Details;
@@ -532,10 +626,15 @@ namespace SomerenUI
         {
             showPanel("Activities");
         }
+        private void ScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Schedule");
+        }
         private void GuidesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Guides");
         }
+
 
 
         // buttons clicks en methodes
@@ -962,10 +1061,46 @@ namespace SomerenUI
             return selectedGuide;
         }
         
+        //OnClick events voor de column sorter
         private void ListViewActivities_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             OrderListView(e, listViewActivities);
         }
+        private void ListViewGuides_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewGuides);
+        }
+
+        private void ListViewDrinksCO_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewDrinksCO);
+        }
+
+        private void ListViewStudentsCO_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewStudentsCO);
+        }
+
+        private void ListViewRooms_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewRooms);
+        }
+
+        private void ListViewStockDrinks_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewStockDrinks);
+        }
+
+        private void ListViewStudents_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewStudents);
+        }
+
+        private void ListViewTeachers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewTeachers);
+        }
+
 
         private void OrderListView(ColumnClickEventArgs e, ListView lv)
         {
@@ -984,7 +1119,7 @@ namespace SomerenUI
                 lvwColumnSorter.SortColumn = e.Column;
                 lvwColumnSorter.Order = SortOrder.Ascending;
             }
-
+            
             lv.Sort();
         }
     }

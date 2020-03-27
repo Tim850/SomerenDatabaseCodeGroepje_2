@@ -283,6 +283,7 @@
             this.listViewStudents.Size = new System.Drawing.Size(1020, 377);
             this.listViewStudents.TabIndex = 5;
             this.listViewStudents.UseCompatibleStateImageBehavior = false;
+            this.listViewStudents.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewStudents_ColumnClick);
             // 
             // studentID
             // 
@@ -336,6 +337,7 @@
             this.listViewTeachers.Size = new System.Drawing.Size(731, 333);
             this.listViewTeachers.TabIndex = 1;
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
+            this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewTeachers_ColumnClick);
             // 
             // pnl_Rooms
             // 
@@ -356,6 +358,7 @@
             this.listViewRooms.Size = new System.Drawing.Size(701, 323);
             this.listViewRooms.TabIndex = 3;
             this.listViewRooms.UseCompatibleStateImageBehavior = false;
+            this.listViewRooms.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewRooms_ColumnClick);
             // 
             // lbl_rooms
             // 
@@ -386,6 +389,7 @@
             this.listViewStockDrinks.Size = new System.Drawing.Size(901, 346);
             this.listViewStockDrinks.TabIndex = 1;
             this.listViewStockDrinks.UseCompatibleStateImageBehavior = false;
+            this.listViewStockDrinks.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewStockDrinks_ColumnClick);
             // 
             // lbl_StockDrinks
             // 
@@ -475,6 +479,7 @@
             this.listViewDrinksCO.Size = new System.Drawing.Size(381, 221);
             this.listViewDrinksCO.TabIndex = 6;
             this.listViewDrinksCO.UseCompatibleStateImageBehavior = false;
+            this.listViewDrinksCO.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewDrinksCO_ColumnClick);
             // 
             // listViewStudentsCO
             // 
@@ -485,6 +490,7 @@
             this.listViewStudentsCO.Size = new System.Drawing.Size(393, 221);
             this.listViewStudentsCO.TabIndex = 5;
             this.listViewStudentsCO.UseCompatibleStateImageBehavior = false;
+            this.listViewStudentsCO.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewStudentsCO_ColumnClick);
             // 
             // lbl_SelectDrinks
             // 
@@ -732,6 +738,7 @@
             this.listViewGuides.Size = new System.Drawing.Size(731, 323);
             this.listViewGuides.TabIndex = 3;
             this.listViewGuides.UseCompatibleStateImageBehavior = false;
+            this.listViewGuides.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewGuides_ColumnClick);
             // 
             // label2
             // 
@@ -812,11 +819,41 @@
             this.img_Dashboard.TabStop = false;
             this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
             // 
+            // pnl_Schedule
+            // 
+            this.pnl_Schedule.Controls.Add(this.listViewSchedule);
+            this.pnl_Schedule.Controls.Add(this.label4);
+            this.pnl_Schedule.Location = new System.Drawing.Point(0, 28);
+            this.pnl_Schedule.Name = "pnl_Schedule";
+            this.pnl_Schedule.Size = new System.Drawing.Size(1256, 435);
+            this.pnl_Schedule.TabIndex = 15;
+            // 
+            // listViewSchedule
+            // 
+            this.listViewSchedule.HideSelection = false;
+            this.listViewSchedule.Location = new System.Drawing.Point(61, 80);
+            this.listViewSchedule.Name = "listViewSchedule";
+            this.listViewSchedule.Size = new System.Drawing.Size(1005, 280);
+            this.listViewSchedule.TabIndex = 1;
+            this.listViewSchedule.UseCompatibleStateImageBehavior = false;
+            this.listViewSchedule.View = System.Windows.Forms.View.Details;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(52, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(203, 51);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Schedule";
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 560);
+            this.Controls.Add(this.pnl_Schedule);
             this.Controls.Add(this.pnl_Guides);
             this.Controls.Add(this.pnl_Activities);
             this.Controls.Add(this.pnl_Sales);
@@ -838,8 +875,10 @@
             this.menuStrip1.PerformLayout();
             this.pnl_Dashboard.ResumeLayout(false);
             this.pnl_Dashboard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
             this.pnl_Students.ResumeLayout(false);
             this.pnl_Students.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnl_Teachers.ResumeLayout(false);
             this.pnl_Teachers.PerformLayout();
             this.pnl_Rooms.ResumeLayout(false);
@@ -854,11 +893,10 @@
             this.pnl_Activities.PerformLayout();
             this.pnl_Guides.ResumeLayout(false);
             this.pnl_Guides.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
+            this.pnl_Schedule.ResumeLayout(false);
+            this.pnl_Schedule.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -933,6 +971,10 @@
         private System.Windows.Forms.Label lbl_SelectAct;
         private System.Windows.Forms.ComboBox cmb_Activities;
         private System.Windows.Forms.Label lbl_SelectTeacher;
+        private System.Windows.Forms.ToolStripMenuItem scheduleToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Schedule;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView listViewSchedule;
     }
 }
 
