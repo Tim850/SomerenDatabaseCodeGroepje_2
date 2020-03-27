@@ -78,6 +78,9 @@ namespace SomerenUI
 
                 List<Student> studentList = studService.GetStudents();
 
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewStudents.ListViewItemSorter = lvwColumnSorter;
+
                 // clear the listview before filling it again
                 listViewStudents.Clear();
 
@@ -122,6 +125,9 @@ namespace SomerenUI
 
                 // fill the students listview within the students panel with a list of students
                 List<Teacher> teacherList = teachService.GetTeachers();
+
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewTeachers.ListViewItemSorter = lvwColumnSorter;
 
                 // clear the listview before filling it again
                 listViewTeachers.Clear();
@@ -170,6 +176,10 @@ namespace SomerenUI
                 SomerenLogic.Room_Service roomService = new SomerenLogic.Room_Service();
                 List<Room> roomList = roomService.GetRooms();
 
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewRooms.ListViewItemSorter = lvwColumnSorter;
+
                 // clear the listview before filling it again
                 listViewRooms.Clear();
 
@@ -215,6 +225,10 @@ namespace SomerenUI
 
                 // fill the listview with a list of the stock
                 List<StockDrinks> stockList = stockDrinksService.GetStock();
+
+                //sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewStockDrinks.ListViewItemSorter = lvwColumnSorter;
 
                 // clear the listview first before filling it again
                 listViewStockDrinks.Clear();
@@ -286,6 +300,10 @@ namespace SomerenUI
                 List<Student> studentList = studService.GetStudents();
                 List<StockDrinks> drinkList = stockDrinksService.GetStock();
 
+                //Sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewStudentsCO.ListViewItemSorter = lvwColumnSorter;
+
                 // listview students
                 listViewStudentsCO.Clear();
 
@@ -311,6 +329,11 @@ namespace SomerenUI
                     itm = new ListViewItem(students);
                     listViewStudentsCO.Items.Add(itm);
                 }
+
+
+                //Sorter
+                lvwColumnSorter = new ListViewColumnSorter();
+                listViewDrinksCO.ListViewItemSorter = lvwColumnSorter;
 
                 // listview drinks
                 listViewDrinksCO.Clear();
@@ -966,6 +989,7 @@ namespace SomerenUI
             return selectedGuide;
         }
         
+        //OnClick events voor de column sorter
         private void ListViewActivities_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             OrderListView(e, listViewActivities);
@@ -974,6 +998,36 @@ namespace SomerenUI
         private void ListViewGuides_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             OrderListView(e, listViewGuides);
+        }
+
+        private void ListViewDrinksCO_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewDrinksCO);
+        }
+
+        private void ListViewStudentsCO_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewStudentsCO);
+        }
+
+        private void ListViewRooms_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewRooms);
+        }
+
+        private void ListViewStockDrinks_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewStockDrinks);
+        }
+
+        private void ListViewStudents_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewStudents);
+        }
+
+        private void ListViewTeachers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            OrderListView(e, listViewTeachers);
         }
 
         private void OrderListView(ColumnClickEventArgs e, ListView lv)

@@ -283,6 +283,7 @@
             this.listViewStudents.Size = new System.Drawing.Size(1020, 377);
             this.listViewStudents.TabIndex = 5;
             this.listViewStudents.UseCompatibleStateImageBehavior = false;
+            this.listViewStudents.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewStudents_ColumnClick);
             // 
             // studentID
             // 
@@ -336,6 +337,7 @@
             this.listViewTeachers.Size = new System.Drawing.Size(731, 333);
             this.listViewTeachers.TabIndex = 1;
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
+            this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewTeachers_ColumnClick);
             // 
             // pnl_Rooms
             // 
@@ -356,6 +358,7 @@
             this.listViewRooms.Size = new System.Drawing.Size(701, 323);
             this.listViewRooms.TabIndex = 3;
             this.listViewRooms.UseCompatibleStateImageBehavior = false;
+            this.listViewRooms.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewRooms_ColumnClick);
             // 
             // lbl_rooms
             // 
@@ -386,6 +389,7 @@
             this.listViewStockDrinks.Size = new System.Drawing.Size(901, 346);
             this.listViewStockDrinks.TabIndex = 1;
             this.listViewStockDrinks.UseCompatibleStateImageBehavior = false;
+            this.listViewStockDrinks.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewStockDrinks_ColumnClick);
             // 
             // lbl_StockDrinks
             // 
@@ -475,6 +479,7 @@
             this.listViewDrinksCO.Size = new System.Drawing.Size(381, 221);
             this.listViewDrinksCO.TabIndex = 6;
             this.listViewDrinksCO.UseCompatibleStateImageBehavior = false;
+            this.listViewDrinksCO.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewDrinksCO_ColumnClick);
             // 
             // listViewStudentsCO
             // 
@@ -485,6 +490,7 @@
             this.listViewStudentsCO.Size = new System.Drawing.Size(393, 221);
             this.listViewStudentsCO.TabIndex = 5;
             this.listViewStudentsCO.UseCompatibleStateImageBehavior = false;
+            this.listViewStudentsCO.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewStudentsCO_ColumnClick);
             // 
             // lbl_SelectDrinks
             // 
