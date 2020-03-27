@@ -819,11 +819,41 @@
             this.img_Dashboard.TabStop = false;
             this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
             // 
+            // pnl_Schedule
+            // 
+            this.pnl_Schedule.Controls.Add(this.listViewSchedule);
+            this.pnl_Schedule.Controls.Add(this.label4);
+            this.pnl_Schedule.Location = new System.Drawing.Point(0, 28);
+            this.pnl_Schedule.Name = "pnl_Schedule";
+            this.pnl_Schedule.Size = new System.Drawing.Size(1256, 435);
+            this.pnl_Schedule.TabIndex = 15;
+            // 
+            // listViewSchedule
+            // 
+            this.listViewSchedule.HideSelection = false;
+            this.listViewSchedule.Location = new System.Drawing.Point(61, 80);
+            this.listViewSchedule.Name = "listViewSchedule";
+            this.listViewSchedule.Size = new System.Drawing.Size(1005, 280);
+            this.listViewSchedule.TabIndex = 1;
+            this.listViewSchedule.UseCompatibleStateImageBehavior = false;
+            this.listViewSchedule.View = System.Windows.Forms.View.Details;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(52, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(203, 51);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Schedule";
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 560);
+            this.Controls.Add(this.pnl_Schedule);
             this.Controls.Add(this.pnl_Guides);
             this.Controls.Add(this.pnl_Activities);
             this.Controls.Add(this.pnl_Sales);
@@ -845,8 +875,10 @@
             this.menuStrip1.PerformLayout();
             this.pnl_Dashboard.ResumeLayout(false);
             this.pnl_Dashboard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
             this.pnl_Students.ResumeLayout(false);
             this.pnl_Students.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnl_Teachers.ResumeLayout(false);
             this.pnl_Teachers.PerformLayout();
             this.pnl_Rooms.ResumeLayout(false);
@@ -861,11 +893,10 @@
             this.pnl_Activities.PerformLayout();
             this.pnl_Guides.ResumeLayout(false);
             this.pnl_Guides.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
+            this.pnl_Schedule.ResumeLayout(false);
+            this.pnl_Schedule.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -940,6 +971,10 @@
         private System.Windows.Forms.Label lbl_SelectAct;
         private System.Windows.Forms.ComboBox cmb_Activities;
         private System.Windows.Forms.Label lbl_SelectTeacher;
+        private System.Windows.Forms.ToolStripMenuItem scheduleToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Schedule;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView listViewSchedule;
     }
 }
 

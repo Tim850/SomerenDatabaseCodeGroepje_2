@@ -24,6 +24,7 @@ namespace SomerenUI
         SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
         SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
         SomerenLogic.Guide_Service guideService = new SomerenLogic.Guide_Service();
+        SomerenLogic.Schedule_Service scheduleService = new SomerenLogic.Schedule_Service();
         SomerenLogic.Teacher_Service teachService = new SomerenLogic.Teacher_Service();
 
         //sorter
@@ -53,6 +54,7 @@ namespace SomerenUI
                 pnl_Activities.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -70,6 +72,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -118,6 +121,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show students
@@ -126,6 +130,7 @@ namespace SomerenUI
                 // fill the students listview within the students panel with a list of students
                 List<Teacher> teacherList = teachService.GetTeachers();
 
+                //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewTeachers.ListViewItemSorter = lvwColumnSorter;
 
@@ -167,6 +172,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show rooms
@@ -218,6 +224,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
 
                 // show stock
@@ -292,6 +299,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 // show checkout
                 pnl_CheckOut.Show();
@@ -370,6 +378,7 @@ namespace SomerenUI
                 pnl_Students.Hide();
                 pnl_Activities.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 //show panel
                 pnl_Sales.Show();
@@ -396,10 +405,11 @@ namespace SomerenUI
                 pnl_Students.Hide();
                 pnl_Sales.Hide();
                 pnl_Guides.Hide();
+                pnl_Schedule.Hide();
 
                 //show panel
                 pnl_Activities.Show();
-                
+
                 //sorter
                 lvwColumnSorter = new ListViewColumnSorter();
                 listViewActivities.ListViewItemSorter = lvwColumnSorter;
@@ -433,6 +443,58 @@ namespace SomerenUI
                     listViewActivities.Items.Add(itm);
                 }
             }
+            else if (panelName == "Schedule")
+            {
+                // Hide other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+                pnl_StockDrinks.Hide();
+                pnl_CheckOut.Hide();
+                pnl_Students.Hide();
+                pnl_Sales.Hide();
+                pnl_Activities.Hide();
+                btn_Buy.Hide();
+                pnl_Guides.Hide();
+
+                //show panel
+                pnl_Schedule.Show();
+
+                List<Schedule> scheduleList = scheduleService.GetSchedule();
+
+                // clear the listview before filling it again
+                listViewSchedule.Clear();
+
+                listViewSchedule.View = View.Details;
+                listViewSchedule.GridLines = true;
+                listViewSchedule.FullRowSelect = true;
+
+                // Aanmaken van kolommen
+                listViewSchedule.Columns.Add("Time", 75);
+                listViewSchedule.Columns.Add("Monday", 200);
+                listViewSchedule.Columns.Add("Tuesday", 250);
+                listViewSchedule.Columns.Add("Wednesday", 100);
+                listViewSchedule.Columns.Add("Thursday", 100);
+                listViewSchedule.Columns.Add("Friday", 100);
+
+                string[] schedule = new string[6];
+                ListViewItem itm;
+
+                foreach (SomerenModel.Schedule s in scheduleList)
+                {
+                    schedule[0] = s.time;
+                    schedule[1] = s.monday;
+                    schedule[2] = s.tuesday;
+                    schedule[3] = s.Wednesday;
+                    schedule[4] = s.thursday;
+                    schedule[5] = s.Friday;
+
+                    itm = new ListViewItem(schedule);
+                    listViewSchedule.Items.Add(itm);
+                }
+
+            } 
             else if (panelName == "Guides")
             {
                 // Hide other panels
@@ -446,6 +508,7 @@ namespace SomerenUI
                 pnl_Sales.Hide();
                 pnl_Activities.Hide();
                 btn_Buy.Hide();
+                pnl_Schedule.Hide();
 
                 //show panel
                 pnl_Guides.Show();
@@ -559,10 +622,15 @@ namespace SomerenUI
         {
             showPanel("Activities");
         }
+        private void ScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Schedule");
+        }
         private void GuidesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Guides");
         }
+
 
 
         // buttons clicks en methodes
@@ -1047,7 +1115,7 @@ namespace SomerenUI
                 lvwColumnSorter.SortColumn = e.Column;
                 lvwColumnSorter.Order = SortOrder.Ascending;
             }
-
+            
             lv.Sort();
         }
     }
